@@ -23,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/materialTextView2"
+            android:id="@+id/tv_bank_name"
             style="@style/SubTitleTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,11 +42,11 @@
             android:src="@drawable/ic_take_picture"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/materialTextView2" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_bank_name" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/il_full_name"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/InputLayoutTextTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_large"
@@ -58,13 +58,13 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_full_name"
                 android:layout_width="match_parent"
-                android:inputType="textPersonName"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/il_phone_number"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/InputLayoutTextTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_large"
@@ -89,14 +89,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_marginTop="@dimen/size_large"
-            android:text="@string/title_sign_up"
+            android:text="@string/title_address"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/il_phone_number" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/il_governorate"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            style="@style/SpinnerTextTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_large"
@@ -117,7 +117,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/il_city"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            style="@style/SpinnerTextTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_small"
@@ -138,7 +138,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/il_password"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/InputLayoutTextTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_large"

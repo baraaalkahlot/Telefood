@@ -1,5 +1,6 @@
 package com.bik.telefood;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,6 +14,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.bik.telefood.databinding.ActivityMainBinding;
+import com.bik.telefood.ui.notifications.NotificationActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_notification) {
-            Toast.makeText(this, "comming soon!!", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, NotificationActivity.class));
             return true;
         } else if (item.getItemId() == R.id.action_chat) {
             Toast.makeText(this, "comming soon!!", Toast.LENGTH_SHORT).show();

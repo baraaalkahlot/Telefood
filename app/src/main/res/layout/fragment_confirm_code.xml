@@ -20,7 +20,7 @@
             android:textStyle="bold" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/materialTextView2"
+            android:id="@+id/tv_bank_name"
             style="@style/SubTitleTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -27,17 +27,18 @@
 
         <androidx.appcompat.widget.AppCompatRatingBar
             android:id="@+id/rb_supplier_rating"
-            style="?android:attr/ratingBarStyleIndicator"
-            android:layout_width="90dp"
-            android:layout_height="14dp"
-            android:layout_marginBottom="@dimen/size_small"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="true"
             android:numStars="5"
             android:progressTint="@color/gold"
-            app:layout_constraintBottom_toTopOf="@+id/materialTextView3"
+            android:rating="5"
+            app:layout_constraintBottom_toTopOf="@+id/tv_account_number"
             app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/materialTextView3"
+            android:id="@+id/tv_account_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/cairo_semibold"

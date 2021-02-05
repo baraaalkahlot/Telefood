@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view_user_info"
+    style="@style/CardViewTheme"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:cardUseCompatPadding="false">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/padding_layout">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/shapeableImageView5"
+            android:layout_width="@dimen/size_user_image"
+            android:layout_height="@dimen/size_user_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_person" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_iban"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cairo_semibold"
+            android:text="براء بن اياد الكحلوت"
+            android:textColor="@color/mine_shaft"
+            android:textSize="@dimen/text_size_mid"
+            app:layout_constraintStart_toEndOf="@+id/shapeableImageView5"
+            app:layout_constraintTop_toTopOf="@+id/shapeableImageView5" />
+
+        <androidx.appcompat.widget.AppCompatRatingBar
+            android:id="@+id/rb_supplier_rating"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:progressTint="@color/gold"
+            android:rating="4"
+            app:layout_constraintBottom_toBottomOf="@+id/shapeableImageView5"
+            app:layout_constraintStart_toEndOf="@+id/shapeableImageView5"
+            app:layout_constraintTop_toBottomOf="@+id/tv_iban" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_edit_user_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/transparent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_edit_profile_bg" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/size_large"
+            android:background="@color/alto"
+            app:layout_constraintEnd_toEndOf="@+id/btn_edit_user_info"
+            app:layout_constraintStart_toStartOf="@+id/shapeableImageView5"
+            app:layout_constraintTop_toBottomOf="@+id/rb_supplier_rating" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/materialTextView7"
+            style="@style/DescTextTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/size_mid"
+            android:gravity="center"
+            android:text="اشتراك شهري"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/DescTextTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/size_mid"
+            android:gravity="center"
+            android:text="متبقي 30 يوم"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_renew"
+            app:layout_constraintStart_toEndOf="@+id/materialTextView7"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_renew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_mid"
+            android:backgroundTint="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view"
+            app:srcCompat="@drawable/ic_renew" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

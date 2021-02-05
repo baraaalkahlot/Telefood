@@ -40,7 +40,7 @@
     <string name="action_resend_code">لم استلم اي رمز؟<font fgcolor='#C3245D'><b>إعادة ارسال</b></font></string>
     <string name="title_enter_phone_number">أدخل رقم الهاتف</string>
     <string name="title_confirm_code">تأكيد الرمز</string>
-    <string name="title_send">ارسال</string>
+    <string name="label_send">ارسال</string>
     <string name="label_confirm_password">تأكيد كلمة المرور</string>
     <string name="label_new_password">كلمة المرور الجديدة</string>
     <string name="label_search">ابحث</string>
@@ -51,4 +51,65 @@
     <string name="label_category">التصنيف</string>
     <string name="title_product">المنتجات</string>
     <string name="title_provider">مقدمي الخدمات</string>
+    <string name="title_edit_account_info">تعديل بيانات االحساب</string>
+    <string name="title_address">العنوان</string>
+    <string name="label_save">حفظ</string>
+    <string name="title_subscription_renewal">تجديد الاشتراك</string>
+    <string name="title_account_info">بيانات الحساب</string>
+    <string name="label_bank_name">%s<font fgcolor='#2C9990'><b>اسم البنك </b></font></string>
+    <string name="label_account_number">%s<font fgcolor='#2C9990'><b>رقم الحساب </b></font></string>
+    <string name="label_the_full_name">%s<font fgcolor='#2C9990'><b>الاسم الكامل </b></font></string>
+    <string name="label_iban">%s<font fgcolor='#2C9990'><b>آيبان </b></font></string>
+    <string name="title_transfer_picture">صورة الحوالة</string>
+    <string name="title_note_add_transfer_picture">أرفق صورة الحوالة على الوجهين بشكل واضح</string>
+    <string name="title_choose_subscription_package">اختر باقة الاشتراك</string>
+    <string name="label_old_password">كلمةالمرور القديمة</string>
+    <string name="title_setting">الاعدادات</string>
+
+    <string-array name="category_array">
+        <item>كيك</item>
+        <item>قهوة</item>
+        <item>مشروبات</item>
+    </string-array>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="notification_header">الاشعارات</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="label_enable_app_notification">تنبيه باشعارات التطبيق</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="label_my_ads">إعلاناتي</string>
+    <string name="label_providers">الموزعين</string>
+    <string name="label_support">الدعم الفني</string>
+    <string name="label_privacy_policy">الاستخدام والخصوصية</string>
+    <string name="label_about_app">عن التطبيق</string>
+    <string name="label_change_password">تعديل كلمة المرور</string>
+    <string name="label_sign_out">تسجيل الخروج</string>
+    <string name="language_header">اللغة</string>
+    <string name="label_language">لغة التطبيق</string>
+    <string name="label_edit_my_ads">تعديل اعلاني</string>
+    <string name="label_notification">الاشعارات</string>
+    <string name="label_providers_details">تفاصيل المزود</string>
+    <string name="label_contact_us">تواصل معنا</string>
+    <string name="desc_support">نحن هنا من أجلك ، أخبرنا بما يدور في ذهنك؟</string>
+    <string name="label_subject">الموضوع</string>
+    <string name="label_details">التفاصيل</string>
+    <string name="title_contact_info">معلومات التواصل</string>
+    <string name="label_promotion_detail">تفاصيل الاعلان</string>
+    <string name="label_back">رجوع</string>
+    <string name="message_sent_successfully">تم الارسال بنجاح</string>
+    <string name="label_delete_promotion">حذف الاعلان</string>
+    <string name="title_delete_ads_message">هل تريد حذف هذا المنتج؟</string>
+    <string name="label_delete">حذف</string>
+    <string name="label_cancel">الغاء</string>
+    <string name="label_filter_results">فلترة النتائج</string>
 </resources>

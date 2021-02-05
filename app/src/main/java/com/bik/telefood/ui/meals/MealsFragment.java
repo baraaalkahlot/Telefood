@@ -4,30 +4,37 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.bik.telefood.R;
+import com.bik.telefood.databinding.FragmentMealsBinding;
+import com.bik.telefood.ui.bottomsheet.FilterDialogFragment;
+import com.bik.telefood.ui.common.CategoryAdapter;
+import com.bik.telefood.ui.common.ProductAdapter;
 
 public class MealsFragment extends Fragment {
 
+    private FragmentMealsBinding binding;
     private MealsViewModel mealsViewModel;
+    private CategoryAdapter categoryAdapter;
+    private ProductAdapter productAdapter;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        mealsViewModel =
-                new ViewModelProvider(this).get(MealsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_meals, container, false);
-        mealsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-            }
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentMealsBinding.inflate(inflater, container, false);
+        mealsViewModel = new ViewModelProvider(this).get(MealsViewModel.class);
+
+        mealsViewModel.getText().observe(getViewLifecycleOwner(), s -> {
         });
-        return root;
+
+        categoryAdapter = new CategoryAdapter();
+        binding.rvCategory.setAdapter(categoryAdapter);
+
+        productAdapter = new ProductAdapter();
+        binding.rvProduct.setAdapter(productAdapter);
+
+        binding.ibFilter.setOnClickListener(v -> FilterDialogFragment.newInstance().show(getActivity().getSupportFragmentManager(), "FilterDialogFragment"));
+        return binding.getRoot();
     }
 }

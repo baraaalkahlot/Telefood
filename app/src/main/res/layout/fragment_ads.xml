@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/padding_layout"
-    tools:context=".ui.ads.AdsFragment">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_layout">
 
         <LinearLayout
             android:id="@+id/ll_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_xlarge"
             android:background="@drawable/shape_dashed_stroke_rectangle"
             android:gravity="center"
             android:orientation="vertical"
@@ -35,66 +34,93 @@
                 android:text="@string/title_note_add_image" />
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_product_name"
-            style="@style/EditTextTheme"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/il_product_name"
+            style="@style/InputLayoutTextTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_xlarge"
             android:hint="@string/label_product_name"
-            android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ll_image" />
+            app:layout_constraintTop_toBottomOf="@id/ll_image">
 
-        <androidx.appcompat.widget.AppCompatSpinner
-            android:id="@+id/sp_category"
-            style="@style/EditTextTheme"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_product_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/il_category"
+            style="@style/SpinnerTextTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_large"
-            android:background="@drawable/layer_list_spinner"
-            android:entries="@array/category_array"
+            android:hint="@string/label_category"
+            app:boxBackgroundColor="@android:color/transparent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_product_name" />
+            app:layout_constraintTop_toBottomOf="@id/il_product_name">
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_product_price"
-            style="@style/EditTextTheme"
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/sp_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/il_product_price"
+            style="@style/InputLayoutTextTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_large"
             android:hint="@string/label_product_price"
-            android:inputType="numberDecimal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/sp_category" />
+            app:layout_constraintTop_toBottomOf="@id/il_category">
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_product_desc"
-            style="@style/EditTextTheme"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_product_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/il_product_desc"
+            style="@style/InputLayoutTextTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_large"
-            android:gravity="start"
             android:hint="@string/label_product_desc"
-            android:inputType="text"
-            android:minHeight="100dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_product_price" />
+            app:layout_constraintTop_toBottomOf="@+id/il_product_price">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_product_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:inputType="text"
+                android:minHeight="@dimen/min_height_desc_edit_text" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_send"
             style="@style/GradientButtonTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_xlarge"
-            android:text="@string/title_send"
+            android:text="@string/label_send"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_product_desc" />
+            app:layout_constraintTop_toBottomOf="@+id/il_product_desc" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

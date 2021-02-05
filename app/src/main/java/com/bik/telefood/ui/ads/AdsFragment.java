@@ -4,30 +4,30 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.bik.telefood.R;
+import com.bik.telefood.databinding.FragmentAdsBinding;
+import com.bik.telefood.ui.bottomsheet.SuccessDialogFragment;
 
 public class AdsFragment extends Fragment {
 
+    private FragmentAdsBinding binding;
     private AdsViewModel adsViewModel;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        adsViewModel =
-                new ViewModelProvider(this).get(AdsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_ads, container, false);
-        adsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-            }
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        binding = FragmentAdsBinding.inflate(inflater, container, false);
+        adsViewModel = new ViewModelProvider(this).get(AdsViewModel.class);
+        adsViewModel.getText().observe(getViewLifecycleOwner(), s -> {
         });
-        return root;
+
+        binding.btnSend.setOnClickListener(v -> {
+            SuccessDialogFragment.newInstance().show(getActivity().getSupportFragmentManager(), "SuccessDialogFragment");
+        });
+
+        return binding.getRoot();
     }
 }

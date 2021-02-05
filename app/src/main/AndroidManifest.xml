@@ -9,14 +9,53 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Telefood">
+        <activity
+            android:name=".ui.support.ContactUsActivity"
+            android:label="@string/label_contact_us"
+            android:theme="@style/Theme.Telefood.ActionBar" />
+        <activity android:name=".ui.support.TechnicalSupportActivity" />
+        <activity
+            android:name=".ui.notifications.NotificationActivity"
+            android:label="@string/label_notification"
+            android:theme="@style/Theme.Telefood.ActionBar" />
+        <activity
+            android:name=".ui.more.EditProductActivity"
+            android:label="@string/label_edit_my_ads"
+            android:theme="@style/Theme.Telefood.ActionBar" />
+        <activity
+            android:name=".ui.more.ads.MyAdsActivity"
+            android:label="@string/label_my_ads"
+            android:theme="@style/Theme.Telefood.ActionBar" />
+        <activity
+            android:name=".ui.common.ProvidersDetailsActivity"
+            android:label="@string/label_providers_details"
+            android:theme="@style/Theme.Telefood.ActionBar" />
+        <activity
+            android:name=".ui.more.ProvidersListActivity"
+            android:label="@string/label_providers"
+            android:theme="@style/Theme.Telefood.ActionBar" />
+        <activity
+            android:name=".ui.more.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:theme="@style/Theme.Telefood.ActionBar" />
+        <activity
+            android:name=".ui.more.ChangePasswordActivity"
+            android:label="@string/label_change_password"
+            android:theme="@style/Theme.Telefood.ActionBar" />
+        <activity
+            android:name=".ui.more.SubscriptionRenewalActivity"
+            android:label="@string/title_subscription_renewal"
+            android:theme="@style/Theme.Telefood.ActionBar" />
+        <activity
+            android:name=".ui.more.EditUserInfoActivity"
+            android:label="@string/title_edit_account_info"
+            android:theme="@style/Theme.Telefood.ActionBar" />
         <activity android:name=".ui.auth.AuthActivity" />
         <activity android:name=".ui.onboarding.UserTypeActivity" />
         <activity
             android:name=".ui.onboarding.OnBoardingActivity"
             android:label="@string/title_activity_on_boarding"
-            android:theme="@style/Theme.Telefood.NoActionBar">
-
-        </activity>
+            android:theme="@style/Theme.Telefood.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">

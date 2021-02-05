@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_layout"
+    tools:context=".ui.more.EditProductActivity">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_promotion_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_eye"
+        android:drawablePadding="@dimen/size_xlarge"
+        android:paddingTop="@dimen/size_small"
+        android:paddingBottom="@dimen/size_small"
+        android:text="@string/label_promotion_detail"
+        android:textColor="@color/tundora" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_edit_promotion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_mid"
+        android:drawableStart="@drawable/ic_edit_box"
+        android:drawablePadding="@dimen/size_xlarge"
+        android:paddingTop="@dimen/size_small"
+        android:paddingBottom="@dimen/size_small"
+        android:text="@string/label_promotion_detail"
+        android:textColor="@color/tundora" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_delete_promotion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_mid"
+        android:drawableStart="@drawable/ic_delete"
+        android:drawablePadding="@dimen/size_xlarge"
+        android:paddingTop="@dimen/size_small"
+        android:paddingBottom="@dimen/size_small"
+        android:text="@string/label_delete_promotion"
+        android:textColor="@color/tundora" />
+</LinearLayout>

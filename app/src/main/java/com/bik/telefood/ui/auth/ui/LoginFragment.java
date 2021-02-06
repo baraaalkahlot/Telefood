@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.bik.telefood.MainActivity;
 import com.bik.telefood.R;
+import com.bik.telefood.common.MainActivity;
 import com.bik.telefood.databinding.FragmentLoginBinding;
 
 import org.jetbrains.annotations.NotNull;

@@ -33,5 +33,8 @@
     <dimen name="list_item_spacing_half">8dp</dimen>
     <dimen name="radius_dialog_button">16dp</dimen>
     <dimen name="size_bottomsheet_radius">24dp</dimen>
+    <dimen name="radius_edit_text_message">22dp</dimen>
+    <dimen name="size_radius_message_item">20dp</dimen>
+    <dimen name="size_splash_logo">120dp</dimen>
 
 </resources>

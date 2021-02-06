@@ -9,6 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Telefood">
+        <activity android:name=".ui.init.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.chat.MessageActivity"
+            android:label="@string/title_chat"
+            android:theme="@style/Theme.Telefood.ActionBar" />
+        <activity
+            android:name=".ui.chat.ChatListActivity"
+            android:label="@string/title_chat"
+            android:theme="@style/Theme.Telefood.ActionBar" />
         <activity
             android:name=".ui.support.ContactUsActivity"
             android:label="@string/label_contact_us"
@@ -57,13 +72,9 @@
             android:label="@string/title_activity_on_boarding"
             android:theme="@style/Theme.Telefood.NoActionBar" />
         <activity
-            android:name=".MainActivity"
+            android:name=".common.MainActivity"
             android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <meta-data

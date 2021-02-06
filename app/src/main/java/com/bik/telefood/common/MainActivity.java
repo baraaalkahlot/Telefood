@@ -1,10 +1,9 @@
-package com.bik.telefood;
+package com.bik.telefood.common;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +12,9 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.bik.telefood.R;
 import com.bik.telefood.databinding.ActivityMainBinding;
+import com.bik.telefood.ui.chat.ChatListActivity;
 import com.bik.telefood.ui.notifications.NotificationActivity;
 
 
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+//        binding.navView.getMenu().removeItem(R.id.navigation_add_ads);
     }
 
     @Override
@@ -49,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, NotificationActivity.class));
             return true;
         } else if (item.getItemId() == R.id.action_chat) {
-            Toast.makeText(this, "comming soon!!", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, ChatListActivity.class));
             return true;
         }
         return false;

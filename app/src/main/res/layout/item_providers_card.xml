@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/CardViewTheme"
-    android:layout_width="335dp"
-    android:layout_height="140dp"
+    android:layout_width="@dimen/size_providers_item_width"
+    android:layout_height="@dimen/size_providers_item_height"
     android:layout_gravity="center_horizontal"
     tools:cardUseCompatPadding="false">
 
@@ -22,14 +22,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/template"
-            tools:tint="@color/transparent_black"
-            tools:tintMode="src_atop" />
+            app:tint="@color/transparent_black"
+            app:tintMode="src_atop" />
 
         <androidx.appcompat.widget.AppCompatRatingBar
             android:id="@+id/rb_supplier_rating"
             style="@style/Widget.AppCompat.RatingBar.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_small"
+            android:layout_marginEnd="@dimen/size_small"
             android:isIndicator="true"
             android:numStars="5"
             android:progressTint="@color/gold"
@@ -41,6 +43,7 @@
             android:id="@+id/tv_account_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/size_small"
             android:fontFamily="@font/cairo_semibold"
             android:text="مطعم براء الكحلوت"
             android:textColor="@color/white"

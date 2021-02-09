@@ -10,11 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Telefood">
         <activity android:name=".ui.init.SplashActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.chat.MessageActivity"
@@ -28,7 +24,10 @@
             android:name=".ui.support.ContactUsActivity"
             android:label="@string/label_contact_us"
             android:theme="@style/Theme.Telefood.ActionBar" />
-        <activity android:name=".ui.support.TechnicalSupportActivity" />
+        <activity
+            android:name=".ui.support.TechnicalSupportActivity"
+            android:label="@string/label_support"
+            android:theme="@style/Theme.Telefood.ActionBar" />
         <activity
             android:name=".ui.notifications.NotificationActivity"
             android:label="@string/label_notification"
@@ -65,16 +64,23 @@
             android:name=".ui.more.EditUserInfoActivity"
             android:label="@string/title_edit_account_info"
             android:theme="@style/Theme.Telefood.ActionBar" />
+
         <activity android:name=".ui.auth.AuthActivity" />
         <activity android:name=".ui.onboarding.UserTypeActivity" />
         <activity
             android:name=".ui.onboarding.OnBoardingActivity"
             android:label="@string/title_activity_on_boarding"
-            android:theme="@style/Theme.Telefood.NoActionBar" />
+            android:theme="@style/Theme.Telefood.NoActionBar">
+
+        </activity>
         <activity
             android:name=".common.MainActivity"
             android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <meta-data

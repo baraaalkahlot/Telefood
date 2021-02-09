@@ -60,7 +60,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rv_category"
-        app:spanCount="3"
+        app:spanCount="@integer/number_product_item_grid_meals"
         tools:itemCount="20"
         tools:listitem="@layout/item_product" />
 </androidx.constraintlayout.widget.ConstraintLayout>

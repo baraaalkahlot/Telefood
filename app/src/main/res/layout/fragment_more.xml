@@ -38,7 +38,7 @@
             android:padding="@dimen/padding_layout"
             app:constraint_referenced_ids="card_my_ads , card_providers , card_support , card_setting , card_privacy_policy , card_about_app , card_edit_password , card_sign_out"
             app:flow_horizontalGap="@dimen/size_regular"
-            app:flow_maxElementsWrap="3"
+            app:flow_maxElementsWrap="@integer/max_elements_wrap_more_layout"
             app:flow_verticalGap="@dimen/size_regular"
             app:flow_wrapMode="aligned"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -49,50 +49,50 @@
         <include
             android:id="@+id/card_my_ads"
             layout="@layout/item_more"
-            android:layout_width="100dp"
-            android:layout_height="110dp" />
+            android:layout_width="@dimen/size_item_more_width"
+            android:layout_height="@dimen/size_item_more_height" />
 
         <include
             android:id="@+id/card_providers"
             layout="@layout/item_more"
-            android:layout_width="100dp"
-            android:layout_height="110dp" />
+            android:layout_width="@dimen/size_item_more_width"
+            android:layout_height="@dimen/size_item_more_height" />
 
         <include
             android:id="@+id/card_support"
             layout="@layout/item_more"
-            android:layout_width="100dp"
-            android:layout_height="110dp" />
+            android:layout_width="@dimen/size_item_more_width"
+            android:layout_height="@dimen/size_item_more_height" />
 
         <include
             android:id="@+id/card_setting"
             layout="@layout/item_more"
-            android:layout_width="100dp"
-            android:layout_height="110dp" />
+            android:layout_width="@dimen/size_item_more_width"
+            android:layout_height="@dimen/size_item_more_height" />
 
         <include
             android:id="@+id/card_privacy_policy"
             layout="@layout/item_more"
-            android:layout_width="100dp"
-            android:layout_height="110dp" />
+            android:layout_width="@dimen/size_item_more_width"
+            android:layout_height="@dimen/size_item_more_height" />
 
         <include
             android:id="@+id/card_about_app"
             layout="@layout/item_more"
-            android:layout_width="100dp"
-            android:layout_height="110dp" />
+            android:layout_width="@dimen/size_item_more_width"
+            android:layout_height="@dimen/size_item_more_height" />
 
         <include
             android:id="@+id/card_edit_password"
             layout="@layout/item_more"
-            android:layout_width="100dp"
-            android:layout_height="110dp" />
+            android:layout_width="@dimen/size_item_more_width"
+            android:layout_height="@dimen/size_item_more_height" />
 
         <include
             android:id="@+id/card_sign_out"
             layout="@layout/item_more"
-            android:layout_width="100dp"
-            android:layout_height="110dp" />
+            android:layout_width="@dimen/size_item_more_width"
+            android:layout_height="@dimen/size_item_more_height" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

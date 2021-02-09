@@ -32,7 +32,7 @@
     <string name="label_login_as_guest">دخول كزائر</string>
     <string name="label_forget_password">نسيت كلمة المرور</string>
     <string name="label_full_name">الإسم بالكامل</string>
-    <string name="label_governorate">المحافظة</string>
+    <string name="label_governorate">المنطقة</string>
     <string name="label_city">المدينة</string>
     <string name="agree_privacy_policy">أوافق على سياسة الاستخدام والخصوصية</string>
     <string name="title_check">فحص</string>
@@ -55,10 +55,10 @@
     <string name="label_save">حفظ</string>
     <string name="title_subscription_renewal">تجديد الاشتراك</string>
     <string name="title_account_info">بيانات الحساب</string>
-    <string name="label_bank_name">%s<font fgcolor='#2C9990'><b>اسم البنك </b></font></string>
-    <string name="label_account_number">%s<font fgcolor='#2C9990'><b>رقم الحساب </b></font></string>
-    <string name="label_the_full_name">%s<font fgcolor='#2C9990'><b>الاسم الكامل </b></font></string>
-    <string name="label_iban">%s<font fgcolor='#2C9990'><b>آيبان </b></font></string>
+    <string name="label_bank_name">اسم البنك</string>
+    <string name="label_account_number">رقم الحساب</string>
+    <string name="label_the_full_name">الاسم الكامل</string>
+    <string name="label_iban">آيبان</string>
     <string name="title_transfer_picture">صورة الحوالة</string>
     <string name="title_note_add_transfer_picture">أرفق صورة الحوالة على الوجهين بشكل واضح</string>
     <string name="title_choose_subscription_package">اختر باقة الاشتراك</string>
@@ -110,4 +110,5 @@
     <string name="error_msg_no_connection">فشل الاتصال تحقق من اتصالك بالشبكة</string>
     <string name="title_error_message">رسالة خطأ</string>
     <string name="error_message_un_authorized">انتهت جلستك ، يرجى تسجيل الدخول من جديد</string>
+    <string name="label_bank_name_p">فلسطين</string>
 </resources>

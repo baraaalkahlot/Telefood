@@ -35,25 +35,15 @@
         android:maxLength="5"
         android:padding="@dimen/size_small"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/iv_mic"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/iv_mic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/size_small"
-        android:layout_marginBottom="@dimen/size_regular"
-        app:layout_constraintBottom_toBottomOf="@id/et_message"
         app:layout_constraintEnd_toStartOf="@id/iv_image"
-        app:srcCompat="@drawable/ic_microphone"
-        app:tint="@color/lochinvar" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/size_small"
+        app:tint="@color/lochinvar"
         android:layout_marginBottom="@dimen/size_regular"
         app:layout_constraintBottom_toBottomOf="@id/et_message"
         app:layout_constraintEnd_toStartOf="@id/iv_location"

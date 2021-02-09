@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="default_anim_length">250</integer>
+    <integer name="shorter_anim_length">150</integer>
+    <integer name="max_elements_wrap_more_layout">4</integer>
+    <integer name="number_product_item_grid_my_ads">4</integer>
+    <integer name="number_providers_item_grid_my_ads">7</integer>
+    <integer name="number_product_item_grid_home">7</integer>
+    <integer name="number_product_item_grid_meals">7</integer>
+
+</resources>

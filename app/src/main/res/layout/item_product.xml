@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="100dp"
+    android:layout_width="@dimen/size_item_product_layout_width"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/size_small">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_product"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="@dimen/size_item_product_iv_height"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -21,6 +22,7 @@
         android:gravity="center"
         android:text="كيكة كبيرة"
         android:textColor="@color/tundora"
+        android:textSize="@dimen/text_size_mid"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_product" />

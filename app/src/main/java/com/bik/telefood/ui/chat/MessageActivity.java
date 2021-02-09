@@ -30,12 +30,10 @@ public class MessageActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (count == 0) {
-                    binding.ivMic.setImageResource(R.drawable.ic_microphone);
-                    binding.ivImage.setVisibility(View.VISIBLE);
+                    binding.ivImage.setImageResource(R.drawable.ic_image);
                     binding.ivLocation.setVisibility(View.VISIBLE);
                 } else {
-                    binding.ivMic.setImageResource(R.drawable.ic_send);
-                    binding.ivImage.setVisibility(View.GONE);
+                    binding.ivImage.setImageResource(R.drawable.ic_send);
                     binding.ivLocation.setVisibility(View.GONE);
                 }
             }

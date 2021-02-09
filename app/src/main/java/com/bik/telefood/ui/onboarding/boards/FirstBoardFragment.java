@@ -1,26 +1,27 @@
 package com.bik.telefood.ui.onboarding.boards;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.bik.telefood.R;
+import com.bik.telefood.databinding.FragmentFirstBoardingBinding;
+import com.bik.telefood.ui.onboarding.OnMovePagerClickListener;
 import com.bik.telefood.ui.onboarding.PageViewModel;
 
 
-/**
- * A placeholder fragment containing a simple view.
- */
 public class FirstBoardFragment extends Fragment {
 
+    private static final int ARG_SEC_PAGER_NUMBER = 1;
     private static final String ARG_SECTION_NUMBER = "1";
+    private static final int ARG_THIRD_PAGER_NUMBER = 2;
+    private FragmentFirstBoardingBinding binding;
+    private OnMovePagerClickListener mListener;
 
     private PageViewModel pageViewModel;
 
@@ -44,15 +45,23 @@ public class FirstBoardFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_first_boarding, container, false);
-        pageViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-            }
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentFirstBoardingBinding.inflate(inflater, container, false);
+        pageViewModel.getText().observe(getViewLifecycleOwner(), s -> {
         });
-        return root;
+
+        binding.ivForward.setOnClickListener(v -> mListener.onClick(ARG_SEC_PAGER_NUMBER));
+        binding.tvSkip.setOnClickListener(v -> mListener.onClick(ARG_THIRD_PAGER_NUMBER));
+
+        return binding.getRoot();
     }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof OnMovePagerClickListener) {
+            mListener = (OnMovePagerClickListener) context;
+        }
+    }
+
 }

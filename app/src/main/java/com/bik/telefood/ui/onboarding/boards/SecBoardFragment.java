@@ -1,28 +1,25 @@
 package com.bik.telefood.ui.onboarding.boards;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.bik.telefood.R;
+import com.bik.telefood.databinding.FragmentSecBoardBinding;
+import com.bik.telefood.ui.onboarding.OnMovePagerClickListener;
 import com.bik.telefood.ui.onboarding.PageViewModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SecBoardFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class SecBoardFragment extends Fragment {
 
+    private static final int ARG_THIRD_PAGER_NUMBER = 2;
     private static final String ARG_SECTION_NUMBER = "2";
+    private FragmentSecBoardBinding binding;
+    private OnMovePagerClickListener mListener;
 
     private PageViewModel pageViewModel;
 
@@ -46,15 +43,24 @@ public class SecBoardFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_sec_board, container, false);
-        pageViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-            }
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentSecBoardBinding.inflate(inflater, container, false);
+
+        binding.ivForward.setOnClickListener(v -> mListener.onClick(ARG_THIRD_PAGER_NUMBER));
+
+        binding.tvSkip.setOnClickListener(v -> mListener.onClick(ARG_THIRD_PAGER_NUMBER));
+
+        pageViewModel.getText().observe(getViewLifecycleOwner(), s -> {
         });
-        return root;
+        return binding.getRoot();
+    }
+
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof OnMovePagerClickListener) {
+            mListener = (OnMovePagerClickListener) context;
+        }
     }
 }

@@ -23,7 +23,7 @@
             android:imeOptions="actionSearch"
             android:inputType="text"
             android:maxLines="1"
-            android:padding="@dimen/size_small"
+            android:padding="@dimen/padding_edit_text_search"
             android:textColorHint="#40222222"
             app:layout_constraintEnd_toStartOf="@+id/ib_filter"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,19 +39,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/et_search" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_providers"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/pager_providers"
             android:layout_width="match_parent"
             android:layout_height="@dimen/recycler_height_size"
             android:layout_marginTop="@dimen/size_regular"
+            android:clipChildren="false"
             android:clipToPadding="false"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_search"
-            tools:itemCount="10"
-            tools:listitem="@layout/item_providers_card" />
+            app:layout_constraintTop_toBottomOf="@+id/et_search" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_category"
@@ -63,14 +60,14 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rv_providers"
+            app:layout_constraintTop_toBottomOf="@+id/pager_providers"
             tools:itemCount="20"
             tools:listitem="@layout/item_category" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_product"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_marginTop="@dimen/size_large"
             android:clipToPadding="false"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
@@ -78,7 +75,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rv_category"
-            app:spanCount="3"
+            app:spanCount="@integer/number_product_item_grid_home"
             tools:itemCount="20"
             tools:listitem="@layout/item_product" />
 

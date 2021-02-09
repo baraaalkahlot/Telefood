@@ -55,10 +55,10 @@
     <string name="label_save">Save</string>
     <string name="title_subscription_renewal">Subscription renewal</string>
     <string name="title_account_info">Account details</string>
-    <string name="label_bank_name"><font fgcolor='#2C9990'><b>Bank Name </b></font>%s</string>
-    <string name="label_account_number"><font fgcolor='#2C9990'><b>Account number </b></font>%s</string>
-    <string name="label_the_full_name"><font fgcolor='#2C9990'><b>Full Name </b></font>%s</string>
-    <string name="label_iban"><font fgcolor='#2C9990'><b>IBAN </b></font>%s</string>
+    <string name="label_bank_name">Bank name</string>
+    <string name="label_account_number">Account number</string>
+    <string name="label_the_full_name">Full Name</string>
+    <string name="label_iban">IBAN</string>
     <string name="title_transfer_picture">Transfer Picture</string>
     <string name="title_note_add_transfer_picture">attach the image of the transfer on both sides clearly</string>
     <string name="title_choose_subscription_package">Choose a subscription package</string>
@@ -111,4 +111,5 @@
     <string name="error_msg_no_connection">Connection failed Check your network connection</string>
     <string name="title_error_message">Error Message</string>
     <string name="error_message_un_authorized">Your session has expired, please log in again</string>
+    <string name="label_bank_name_p">palestine</string>
 </resources>

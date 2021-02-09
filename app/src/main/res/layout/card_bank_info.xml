@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_mid"
-            android:text="@string/label_bank_name"
+            android:text="@string/label_bank_name_p"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/materialTextView" />
 
@@ -41,9 +41,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_mid"
             android:text="@string/label_account_number"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_bank_name"
-            app:layout_constraintTop_toBottomOf="@+id/materialTextView" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_bank_name" />
 
 
         <com.google.android.material.textview.MaterialTextView
@@ -54,7 +53,7 @@
             android:layout_marginTop="@dimen/size_mid"
             android:text="@string/label_full_name"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_bank_name" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_account_number" />
 
 
         <com.google.android.material.textview.MaterialTextView

@@ -7,9 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bik.telefood.databinding.FragmentThirdBoardBinding;
@@ -55,10 +53,7 @@ public class ThirdBoardFragment extends Fragment {
             startActivity(intent);
 
         });
-        pageViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-            }
+        pageViewModel.getText().observe(getViewLifecycleOwner(), s -> {
         });
         return binding.getRoot();
     }

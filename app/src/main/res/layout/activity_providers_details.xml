@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_regular"
         android:fontFamily="@font/cairo_semibold"
+        android:textDirection="locale"
         android:text="براء اياد الكحلوت"
         android:textColor="@color/tundora"
         android:textSize="@dimen/text_size_regular"
@@ -75,7 +76,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rv_category"
-        app:spanCount="3"
-        tools:itemCount="20"
+        app:spanCount="@integer/number_providers_item_grid_my_ads"
+        tools:itemCount="40"
         tools:listitem="@layout/item_product" />
 </androidx.constraintlayout.widget.ConstraintLayout>

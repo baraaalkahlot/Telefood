@@ -7,7 +7,9 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.bik.telefood.databinding.ActivityOnBoardingBinding;
 
-public class OnBoardingActivity extends AppCompatActivity {
+public class OnBoardingActivity extends AppCompatActivity implements OnMovePagerClickListener {
+
+    private ViewPager2 viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,7 +17,13 @@ public class OnBoardingActivity extends AppCompatActivity {
         ActivityOnBoardingBinding binding = ActivityOnBoardingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this);
-        ViewPager2 viewPager = binding.viewPager;
+        viewPager = binding.viewPager;
         viewPager.setAdapter(sectionsPagerAdapter);
+    }
+
+
+    @Override
+    public void onClick(int position) {
+        viewPager.setCurrentItem(position);
     }
 }

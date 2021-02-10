@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sv_sign_up"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.auth.ui.SignUpFragment"
@@ -35,14 +36,26 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_profile_image"
+            android:layout_width="@dimen/iv_profile_size"
+            android:layout_height="@dimen/iv_profile_size"
+            android:layout_gravity="center"
+            android:layout_marginTop="28dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_take_picture"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_bank_name" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_profile_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/size_xlarge"
-            android:src="@drawable/ic_take_picture"
+            android:text="@string/hint_add_your_image_profile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_bank_name" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_profile_image" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/il_full_name"
@@ -53,7 +66,7 @@
             android:hint="@string/label_full_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_profile_image">
+            app:layout_constraintTop_toBottomOf="@+id/tv_profile_image">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_full_name"
@@ -69,6 +82,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_large"
             android:hint="@string/label_phone_number"
+            app:counterEnabled="true"
+            app:counterMaxLength="9"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/il_full_name">
@@ -88,7 +103,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:layout_marginTop="@dimen/size_large"
+            android:layout_marginTop="@dimen/size_regular"
             android:text="@string/title_address"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"

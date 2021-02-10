@@ -1,4 +1,4 @@
-package com.bik.telefood.utils;
+package com.bik.telefood.CommonUtils;
 
 import android.content.Context;
 

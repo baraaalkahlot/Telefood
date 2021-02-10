@@ -45,5 +45,6 @@
     <dimen name="size_item_more_height">110dp</dimen>
     <dimen name="size_providers_item_height">140dp</dimen>
     <dimen name="size_providers_item_width">335dp</dimen>
+    <dimen name="iv_profile_size">100dp</dimen>
 
 </resources>

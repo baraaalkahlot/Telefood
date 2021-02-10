@@ -1,8 +1,10 @@
-package com.bik.telefood.common;
+package com.bik.telefood.CommonUtils;
 
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+
+import com.bik.telefood.model.network.ApiConstant;
 
 public class SharedPreferencesHelper {
 
@@ -10,11 +12,11 @@ public class SharedPreferencesHelper {
         SharedPreferences preferences = application.getSharedPreferences(AppConstant.USER_STATUS, Context.MODE_PRIVATE);
         return preferences.getBoolean(AppConstant.USER_STATUS, false);
     }
-/*
+
     public static String getToken(Application application) {
-        SharedPreferences preferences = application.getSharedPreferences(AppConstant.AUTHORIZATION, Context.MODE_PRIVATE);
-        return preferences.getString(AppConstant.AUTHORIZATION, "Empty");
-    }*/
+        SharedPreferences preferences = application.getSharedPreferences(ApiConstant.AUTHORIZATION, Context.MODE_PRIVATE);
+        return preferences.getString(ApiConstant.AUTHORIZATION, "Empty");
+    }
 
     public static String getUserType(Application application) {
         SharedPreferences preferences = application.getSharedPreferences(AppConstant.USER_TYPE, Context.MODE_PRIVATE);

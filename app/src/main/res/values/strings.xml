@@ -112,4 +112,18 @@
     <string name="title_error_message">Error Message</string>
     <string name="error_message_un_authorized">Your session has expired, please log in again</string>
     <string name="label_bank_name_p">palestine</string>
+
+    <string name="error_msg_missing_profile_image_required">You must enter a personal image</string>
+    <string name="error_msg_missing_name">The name field is required</string>
+    <string name="error_msg_missing_product_name">The product name field is required</string>
+    <string name="error_msg_missing_price">The price field is required</string>
+    <string name="error_msg_missing_desc">The Description field is required</string>
+    <string name="error_msg_missing_phone_number">The phone number field is required</string>
+    <string name="error_msg_missing_city">The city field is required</string>
+    <string name="error_msg_missing_governorate">The governorate field is required</string>
+    <string name="error_msg_missing_password">The password field is required</string>
+    <string name="error_msg_missing_verification_code">Enter the code we sent you</string>
+    <string name="hint_add_your_image_profile">Add your personal photo</string>
+    <string name="title_request_permission">Request permission</string>
+    <string name="msg_request_permission">You must be granted access permission to be able to choose an image</string>
 </resources>

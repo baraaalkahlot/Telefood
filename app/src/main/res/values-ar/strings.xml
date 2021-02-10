@@ -111,4 +111,18 @@
     <string name="title_error_message">رسالة خطأ</string>
     <string name="error_message_un_authorized">انتهت جلستك ، يرجى تسجيل الدخول من جديد</string>
     <string name="label_bank_name_p">فلسطين</string>
+
+    <string name="error_msg_missing_profile_image_required">يجب عليك إدخال صورتك الشخصية</string>
+    <string name="error_msg_missing_name">حقل الاسم مطلوب</string>
+    <string name="error_msg_missing_product_name">حقل اسم المنتج مطلوب</string>
+    <string name="error_msg_missing_price">حقل السعر مطلوب</string>
+    <string name="error_msg_missing_desc">حقل التفاصيل مطلوب</string>
+    <string name="error_msg_missing_phone_number">حقل رقم الهاتف مطلوب</string>
+    <string name="error_msg_missing_city">حقل المدينة مطلوب</string>
+    <string name="error_msg_missing_governorate">حقل المنطقة مطلوب</string>
+    <string name="error_msg_missing_password">حقل كلمة المرور مطلوب</string>
+    <string name="error_msg_missing_verification_code">قم بادخال الرمز الذي ارسلناه لك</string>
+    <string name="hint_add_your_image_profile">اضف صورتك الشخصية</string>
+    <string name="title_request_permission">طلب اذن</string>
+    <string name="msg_request_permission">يجب منح اذن الوصول حتى تتمكن من اختيار صورةيجب منح اذن الوصول حتى تتمكن من اختيار صورة</string>
 </resources>

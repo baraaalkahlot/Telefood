@@ -10,11 +10,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.bik.telefood.R;
+import com.bik.telefood.databinding.FragmentFavoriteProductBinding;
 
 public class FavoriteProductFragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
+    private FragmentFavoriteProductBinding binding;
     private FavoriteProductViewModel mViewModel;
 
     public static FavoriteProductFragment newInstance(int index) {
@@ -26,9 +27,9 @@ public class FavoriteProductFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.favorite_product_fragment, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        binding = FragmentFavoriteProductBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
     @Override

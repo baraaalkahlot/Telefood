@@ -8,13 +8,13 @@ import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
 
+import com.bik.telefood.CommonUtils.AppConstant;
+import com.bik.telefood.CommonUtils.MessageDialog;
+import com.bik.telefood.CommonUtils.NoConnectionDialog;
+import com.bik.telefood.CommonUtils.ProgressBarDialog;
 import com.bik.telefood.R;
-import com.bik.telefood.common.AppConstant;
 import com.bik.telefood.model.entity.MainResponse;
 import com.bik.telefood.ui.auth.AuthActivity;
-import com.bik.telefood.utils.MessageDialog;
-import com.bik.telefood.utils.NoConnectionDialog;
-import com.bik.telefood.utils.ProgressBarDialog;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -43,7 +43,6 @@ public abstract class BaseCallBack<T> {
             this.activity = activity;
             this.fragmentManager = fragmentManager;
             this.progressBar = progressBar;
-
             if (progressBar) {
                 //Show Progress Dialog
                 progressBarDialog = new ProgressBarDialog();
@@ -59,8 +58,8 @@ public abstract class BaseCallBack<T> {
             }
 
             if (response.code() == 401) onUnAuthorized();
-
             MainResponse mainResponse = (MainResponse) response.body();
+
 /*            if (mainResponse != null) {
                 if (response.code() >= 400 && response.code() < 599)
                     onFailure(mainResponse.getMessage());

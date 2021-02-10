@@ -1,4 +1,4 @@
-package com.bik.telefood.common;
+package com.bik.telefood.CommonUtils;
 
 public interface AppConstant {
 
@@ -8,4 +8,5 @@ public interface AppConstant {
     String USER_NAME = "user name";
     String USER_VERIFIED = "verified";
 
+    String PHONE_NUMBER = "phone number";
 }

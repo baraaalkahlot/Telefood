@@ -1,4 +1,4 @@
-package com.bik.telefood.utils;
+package com.bik.telefood.CommonUtils;
 
 import android.app.Dialog;
 import android.graphics.Color;
@@ -12,16 +12,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-import com.bik.telefood.databinding.DialogNoConnectionBinding;
+import com.bik.telefood.databinding.DialogProgressBarBinding;
 
-
-public class NoConnectionDialog extends DialogFragment {
+public class ProgressBarDialog extends DialogFragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        DialogNoConnectionBinding binding = DialogNoConnectionBinding.inflate(getLayoutInflater(), container, false);
-        binding.btnOkInternetConnection.setOnClickListener(view -> dismiss());
+        DialogProgressBarBinding binding = DialogProgressBarBinding.inflate(getLayoutInflater(), container, false);
         return binding.getRoot();
     }
 

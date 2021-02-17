@@ -11,8 +11,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bik.telefood.databinding.FragmentMealsBinding;
 import com.bik.telefood.ui.bottomsheet.FilterDialogFragment;
-import com.bik.telefood.ui.common.CategoryAdapter;
-import com.bik.telefood.ui.common.ProductAdapter;
+import com.bik.telefood.ui.common.adapter.CategoryAdapter;
+import com.bik.telefood.ui.common.adapter.ProductAdapter;
 
 public class MealsFragment extends Fragment {
 

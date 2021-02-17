@@ -9,4 +9,8 @@ public interface AppConstant {
     String USER_VERIFIED = "verified";
 
     String PHONE_NUMBER = "phone number";
+    String PHONE_VERIFICATION_ID = "phone verification id";
+    String RESET_PASSWORD = "reset password";
+    String FORCE_RESENDING_TOKEN = "forceResendingToken";
+    String IS_ABOUT_APP = "about app";
 }

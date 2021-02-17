@@ -7,6 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 public class HomeSlidePagerAdapter extends FragmentStateAdapter {
 
+
     public HomeSlidePagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
@@ -19,6 +20,6 @@ public class HomeSlidePagerAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 20;
+        return 10;
     }
 }

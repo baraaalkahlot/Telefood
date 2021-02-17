@@ -46,5 +46,6 @@
     <dimen name="size_providers_item_height">140dp</dimen>
     <dimen name="size_providers_item_width">335dp</dimen>
     <dimen name="iv_profile_size">100dp</dimen>
+    <dimen name="radius_category_text_view">6dp</dimen>
 
 </resources>

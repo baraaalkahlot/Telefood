@@ -58,7 +58,7 @@ public class AdsFragment extends Fragment {
         }
 
         if (productPrice.isEmpty()) {
-            binding.ilProductName.setError(getString(R.string.error_msg_missing_price));
+            binding.ilProductPrice.setError(getString(R.string.error_msg_missing_price));
             return;
         }
 

@@ -12,8 +12,8 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.bik.telefood.databinding.FragmentHomeBinding;
 import com.bik.telefood.ui.bottomsheet.FilterDialogFragment;
-import com.bik.telefood.ui.common.CategoryAdapter;
-import com.bik.telefood.ui.common.ProductAdapter;
+import com.bik.telefood.ui.common.adapter.CategoryAdapter;
+import com.bik.telefood.ui.common.adapter.ProductAdapter;
 
 public class HomeFragment extends Fragment implements ViewPager2.PageTransformer {
 
@@ -26,12 +26,11 @@ public class HomeFragment extends Fragment implements ViewPager2.PageTransformer
     private HomeSlidePagerAdapter homeSlidePagerAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-        homeViewModel.getText().observe(getViewLifecycleOwner(), s -> {
-        });
+        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
         binding.ibFilter.setOnClickListener(v -> FilterDialogFragment.newInstance().show(getActivity().getSupportFragmentManager(), "FilterDialogFragment"));
+
 
         homeSlidePagerAdapter = new HomeSlidePagerAdapter(getActivity());
         binding.pagerProviders.setAdapter(homeSlidePagerAdapter);

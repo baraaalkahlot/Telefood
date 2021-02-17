@@ -55,10 +55,10 @@
     <string name="label_save">حفظ</string>
     <string name="title_subscription_renewal">تجديد الاشتراك</string>
     <string name="title_account_info">بيانات الحساب</string>
-    <string name="label_bank_name">اسم البنك</string>
-    <string name="label_account_number">رقم الحساب</string>
-    <string name="label_the_full_name">الاسم الكامل</string>
-    <string name="label_iban">آيبان</string>
+    <string name="label_bank_name">اسم البنك:</string>
+    <string name="label_account_number">رقم الحساب:</string>
+    <string name="label_the_full_name">الاسم الكامل:</string>
+    <string name="label_iban">آيبان:</string>
     <string name="title_transfer_picture">صورة الحوالة</string>
     <string name="title_note_add_transfer_picture">أرفق صورة الحوالة على الوجهين بشكل واضح</string>
     <string name="title_choose_subscription_package">اختر باقة الاشتراك</string>
@@ -125,4 +125,8 @@
     <string name="hint_add_your_image_profile">اضف صورتك الشخصية</string>
     <string name="title_request_permission">طلب اذن</string>
     <string name="msg_request_permission">يجب منح اذن الوصول حتى تتمكن من اختيار صورةيجب منح اذن الوصول حتى تتمكن من اختيار صورة</string>
+    <string name="error_msg_mismatched_verification">الكود الذي قمت بادخاله غير صحيح</string>
+    <string name="invalid_phone_number">رقم الهاتف غير صحيح.</string>
+    <string name="msg_resend_code_successful">تمت اعادة ارسال الكود</string>
+    <string name="message_request_success">رسالة</string>
 </resources>

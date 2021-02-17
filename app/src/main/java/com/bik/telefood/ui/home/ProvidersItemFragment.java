@@ -17,8 +17,9 @@ public class ProvidersItemFragment extends Fragment {
     private ItemProvidersCardBinding binding;
     private ProviersItemViewModel mViewModel;
 
-    public static ProvidersItemFragment newInstance() {
-        return new ProvidersItemFragment();
+
+    public ProvidersItemFragment() {
+
     }
 
     @Override

@@ -17,6 +17,7 @@ public class FavoriteProvidersFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
     private FragmentFavoriteProvidersBinding binding;
     private FavoriteProvidersViewModel mViewModel;
+    private FavoriteProvidersAdapter favoriteProvidersAdapter;
 
     public static FavoriteProvidersFragment newInstance(int index) {
         FavoriteProvidersFragment fragment = new FavoriteProvidersFragment();
@@ -36,7 +37,9 @@ public class FavoriteProvidersFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(FavoriteProvidersViewModel.class);
-        // TODO: Use the ViewModel
+
+        favoriteProvidersAdapter = new FavoriteProvidersAdapter();
+        binding.rvProviders.setAdapter(favoriteProvidersAdapter);
     }
 
 }

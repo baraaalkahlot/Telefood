@@ -29,14 +29,15 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_profile_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/iv_profile_size"
+            android:layout_height="@dimen/iv_profile_size"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/size_xlarge"
-            android:src="@drawable/ic_take_picture"
+            android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_bank_name" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_bank_name"
+            tools:src="@drawable/ic_take_picture" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/il_full_name"
@@ -63,6 +64,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_large"
             android:hint="@string/label_phone_number"
+            app:counterEnabled="true"
+            app:counterMaxLength="9"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/il_full_name">

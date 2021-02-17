@@ -10,9 +10,12 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Telefood">
+        android:theme="@style/Theme.Telefood"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".ui.common.ui.ProductDetailsActivity" />
         <activity android:name=".ui.init.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -49,7 +52,7 @@
             android:label="@string/label_my_ads"
             android:theme="@style/Theme.Telefood.ActionBar" />
         <activity
-            android:name=".ui.common.ProvidersDetailsActivity"
+            android:name=".ui.common.ui.ProvidersDetailsActivity"
             android:label="@string/label_providers_details"
             android:theme="@style/Theme.Telefood.ActionBar" />
         <activity
@@ -72,20 +75,20 @@
             android:name=".ui.more.EditUserInfoActivity"
             android:label="@string/title_edit_account_info"
             android:theme="@style/Theme.Telefood.ActionBar" />
-
-        <activity android:name=".ui.auth.AuthActivity" />
         <activity android:name=".ui.onboarding.UserTypeActivity" />
         <activity
             android:name=".ui.onboarding.OnBoardingActivity"
             android:label="@string/title_activity_on_boarding"
-            android:theme="@style/Theme.Telefood.NoActionBar">
-
-        </activity>
+            android:theme="@style/Theme.Telefood.NoActionBar" />
         <activity
             android:name=".CommonUtils.MainActivity"
-            android:label="@string/app_name">
-
-        </activity>
+            android:label="@string/app_name" />
+        <activity android:name=".ui.auth.SignUpActivity" />
+        <activity android:name=".ui.auth.ResetPasswordActivity" />
+        <activity android:name=".ui.auth.login.LoginActivity" />
+        <activity android:name=".ui.auth.EnterPhoneActivity" />
+        <activity android:name=".ui.auth.ConfirmCodeActivity" />
+        <activity android:name=".ui.more.ContentViewerActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

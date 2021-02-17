@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1073657330235",
+    "firebase_url": "https://telefood-6caf1-default-rtdb.firebaseio.com",
+    "project_id": "telefood-6caf1",
+    "storage_bucket": "telefood-6caf1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1073657330235:android:f3877a72592ca2ced97a1e",
+        "android_client_info": {
+          "package_name": "com.bik.telefood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1073657330235-ok4c74o1rdqrvi27vgulffr2dek1j6us.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bik.telefood",
+            "certificate_hash": "66cb3f52d5b94deee359a2b458f9c0ad4ecb61ec"
+          }
+        },
+        {
+          "client_id": "1073657330235-u0lb1dkftrpmjid9ovhqh2dov8p191nk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZnlnE1Vq6PoyjeAHJLGiyJcu6PAVoY80"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1073657330235-u0lb1dkftrpmjid9ovhqh2dov8p191nk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

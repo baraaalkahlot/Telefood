@@ -19,8 +19,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NetworkUtils {
 
     private static NetworkUtils sInstance;
-    private final ApiInterface apiInterface;
-    private final Application application;
+    private ApiInterface apiInterface;
+    private Application application;
 
     private NetworkUtils(Application application) {
         this.application = application;

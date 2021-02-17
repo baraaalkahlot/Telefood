@@ -7,14 +7,18 @@ import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.bik.telefood.R;
 import com.bik.telefood.databinding.ActivitySubscriptionRenewalBinding;
+import com.bik.telefood.model.entity.general.BankInformationModel;
+import com.bik.telefood.model.entity.general.PackageModel;
 import com.google.android.material.textview.MaterialTextView;
 
-public class SubscriptionRenewalActivity extends AppCompatActivity {
+public class SubscriptionRenewalActivity extends AppCompatActivity implements SubscriptionsPackagesAdapter.OnSingleSelectionListener {
 
     private ActivitySubscriptionRenewalBinding binding;
+    private SubscriptionsPackagesAdapter subscriptionsPackagesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +27,19 @@ public class SubscriptionRenewalActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 
-        appendedText(R.string.label_bank_name, getString(R.string.label_bank_name_p), binding.include.tvBankName);
-        appendedText(R.string.label_account_number, "2457454657654", binding.include.tvAccountNumber);
-        appendedText(R.string.label_the_full_name, getString(R.string.label_bank_name_p), binding.include.tvFullName);
-        appendedText(R.string.label_iban, "354654654654", binding.include.tvIban);
+        MoreViewModel moreViewModel = new ViewModelProvider(this).get(MoreViewModel.class);
+        moreViewModel.getBankInfo(this, getSupportFragmentManager()).observe(this, bankInfoResponse -> {
+            BankInformationModel bankInformationModel = bankInfoResponse.getInformation();
+            appendedText(R.string.label_bank_name, bankInformationModel.getBank(), binding.include.tvBankName);
+            appendedText(R.string.label_account_number, bankInformationModel.getAccountNumber(), binding.include.tvAccountNumber);
+            appendedText(R.string.label_the_full_name, bankInformationModel.getFullName(), binding.include.tvFullName);
+            appendedText(R.string.label_iban, bankInformationModel.getIBAN(), binding.include.tvIban);
+        });
+
+        moreViewModel.getSubscriptionPackages(this, getSupportFragmentManager()).observe(this, packageResponse -> {
+            subscriptionsPackagesAdapter = new SubscriptionsPackagesAdapter(packageResponse.getPackages(), this);
+            binding.rvSubscription.setAdapter(subscriptionsPackagesAdapter);
+        });
 
         binding.btnSend.setOnClickListener(v -> {
             setResult(RESULT_OK);
@@ -43,5 +56,10 @@ public class SubscriptionRenewalActivity extends AppCompatActivity {
         Spannable wordTwo = new SpannableString(value);
         wordTwo.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.tundora)), 0, wordTwo.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         textView.append(" " + wordTwo);
+    }
+
+    @Override
+    public void onSelect(PackageModel packageModel) {
+
     }
 }

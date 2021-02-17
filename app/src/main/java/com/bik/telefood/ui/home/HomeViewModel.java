@@ -1,19 +1,20 @@
 package com.bik.telefood.ui.home;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
+import android.app.Application;
 
-public class HomeViewModel extends ViewModel {
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 
-    private MutableLiveData<String> mText;
+import com.bik.telefood.model.network.NetworkUtils;
 
-    public HomeViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+public class HomeViewModel extends AndroidViewModel {
+
+    private NetworkUtils networkUtils;
+
+    public HomeViewModel(@NonNull Application application) {
+        super(application);
+        networkUtils = NetworkUtils.getInstance(application);
     }
 
-    public LiveData<String> getText() {
-        return mText;
-    }
+
 }

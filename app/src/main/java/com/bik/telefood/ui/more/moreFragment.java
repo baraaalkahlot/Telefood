@@ -1,6 +1,9 @@
 package com.bik.telefood.ui.more;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,20 +14,26 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bik.telefood.CommonUtils.AppConstant;
 import com.bik.telefood.R;
 import com.bik.telefood.databinding.FragmentMoreBinding;
-import com.bik.telefood.ui.common.ProvidersDetailsActivity;
+import com.bik.telefood.ui.auth.login.LoginActivity;
+import com.bik.telefood.ui.auth.login.LoginViewModel;
+import com.bik.telefood.ui.common.ui.ProvidersDetailsActivity;
 import com.bik.telefood.ui.more.ads.MyAdsActivity;
 import com.bik.telefood.ui.support.TechnicalSupportActivity;
+import com.squareup.picasso.Picasso;
 
 public class moreFragment extends Fragment {
 
     private static final int ACTION_MOVE_TO_EDIT_USER = 100;
-    private MoreViewModel mViewModel;
     private static final int ACTION_MOVE_TO_SUBSCRIPTION = 101;
     private static final int ACTION_MOVE_TO_PROVIDERS_DETAILS = 103;
     private static final int ACTION_MOVE_TO_SETTING_ACTIVITY = 105;
     private FragmentMoreBinding binding;
+    private MoreViewModel mViewModel;
+    private LoginViewModel loginViewModel;
+
 
     public static moreFragment newInstance() {
         return new moreFragment();
@@ -65,6 +74,9 @@ public class moreFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(MoreViewModel.class);
+        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+
+        setUserInfo();
 
         binding.includeCardUserInfo.btnEditUserInfo.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), EditUserInfoActivity.class);
@@ -91,16 +103,71 @@ public class moreFragment extends Fragment {
             startActivity(intent);
         });
 
-        binding.cardEditPassword.cardViewItemMore.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), ChangePasswordActivity.class);
-            startActivity(intent);
-        });
 
         binding.cardSetting.cardViewItemMore.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), SettingsActivity.class);
             startActivityForResult(intent, ACTION_MOVE_TO_SETTING_ACTIVITY);
         });
 
+        binding.cardPrivacyPolicy.cardViewItemMore.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), ContentViewerActivity.class);
+            intent.putExtra(AppConstant.IS_ABOUT_APP, false);
+            startActivity(intent);
+        });
+
+        binding.cardAboutApp.cardViewItemMore.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), ContentViewerActivity.class);
+            intent.putExtra(AppConstant.IS_ABOUT_APP, true);
+            startActivity(intent);
+        });
+
+        binding.cardEditPassword.cardViewItemMore.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), ChangePasswordActivity.class);
+            startActivity(intent);
+        });
+
+        binding.cardSignOut.cardViewItemMore.setOnClickListener(v -> {
+            signOut();
+        });
+
     }
 
+    private void setUserInfo() {
+        loginViewModel.getUserModel().observe(getViewLifecycleOwner(), userModel -> {
+            if (userModel != null) {
+
+                Picasso.get()
+                        .load(Uri.parse(userModel.getAvatar()))
+                        .error(R.drawable.ic_baseline_person)
+                        .placeholder(R.drawable.ic_baseline_person)
+                        .into(binding.includeCardUserInfo.ivUserAvatar);
+
+                binding.includeCardUserInfo.tvUserName.setText(userModel.getName());
+
+                if (userModel.getChoosedPlanName() != null)
+                    binding.includeCardUserInfo.tvPlanName.setText(userModel.getChoosedPlanName());
+
+                if (userModel.getRemainingDaysInPlan() != null)
+                    binding.includeCardUserInfo.tvRemainingDaysInPlan.setText(userModel.getRemainingDaysInPlan());
+            }
+        });
+    }
+
+    private void signOut() {
+        Intent intent = new Intent(getContext(), LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+
+        //Delete User Table
+        loginViewModel.deleteUserTable();
+
+        // Cache new status >> SIGN OUT
+        SharedPreferences.Editor editor = getActivity().getSharedPreferences(AppConstant.USER_STATUS, Context.MODE_PRIVATE).edit();
+        editor.putBoolean(AppConstant.USER_STATUS, false);
+        editor.apply();
+
+/*        FirebaseMessaging firebaseMessaging = FirebaseMessaging.getInstance();
+        firebaseMessaging.setAutoInitEnabled(false);
+        firebaseMessaging.deleteToken();*/
+    }
 }

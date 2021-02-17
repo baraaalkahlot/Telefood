@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bik.telefood.databinding.ActivityMyAdsBinding;
 import com.bik.telefood.ui.bottomsheet.AdsActionDialogFragment;
-import com.bik.telefood.ui.common.CategoryAdapter;
+import com.bik.telefood.ui.common.adapter.CategoryAdapter;
 
 public class MyAdsActivity extends AppCompatActivity implements MyAdsAdapter.OnCardClickListener {
 

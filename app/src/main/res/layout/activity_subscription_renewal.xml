@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/scrollView"
     android:layout_height="match_parent"
     tools:context=".ui.more.SubscriptionRenewalActivity">
 
@@ -66,11 +67,21 @@
             app:layout_constraintTop_toBottomOf="@+id/materialTextView2">
 
             <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_transfer_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/ic_add_photo" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_remove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_remove"
+                android:visibility="gone"
+                app:icon="@drawable/ic_baseline_cancel_24" />
+
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_attach_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"

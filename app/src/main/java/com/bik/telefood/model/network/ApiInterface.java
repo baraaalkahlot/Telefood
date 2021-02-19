@@ -1,5 +1,7 @@
 package com.bik.telefood.model.network;
 
+import com.bik.telefood.model.entity.Autherntication.CategoryResponse;
+import com.bik.telefood.model.entity.Autherntication.UpdateProfileResponse;
 import com.bik.telefood.model.entity.MainResponse;
 import com.bik.telefood.model.entity.auth.LoginResponse;
 import com.bik.telefood.model.entity.general.AboutAppResponse;
@@ -45,6 +47,8 @@ public interface ApiInterface {
     @GET("packages")
     Call<PackageResponse> getSubscriptionPackages();
 
+    @GET("categories")
+    Call<CategoryResponse> getCategoriesList();
 
     //Auth APIs
     @Multipart
@@ -59,13 +63,29 @@ public interface ApiInterface {
     @POST("auth/resetPassword")
     Call<MainResponse> resetPassword(@FieldMap HashMap<String, String> params);
 
+    @POST("auth/logout")
+    Call<MainResponse> logout();
+
+    //Authenticated Api
 
     //User Information
     @Multipart
     @POST("user/update")
-    Call<MainResponse> updateProfile(@PartMap HashMap<String, RequestBody> params, @Part MultipartBody.Part avatar);
+    Call<UpdateProfileResponse> updateProfile(@PartMap HashMap<String, RequestBody> params, @Part MultipartBody.Part avatar);
 
     @FormUrlEncoded
     @POST("user/changPassword")
     Call<MainResponse> changePassword(@FieldMap HashMap<String, String> params);
+
+    @POST("user/profile")
+    Call<UpdateProfileResponse> getProfile();
+
+    @Multipart
+    @POST("user/newSubscription")
+    Call<MainResponse> newSubscription(@Part MultipartBody.Part image, @Part(ApiConstant.PACKAGE) int packageId);
+
+    //Services
+    @Multipart
+    @POST("addService")
+    Call<MainResponse> addService(@PartMap HashMap<String, RequestBody> params, @Part MultipartBody.Part[] images);
 }

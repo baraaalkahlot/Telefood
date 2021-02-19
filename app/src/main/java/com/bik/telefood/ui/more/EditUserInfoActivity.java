@@ -118,8 +118,9 @@ public class EditUserInfoActivity extends AppCompatActivity {
         params.put(ApiConstant.GOVERNORATE_ID, RequestBody.create(String.valueOf(governorateModelId), MediaType.parse(ApiConstant.MULTIPART_FORM_DATA)));
         params.put(ApiConstant.CITY_ID, RequestBody.create(String.valueOf(cityModelId), MediaType.parse(ApiConstant.MULTIPART_FORM_DATA)));
 
-        moreViewModel.updateProfile(params, img_profile, this, getSupportFragmentManager()).observe(this, mainResponse -> {
-            new UserModel();
+        moreViewModel.updateProfile(params, img_profile, this, getSupportFragmentManager()).observe(this, updateProfileResponse -> {
+            UserModel userModel = updateProfileResponse.getUser();
+            loginViewModel.updateUserSection(userModel.getAvatar(), userModel.getName(), userModel.getPhone(), userModel.getGovernorateId(), userModel.getCityId());
             setResult(RESULT_OK);
             finish();
         });

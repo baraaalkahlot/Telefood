@@ -9,6 +9,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.bik.telefood.model.entity.Autherntication.UpdateProfileResponse;
 import com.bik.telefood.model.entity.MainResponse;
 import com.bik.telefood.model.entity.general.AboutAppResponse;
 import com.bik.telefood.model.entity.general.BankInfoResponse;
@@ -26,23 +27,35 @@ import retrofit2.Response;
 public class MoreViewModel extends AndroidViewModel {
 
     private final NetworkUtils networkUtils;
-    private MutableLiveData<MainResponse> updateResponseMutableLiveData;
+    private MutableLiveData<UpdateProfileResponse> updateResponseMutableLiveData;
     private MutableLiveData<MainResponse> changePasswordResponseMutableLiveData;
     private MutableLiveData<BankInfoResponse> bankInfoResponseMutableLiveData;
     private MutableLiveData<AboutAppResponse> aboutAppResponseMutableLiveData;
     private MutableLiveData<PrivacyPolicyResponse> privacyPolicyResponseMutableLiveData;
     private MutableLiveData<PackageResponse> packageResponseMutableLiveData;
+    private MutableLiveData<MainResponse> subscriptionResponseMutableLiveData;
 
     public MoreViewModel(@NonNull Application application) {
         super(application);
         networkUtils = NetworkUtils.getInstance(application);
     }
 
-    public LiveData<MainResponse> updateProfile(HashMap<String, RequestBody> params, MultipartBody.Part avatar, Context context, FragmentManager fragmentManager) {
+    public LiveData<UpdateProfileResponse> updateProfile(HashMap<String, RequestBody> params, MultipartBody.Part avatar, Context context, FragmentManager fragmentManager) {
         updateResponseMutableLiveData = new MutableLiveData<>();
-        networkUtils.getApiInterface().updateProfile(params, avatar).enqueue(new BaseCallBack<MainResponse>(context, fragmentManager, true) {
+        networkUtils.getApiInterface().updateProfile(params, avatar).enqueue(new BaseCallBack<UpdateProfileResponse>(context, fragmentManager, true) {
             @Override
-            protected void onFinishWithSuccess(MainResponse result, Response<MainResponse> response) {
+            protected void onFinishWithSuccess(UpdateProfileResponse result, Response<UpdateProfileResponse> response) {
+                updateResponseMutableLiveData.setValue(response.body());
+            }
+        });
+        return updateResponseMutableLiveData;
+    }
+
+    public LiveData<UpdateProfileResponse> getProfile(Context context, FragmentManager fragmentManager) {
+        updateResponseMutableLiveData = new MutableLiveData<>();
+        networkUtils.getApiInterface().getProfile().enqueue(new BaseCallBack<UpdateProfileResponse>(context, fragmentManager, true) {
+            @Override
+            protected void onFinishWithSuccess(UpdateProfileResponse result, Response<UpdateProfileResponse> response) {
                 updateResponseMutableLiveData.setValue(response.body());
             }
         });
@@ -102,5 +115,16 @@ public class MoreViewModel extends AndroidViewModel {
             }
         });
         return packageResponseMutableLiveData;
+    }
+
+    public LiveData<MainResponse> newSubscription(MultipartBody.Part image, int packageId, Context context, FragmentManager fragmentManager) {
+        subscriptionResponseMutableLiveData = new MutableLiveData<>();
+        networkUtils.getApiInterface().newSubscription(image, packageId).enqueue(new BaseCallBack<MainResponse>(context, fragmentManager, true) {
+            @Override
+            protected void onFinishWithSuccess(MainResponse result, Response<MainResponse> response) {
+                subscriptionResponseMutableLiveData.setValue(response.body());
+            }
+        });
+        return subscriptionResponseMutableLiveData;
     }
 }

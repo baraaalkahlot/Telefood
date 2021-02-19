@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 public class PackageModel {
     @SerializedName("id")
     @Expose
-    private long id;
+    private int id;
     @SerializedName("title")
     @Expose
     private String title;
@@ -23,11 +23,11 @@ public class PackageModel {
     @Expose
     private String description;
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

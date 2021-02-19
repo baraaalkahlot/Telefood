@@ -60,7 +60,7 @@
     <string name="label_the_full_name">Full Name:</string>
     <string name="label_iban">IBAN:</string>
     <string name="title_transfer_picture">Transfer Picture</string>
-    <string name="title_note_add_transfer_picture">attach the image of the transfer on both sides clearly</string>
+    <string name="title_note_add_transfer_picture">attach the image of the transfer clearly</string>
     <string name="title_choose_subscription_package">Choose a subscription package</string>
     <string name="label_old_password">Old Password</string>
     <string name="title_setting">Setting</string>
@@ -123,6 +123,7 @@
     <string name="error_msg_missing_governorate">The governorate field is required</string>
     <string name="error_msg_missing_password">The password field is required</string>
     <string name="error_msg_missing_verification_code">Enter the code we sent you</string>
+    <string name="error_msg_missing_category">The category field is required</string>
     <string name="hint_add_your_image_profile">Add your personal photo</string>
     <string name="title_request_permission">Request permission</string>
     <string name="msg_request_permission">You must be granted access permission to be able to choose an image</string>
@@ -130,4 +131,7 @@
     <string name="invalid_phone_number">Invalid phone number.</string>
     <string name="msg_resend_code_successful">The code has been re-sent</string>
     <string name="message_request_success">message</string>
+    <string name="error_msg_missing_package">Choose the subscription package</string>
+    <string name="label_remove">remove</string>
+    <string name="error_msg_missing_ads_images">Attach the product image</string>
 </resources>

@@ -40,19 +40,23 @@ public class LoginRepository {
         return userSectionDao.getUserModel();
     }
 
-    public LiveData<LoginResponse> updateUserModel(int phoneNumber, String password, Context context, FragmentManager fragmentManager) {
+    public LiveData<LoginResponse> addUserModel(int phoneNumber, String password, Context context, FragmentManager fragmentManager) {
         loginResponseMutableLiveData = new MutableLiveData<>();
         networkUtils.getApiInterface().login(phoneNumber, password).enqueue(new BaseCallBack<LoginResponse>(context, fragmentManager, true) {
             @Override
             protected void onFinishWithSuccess(LoginResponse result, Response<LoginResponse> response) {
                 LoginResponse loginResponse = response.body();
                 if (loginResponse != null && loginResponse.getUser() != null) {
-                    userSectionDao.addMainSectionItems(loginResponse.getUser());
+                    userSectionDao.addUserSectionItems(loginResponse.getUser());
                 }
                 loginResponseMutableLiveData.setValue(response.body());
             }
         });
         return loginResponseMutableLiveData;
+    }
+
+    public void updateUserModel(String m_avatar, String m_name, String m_phone, String m_governorate_id, String m_city_id) {
+        userSectionDao.updateUserSectionItems(m_avatar, m_name, m_phone, m_governorate_id, m_city_id);
     }
 
     public void deleteUserTable() {

@@ -60,7 +60,7 @@
     <string name="label_the_full_name">الاسم الكامل:</string>
     <string name="label_iban">آيبان:</string>
     <string name="title_transfer_picture">صورة الحوالة</string>
-    <string name="title_note_add_transfer_picture">أرفق صورة الحوالة على الوجهين بشكل واضح</string>
+    <string name="title_note_add_transfer_picture">أرفق صورة الحوالة بشكل واضح</string>
     <string name="title_choose_subscription_package">اختر باقة الاشتراك</string>
     <string name="label_old_password">كلمةالمرور القديمة</string>
     <string name="title_setting">الاعدادات</string>
@@ -121,6 +121,7 @@
     <string name="error_msg_missing_city">حقل المدينة مطلوب</string>
     <string name="error_msg_missing_governorate">حقل المنطقة مطلوب</string>
     <string name="error_msg_missing_password">حقل كلمة المرور مطلوب</string>
+    <string name="error_msg_missing_category">حقل التصنيف مطلوب</string>
     <string name="error_msg_missing_verification_code">قم بادخال الرمز الذي ارسلناه لك</string>
     <string name="hint_add_your_image_profile">اضف صورتك الشخصية</string>
     <string name="title_request_permission">طلب اذن</string>
@@ -129,4 +130,7 @@
     <string name="invalid_phone_number">رقم الهاتف غير صحيح.</string>
     <string name="msg_resend_code_successful">تمت اعادة ارسال الكود</string>
     <string name="message_request_success">رسالة</string>
+    <string name="error_msg_missing_package">قم باختيار باقة الاشتراك</string>
+    <string name="label_remove">إزالة</string>
+    <string name="error_msg_missing_ads_images">قم بارفاق صورة المنتج</string>
 </resources>

@@ -25,4 +25,13 @@ public interface ApiConstant {
     String NAME = "name";
     String GOVERNORATE_ID = "governorate_id";
     String CITY_ID = "city_id";
+
+    String IMAGE = "image";
+    String PACKAGE = "package";
+    String ADD_ADS_IMAGES = "imgs[]";
+
+    String PRODUCT_NAME = "name";
+    String PRODUCT_CATEGORY = "category";
+    String PRODUCT_PRICE = "price";
+    String PRODUCT_DETAILS = "details";
 }

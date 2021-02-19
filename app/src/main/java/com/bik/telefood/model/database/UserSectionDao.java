@@ -5,7 +5,6 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import androidx.room.Update;
 
 import com.bik.telefood.model.entity.general.UserModel;
 
@@ -16,10 +15,10 @@ public interface UserSectionDao {
     LiveData<UserModel> getUserModel();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void addMainSectionItems(UserModel userModel);
+    void addUserSectionItems(UserModel userModel);
 
-    @Update(onConflict = OnConflictStrategy.REPLACE)
-    int updateMainSectionItems(UserModel userModel);
+    @Query("UPDATE user_section_table SET avatar = :m_avatar,name = :m_name,phone = :m_phone,governorateId = :m_governorate_id,cityId = :m_city_id")
+    void updateUserSectionItems(String m_avatar, String m_name, String m_phone, String m_governorate_id, String m_city_id);
 
     @Query("DELETE FROM user_section_table")
     void deleteAll();

@@ -17,9 +17,12 @@ import androidx.lifecycle.ViewModelProvider;
 import com.bik.telefood.CommonUtils.AppConstant;
 import com.bik.telefood.R;
 import com.bik.telefood.databinding.FragmentMoreBinding;
+import com.bik.telefood.model.entity.general.UserModel;
+import com.bik.telefood.ui.auth.AuthViewModel;
 import com.bik.telefood.ui.auth.login.LoginActivity;
 import com.bik.telefood.ui.auth.login.LoginViewModel;
 import com.bik.telefood.ui.common.ui.ProvidersDetailsActivity;
+import com.bik.telefood.ui.common.viewmodel.CategoriesViewModel;
 import com.bik.telefood.ui.more.ads.MyAdsActivity;
 import com.bik.telefood.ui.support.TechnicalSupportActivity;
 import com.squareup.picasso.Picasso;
@@ -33,6 +36,8 @@ public class moreFragment extends Fragment {
     private FragmentMoreBinding binding;
     private MoreViewModel mViewModel;
     private LoginViewModel loginViewModel;
+    private AuthViewModel authViewModel;
+    private CategoriesViewModel categoriesViewModel;
 
 
     public static moreFragment newInstance() {
@@ -67,6 +72,24 @@ public class moreFragment extends Fragment {
         binding.cardEditPassword.tvItemMore.setText(R.string.label_change_password);
         binding.cardSignOut.tvItemMore.setText(R.string.label_sign_out);
 
+        binding.swipeToRefresh.setOnRefreshListener(() -> mViewModel.getProfile(getContext(), getActivity().getSupportFragmentManager()).observe(getViewLifecycleOwner(), updateProfileResponse -> {
+            binding.swipeToRefresh.setRefreshing(false);
+            UserModel userModel = updateProfileResponse.getUser();
+            Picasso.get()
+                    .load(Uri.parse(userModel.getAvatar()))
+                    .error(R.drawable.ic_baseline_person)
+                    .placeholder(R.drawable.ic_baseline_person)
+                    .into(binding.includeCardUserInfo.ivUserAvatar);
+
+            binding.includeCardUserInfo.tvUserName.setText(userModel.getName());
+
+            if (userModel.getChoosedPlanName() != null)
+                binding.includeCardUserInfo.tvPlanName.setText(userModel.getChoosedPlanName());
+
+            if (userModel.getRemainingDaysInPlan() != null)
+                binding.includeCardUserInfo.tvRemainingDaysInPlan.setText(userModel.getRemainingDaysInPlan());
+        }));
+
         return binding.getRoot();
     }
 
@@ -75,6 +98,8 @@ public class moreFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(MoreViewModel.class);
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+        authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
+        categoriesViewModel = new ViewModelProvider(this).get(CategoriesViewModel.class);
 
         setUserInfo();
 
@@ -154,12 +179,18 @@ public class moreFragment extends Fragment {
     }
 
     private void signOut() {
+        authViewModel.logout(getContext(), getActivity().getSupportFragmentManager()).observe(getViewLifecycleOwner(), mainResponse -> {
+
+        });
         Intent intent = new Intent(getContext(), LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
 
         //Delete User Table
         loginViewModel.deleteUserTable();
+
+        //Delete Category Table
+        categoriesViewModel.deleteCategoriesTable();
 
         // Cache new status >> SIGN OUT
         SharedPreferences.Editor editor = getActivity().getSharedPreferences(AppConstant.USER_STATUS, Context.MODE_PRIVATE).edit();

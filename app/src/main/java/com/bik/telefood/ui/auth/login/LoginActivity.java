@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login(int phoneNumber, String password) {
-        loginViewModel.updateMainSection(phoneNumber, password, this, getSupportFragmentManager()).observe(this, loginResponse -> {
+        loginViewModel.addUserSection(phoneNumber, password, this, getSupportFragmentManager()).observe(this, loginResponse -> {
             // Cache Token
             SharedPreferences.Editor preferencesToken = getSharedPreferences(ApiConstant.AUTHORIZATION, Context.MODE_PRIVATE).edit();
             preferencesToken.putString(ApiConstant.AUTHORIZATION, loginResponse.getAccessToken());

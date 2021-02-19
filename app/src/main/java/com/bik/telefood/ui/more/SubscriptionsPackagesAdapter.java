@@ -38,7 +38,7 @@ public class SubscriptionsPackagesAdapter extends RecyclerView.Adapter<Subscript
     }
 
     public interface OnSingleSelectionListener {
-        void onSelect(PackageModel packageModel);
+        void onSelect(int packageId);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -63,7 +63,7 @@ public class SubscriptionsPackagesAdapter extends RecyclerView.Adapter<Subscript
                 lastCheckedPosition = getAdapterPosition();
                 notifyItemChanged(copyOfLastCheckedPosition);
                 notifyItemChanged(lastCheckedPosition);
-                mListener.onSelect(packageModel);
+                mListener.onSelect(packageModel.getId());
             });
         }
     }

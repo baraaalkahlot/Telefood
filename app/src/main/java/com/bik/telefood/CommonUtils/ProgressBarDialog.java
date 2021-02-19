@@ -15,11 +15,12 @@ import androidx.fragment.app.DialogFragment;
 import com.bik.telefood.databinding.DialogProgressBarBinding;
 
 public class ProgressBarDialog extends DialogFragment {
+    private DialogProgressBarBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        DialogProgressBarBinding binding = DialogProgressBarBinding.inflate(getLayoutInflater(), container, false);
+        binding = DialogProgressBarBinding.inflate(getLayoutInflater(), container, false);
         return binding.getRoot();
     }
 
@@ -32,5 +33,11 @@ public class ProgressBarDialog extends DialogFragment {
             dialog.setCanceledOnTouchOutside(false);
             dialog.setCancelable(false);
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        binding.lottieProgressBar.cancelAnimation();
     }
 }

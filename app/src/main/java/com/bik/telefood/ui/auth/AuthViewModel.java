@@ -24,6 +24,7 @@ public class AuthViewModel extends AndroidViewModel {
     private final NetworkUtils networkUtils;
     private MutableLiveData<MainResponse> resetPasswordResponseMutableLiveData;
     private MutableLiveData<MainResponse> signUpResponseMutableLiveData;
+    private MutableLiveData<MainResponse> logoutResponseMutableLiveData;
 
     public AuthViewModel(@NonNull Application application) {
         super(application);
@@ -50,6 +51,17 @@ public class AuthViewModel extends AndroidViewModel {
             }
         });
         return resetPasswordResponseMutableLiveData;
+    }
+
+    public LiveData<MainResponse> logout(Context context, FragmentManager fragmentManager) {
+        logoutResponseMutableLiveData = new MutableLiveData<>();
+        networkUtils.getApiInterface().logout().enqueue(new BaseCallBack<MainResponse>(context, fragmentManager, true) {
+            @Override
+            protected void onFinishWithSuccess(MainResponse result, Response<MainResponse> response) {
+                logoutResponseMutableLiveData.setValue(response.body());
+            }
+        });
+        return logoutResponseMutableLiveData;
     }
 
 }

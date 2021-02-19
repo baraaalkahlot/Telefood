@@ -1,98 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_to_refresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.more.moreFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/shapeableImageView8"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:scaleType="centerCrop"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/pattern_more_menu" />
+            android:layout_height="wrap_content">
 
-        <include
-            android:id="@+id/include_card_user_info"
-            layout="@layout/card_view_more_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/size_large"
-            android:layout_marginTop="@dimen/size_huge"
-            android:layout_marginEnd="@dimen/size_large"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/shapeableImageView8"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/pattern_more_menu" />
 
-        <androidx.constraintlayout.helper.widget.Flow
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:padding="@dimen/padding_layout"
-            app:constraint_referenced_ids="card_my_ads , card_providers , card_support , card_setting , card_privacy_policy , card_about_app , card_edit_password , card_sign_out"
-            app:flow_horizontalGap="@dimen/size_regular"
-            app:flow_maxElementsWrap="@integer/max_elements_wrap_more_layout"
-            app:flow_verticalGap="@dimen/size_regular"
-            app:flow_wrapMode="aligned"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/card_edit_password"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include_card_user_info" />
+            <include
+                android:id="@+id/include_card_user_info"
+                layout="@layout/card_view_more_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_large"
+                android:layout_marginTop="@dimen/size_huge"
+                android:layout_marginEnd="@dimen/size_large"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <include
-            android:id="@+id/card_my_ads"
-            layout="@layout/item_more"
-            android:layout_width="@dimen/size_item_more_width"
-            android:layout_height="@dimen/size_item_more_height" />
+            <androidx.constraintlayout.helper.widget.Flow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:padding="@dimen/padding_layout"
+                app:constraint_referenced_ids="card_my_ads , card_providers , card_support , card_setting , card_privacy_policy , card_about_app , card_edit_password , card_sign_out"
+                app:flow_horizontalGap="@dimen/size_regular"
+                app:flow_maxElementsWrap="@integer/max_elements_wrap_more_layout"
+                app:flow_verticalGap="@dimen/size_regular"
+                app:flow_wrapMode="aligned"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/card_edit_password"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/include_card_user_info" />
 
-        <include
-            android:id="@+id/card_providers"
-            layout="@layout/item_more"
-            android:layout_width="@dimen/size_item_more_width"
-            android:layout_height="@dimen/size_item_more_height" />
+            <include
+                android:id="@+id/card_my_ads"
+                layout="@layout/item_more"
+                android:layout_width="@dimen/size_item_more_width"
+                android:layout_height="@dimen/size_item_more_height" />
 
-        <include
-            android:id="@+id/card_support"
-            layout="@layout/item_more"
-            android:layout_width="@dimen/size_item_more_width"
-            android:layout_height="@dimen/size_item_more_height" />
+            <include
+                android:id="@+id/card_providers"
+                layout="@layout/item_more"
+                android:layout_width="@dimen/size_item_more_width"
+                android:layout_height="@dimen/size_item_more_height" />
 
-        <include
-            android:id="@+id/card_setting"
-            layout="@layout/item_more"
-            android:layout_width="@dimen/size_item_more_width"
-            android:layout_height="@dimen/size_item_more_height" />
+            <include
+                android:id="@+id/card_support"
+                layout="@layout/item_more"
+                android:layout_width="@dimen/size_item_more_width"
+                android:layout_height="@dimen/size_item_more_height" />
 
-        <include
-            android:id="@+id/card_privacy_policy"
-            layout="@layout/item_more"
-            android:layout_width="@dimen/size_item_more_width"
-            android:layout_height="@dimen/size_item_more_height" />
+            <include
+                android:id="@+id/card_setting"
+                layout="@layout/item_more"
+                android:layout_width="@dimen/size_item_more_width"
+                android:layout_height="@dimen/size_item_more_height" />
 
-        <include
-            android:id="@+id/card_about_app"
-            layout="@layout/item_more"
-            android:layout_width="@dimen/size_item_more_width"
-            android:layout_height="@dimen/size_item_more_height" />
+            <include
+                android:id="@+id/card_privacy_policy"
+                layout="@layout/item_more"
+                android:layout_width="@dimen/size_item_more_width"
+                android:layout_height="@dimen/size_item_more_height" />
 
-        <include
-            android:id="@+id/card_edit_password"
-            layout="@layout/item_more"
-            android:layout_width="@dimen/size_item_more_width"
-            android:layout_height="@dimen/size_item_more_height" />
+            <include
+                android:id="@+id/card_about_app"
+                layout="@layout/item_more"
+                android:layout_width="@dimen/size_item_more_width"
+                android:layout_height="@dimen/size_item_more_height" />
 
-        <include
-            android:id="@+id/card_sign_out"
-            layout="@layout/item_more"
-            android:layout_width="@dimen/size_item_more_width"
-            android:layout_height="@dimen/size_item_more_height" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <include
+                android:id="@+id/card_edit_password"
+                layout="@layout/item_more"
+                android:layout_width="@dimen/size_item_more_width"
+                android:layout_height="@dimen/size_item_more_height" />
 
-</ScrollView>
+            <include
+                android:id="@+id/card_sign_out"
+                layout="@layout/item_more"
+                android:layout_width="@dimen/size_item_more_width"
+                android:layout_height="@dimen/size_item_more_height" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

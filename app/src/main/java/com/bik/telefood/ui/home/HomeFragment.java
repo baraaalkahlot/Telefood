@@ -1,6 +1,7 @@
 package com.bik.telefood.ui.home;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.bik.telefood.databinding.FragmentHomeBinding;
 import com.bik.telefood.ui.bottomsheet.FilterDialogFragment;
 import com.bik.telefood.ui.common.adapter.CategoryAdapter;
 import com.bik.telefood.ui.common.adapter.ProductAdapter;
+import com.bik.telefood.ui.common.viewmodel.CategoriesViewModel;
 
 public class HomeFragment extends Fragment implements ViewPager2.PageTransformer {
 
@@ -36,12 +38,15 @@ public class HomeFragment extends Fragment implements ViewPager2.PageTransformer
         binding.pagerProviders.setAdapter(homeSlidePagerAdapter);
         binding.pagerProviders.setPageTransformer(this);
 
-        categoryAdapter = new CategoryAdapter();
-        binding.rvCategory.setAdapter(categoryAdapter);
+        CategoriesViewModel categoriesViewModel = new ViewModelProvider(this).get(CategoriesViewModel.class);
+        categoriesViewModel.getCategoriesListLiveData().observe(getViewLifecycleOwner(), categoryModelList -> {
+            Log.d("wasd", "onCreateView: " + categoryModelList.size());
+            categoryAdapter = new CategoryAdapter(categoryModelList);
+            binding.rvCategory.setAdapter(categoryAdapter);
+        });
 
         productAdapter = new ProductAdapter();
         binding.rvProduct.setAdapter(productAdapter);
-
 
         return binding.getRoot();
     }

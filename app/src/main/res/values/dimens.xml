@@ -47,5 +47,9 @@
     <dimen name="size_providers_item_width">335dp</dimen>
     <dimen name="iv_profile_size">100dp</dimen>
     <dimen name="radius_category_text_view">6dp</dimen>
+    <dimen name="size_item_category">42dp</dimen>
+    <dimen name="size_recyclerview_height_ads_image">150dp</dimen>
+    <dimen name="size_image_width_add_ads">100dp</dimen>
+    <dimen name="size_image_height_add_ads">100dp</dimen>
 
 </resources>

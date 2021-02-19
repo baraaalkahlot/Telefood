@@ -15,21 +15,25 @@ import org.jetbrains.annotations.NotNull;
 
 public class SuccessDialogFragment extends BottomSheetDialogFragment {
 
-    private static final String ARG_ITEM_COUNT = "item_count";
     private FragmentSuccessDialogBinding binding;
+    private static SuccessDialogFragment sInstance;
+    private final String msg;
 
-    public static SuccessDialogFragment newInstance() {
-        final SuccessDialogFragment fragment = new SuccessDialogFragment();
-        final Bundle args = new Bundle();
-//        args.putInt(ARG_ITEM_COUNT, itemCount);
-        fragment.setArguments(args);
-        return fragment;
+    public SuccessDialogFragment(String msg) {
+        this.msg = msg;
+    }
+
+    public static SuccessDialogFragment newInstance(String msg) {
+        if (sInstance == null)
+            sInstance = new SuccessDialogFragment(msg);
+        return sInstance;
     }
 
     @Nullable
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentSuccessDialogBinding.inflate(inflater, container, false);
+        binding.tvAdsMsg.setText(msg);
         return binding.getRoot();
     }
 

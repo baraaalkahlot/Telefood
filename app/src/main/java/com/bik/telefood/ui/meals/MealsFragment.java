@@ -13,6 +13,7 @@ import com.bik.telefood.databinding.FragmentMealsBinding;
 import com.bik.telefood.ui.bottomsheet.FilterDialogFragment;
 import com.bik.telefood.ui.common.adapter.CategoryAdapter;
 import com.bik.telefood.ui.common.adapter.ProductAdapter;
+import com.bik.telefood.ui.common.viewmodel.CategoriesViewModel;
 
 public class MealsFragment extends Fragment {
 
@@ -28,8 +29,16 @@ public class MealsFragment extends Fragment {
         mealsViewModel.getText().observe(getViewLifecycleOwner(), s -> {
         });
 
-        categoryAdapter = new CategoryAdapter();
-        binding.rvCategory.setAdapter(categoryAdapter);
+        CategoriesViewModel categoriesViewModel = new ViewModelProvider(this).get(CategoriesViewModel.class);
+        categoriesViewModel.getCategoriesListLiveData().observe(getViewLifecycleOwner(), categoryModelList -> {
+            if (categoryModelList.isEmpty()) {
+                categoriesViewModel.updateCategoriesList(getContext(), getActivity().getSupportFragmentManager());
+            } else {
+                categoryAdapter = new CategoryAdapter(categoryModelList);
+                binding.rvCategory.setAdapter(categoryAdapter);
+            }
+        });
+
 
         productAdapter = new ProductAdapter();
         binding.rvProduct.setAdapter(productAdapter);

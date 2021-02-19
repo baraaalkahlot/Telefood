@@ -13,6 +13,7 @@
         app:srcCompat="@drawable/ic_check" />
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_ads_msg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

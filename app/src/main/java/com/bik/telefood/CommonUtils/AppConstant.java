@@ -13,4 +13,5 @@ public interface AppConstant {
     String RESET_PASSWORD = "reset password";
     String FORCE_RESENDING_TOKEN = "forceResendingToken";
     String IS_ABOUT_APP = "about app";
+    String PRODUCT_ID = "id";
 }

@@ -34,4 +34,10 @@ public interface ApiConstant {
     String PRODUCT_CATEGORY = "category";
     String PRODUCT_PRICE = "price";
     String PRODUCT_DETAILS = "details";
+    String PAGE = "page";
+    String ID = "id";
+    String FILTER_NAME = "name";
+    String FILTER_CATEGORY = "category";
+    String FILTER_GOVERNORATE = "governorate";
+    String FILTER_CITY = "city";
 }

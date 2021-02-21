@@ -11,37 +11,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView"
-            style="@style/CardViewTheme"
+        <com.smarteist.autoimageslider.SliderView
+            android:id="@+id/imageSlider"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="300dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:cardUseCompatPadding="false">
-
-            <com.smarteist.autoimageslider.SliderView
-                android:id="@+id/imageSlider"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                app:sliderAnimationDuration="600"
-                app:sliderAutoCycleDirection="back_and_forth"
-                app:sliderAutoCycleEnabled="true"
-                app:sliderIndicatorAnimationDuration="600"
-                app:sliderIndicatorGravity="center_horizontal|bottom"
-                app:sliderIndicatorMargin="15dp"
-                app:sliderIndicatorOrientation="horizontal"
-                app:sliderIndicatorPadding="3dp"
-                app:sliderIndicatorRadius="2dp"
-                app:sliderIndicatorSelectedColor="#5A5A5A"
-                app:sliderIndicatorUnselectedColor="#FFF"
-                app:sliderScrollTimeInSec="1"
-                app:sliderStartAutoCycle="true" />
-        </com.google.android.material.card.MaterialCardView>
+            app:sliderAnimationDuration="600"
+            app:sliderAutoCycleDirection="back_and_forth"
+            app:sliderAutoCycleEnabled="true"
+            app:sliderIndicatorAnimationDuration="600"
+            app:sliderIndicatorGravity="center_horizontal|bottom"
+            app:sliderIndicatorMargin="15dp"
+            app:sliderIndicatorOrientation="horizontal"
+            app:sliderIndicatorPadding="3dp"
+            app:sliderIndicatorRadius="2dp"
+            app:sliderIndicatorSelectedColor="@color/maroon_flush"
+            app:sliderIndicatorUnselectedColor="@color/lochinvar"
+            app:sliderScrollTimeInSec="3"
+            app:sliderStartAutoCycle="true" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/materialTextView6"
+            android:id="@+id/tv_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/padding_layout"
@@ -53,11 +45,11 @@
             android:text="@string/label_category"
             android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+            app:layout_constraintTop_toBottomOf="@+id/imageSlider" />
 
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/materialTextView8"
+            android:id="@+id/tv_product_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/padding_layout"
@@ -65,10 +57,11 @@
             android:layout_marginEnd="@dimen/padding_layout"
             android:text="@string/desc_first_board"
             android:textColor="@color/mine_shaft"
+            android:textDirection="locale"
             android:textSize="@dimen/text_size_regular"
             app:layout_constraintEnd_toStartOf="@id/tv_product_price"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/materialTextView6" />
+            app:layout_constraintTop_toBottomOf="@id/tv_category" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_product_price"
@@ -77,10 +70,10 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/padding_layout"
             android:gravity="center"
-            android:text="100ريال"
-            app:layout_constraintBottom_toBottomOf="@id/materialTextView8"
+            app:layout_constraintBottom_toBottomOf="@id/tv_product_name"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/materialTextView8" />
+            app:layout_constraintTop_toTopOf="@id/tv_product_name"
+            tools:text="100ريال" />
 
 
         <View
@@ -91,10 +84,10 @@
             android:background="#4D929292"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/materialTextView8" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_product_name" />
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/circleImageView2"
+            android:id="@+id/iv_user_profile_image"
             android:layout_width="@dimen/size_user_image"
             android:layout_height="@dimen/size_user_image"
             android:layout_marginStart="@dimen/padding_layout"
@@ -110,14 +103,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_regular"
             android:fontFamily="@font/cairo_semibold"
-            android:text="براء اياد الكحلوت"
             android:textColor="@color/tundora"
             android:textDirection="locale"
             android:textSize="@dimen/text_size_regular"
-            app:layout_constraintBottom_toBottomOf="@+id/circleImageView2"
-            app:layout_constraintEnd_toStartOf="@+id/btn_favorite"
-            app:layout_constraintStart_toEndOf="@+id/circleImageView2"
-            app:layout_constraintTop_toTopOf="@+id/circleImageView2" />
+            app:layout_constraintBottom_toBottomOf="@+id/iv_user_profile_image"
+            app:layout_constraintStart_toEndOf="@+id/iv_user_profile_image"
+            app:layout_constraintTop_toTopOf="@+id/iv_user_profile_image"
+            tools:text="براء اياد الكحلوت" />
 
         <androidx.appcompat.widget.AppCompatRatingBar
             android:id="@+id/rb_supplier_rating"
@@ -153,6 +145,7 @@
 
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_product_desc"
             style="@style/DescTextTheme"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

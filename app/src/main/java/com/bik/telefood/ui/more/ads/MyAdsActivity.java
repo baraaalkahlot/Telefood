@@ -10,7 +10,7 @@ import com.bik.telefood.ui.bottomsheet.AdsActionDialogFragment;
 import com.bik.telefood.ui.common.adapter.CategoryAdapter;
 import com.bik.telefood.ui.common.viewmodel.CategoriesViewModel;
 
-public class MyAdsActivity extends AppCompatActivity implements MyAdsAdapter.OnCardClickListener {
+public class MyAdsActivity extends AppCompatActivity implements MyAdsAdapter.OnCardClickListener, CategoryAdapter.OnCategorySelectListener {
 
     private ActivityMyAdsBinding binding;
     private MyAdsAdapter myAdsAdapter;
@@ -30,7 +30,7 @@ public class MyAdsActivity extends AppCompatActivity implements MyAdsAdapter.OnC
             if (categoryModelList.isEmpty()) {
                 categoriesViewModel.updateCategoriesList(this, getSupportFragmentManager());
             } else {
-                categoryAdapter = new CategoryAdapter(categoryModelList);
+                categoryAdapter = new CategoryAdapter(categoryModelList, this);
                 binding.rvCategory.setAdapter(categoryAdapter);
             }
         });
@@ -41,5 +41,10 @@ public class MyAdsActivity extends AppCompatActivity implements MyAdsAdapter.OnC
     @Override
     public void onClick() {
         AdsActionDialogFragment.newInstance().show(getSupportFragmentManager(), "AdsActionDialogFragment");
+    }
+
+    @Override
+    public void onSelect(int id) {
+
     }
 }

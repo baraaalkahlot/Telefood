@@ -3,9 +3,6 @@ package com.bik.telefood.ui.common.adapter;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-
-import androidx.appcompat.widget.AppCompatImageView;
 
 import com.bik.telefood.databinding.ImageSliderLayoutItemBinding;
 import com.smarteist.autoimageslider.SliderViewAdapter;
@@ -69,19 +66,17 @@ public class ImageSliderAdapter extends SliderViewAdapter<ImageSliderAdapter.Sli
     }
 
     class SliderAdapterVH extends SliderViewAdapter.ViewHolder {
-        private AppCompatImageView imageView;
-        private FrameLayout frameLayout;
+        private ImageSliderLayoutItemBinding binding;
 
         public SliderAdapterVH(ImageSliderLayoutItemBinding binding) {
             super(binding.getRoot());
-            imageView = binding.ivAutoImageSlider;
-            frameLayout = binding.frameLayoutImageSlider;
+            this.binding = binding;
         }
 
         private void bind(int position) {
             String sliderItem = mSliderItems.get(position);
-            Picasso.get().load(Uri.parse(sliderItem)).into(imageView);
-            frameLayout.setOnClickListener(v -> onImageSliderListener.onImageClick(mSliderItems.get(position)));
+            Picasso.get().load(Uri.parse(sliderItem)).fit().into(binding.ivAutoImageSlider);
+            binding.getRoot().setOnClickListener(v -> onImageSliderListener.onImageClick(mSliderItems.get(position)));
         }
     }
 }

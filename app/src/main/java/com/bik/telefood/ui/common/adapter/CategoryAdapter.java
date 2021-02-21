@@ -15,9 +15,11 @@ import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
     private final List<CategoryModel> categoryModelList;
+    private OnCategorySelectListener onCategorySelectListener;
 
-    public CategoryAdapter(List<CategoryModel> categoryModelList) {
+    public CategoryAdapter(List<CategoryModel> categoryModelList, OnCategorySelectListener onCategorySelectListener) {
         this.categoryModelList = categoryModelList;
+        this.onCategorySelectListener = onCategorySelectListener;
     }
 
     @NonNull
@@ -36,6 +38,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         return categoryModelList.size();
     }
 
+    public interface OnCategorySelectListener {
+        void onSelect(int id);
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private final ItemCategoryBinding itemCategoryBinding;
@@ -47,8 +53,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
         public void bind(int position) {
             CategoryModel categoryModel = categoryModelList.get(position);
-            Picasso.get().load(categoryModel.getImg()).placeholder(R.drawable.ic_baseline_person).into(itemCategoryBinding.ivCategoryImage);
+            Picasso.get()
+                    .load(categoryModel.getImg())
+                    .error(R.color.concrete)
+                    .placeholder(R.color.concrete)
+                    .into(itemCategoryBinding.ivCategoryImage);
+
             itemCategoryBinding.tvCategoryName.setText(categoryModel.getTitle());
+            itemCategoryBinding.getRoot().setOnClickListener(v -> onCategorySelectListener.onSelect(categoryModel.getId()));
         }
     }
 }

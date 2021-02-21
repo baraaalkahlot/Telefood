@@ -134,4 +134,6 @@
     <string name="error_msg_missing_package">Choose the subscription package</string>
     <string name="label_remove">remove</string>
     <string name="error_msg_missing_ads_images">Attach the product image</string>
+    <string name="unknown">Unknown</string>
+    <string name="clear_filter">Clear filter</string>
 </resources>

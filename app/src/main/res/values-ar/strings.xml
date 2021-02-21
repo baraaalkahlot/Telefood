@@ -133,4 +133,6 @@
     <string name="error_msg_missing_package">قم باختيار باقة الاشتراك</string>
     <string name="label_remove">إزالة</string>
     <string name="error_msg_missing_ads_images">قم بارفاق صورة المنتج</string>
+    <string name="unknown">غير معروف</string>
+    <string name="clear_filter">ازالة الفلاتر</string>
 </resources>

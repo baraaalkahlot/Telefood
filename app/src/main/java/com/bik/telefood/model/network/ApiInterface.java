@@ -10,6 +10,8 @@ import com.bik.telefood.model.entity.general.CitiesResponse;
 import com.bik.telefood.model.entity.general.GovernoratesResponse;
 import com.bik.telefood.model.entity.general.PackageResponse;
 import com.bik.telefood.model.entity.general.PrivacyPolicyResponse;
+import com.bik.telefood.model.entity.general.services.ServicesResponse;
+import com.bik.telefood.model.entity.general.singleservices.SingleServiceResponse;
 
 import java.util.HashMap;
 
@@ -24,6 +26,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.PartMap;
+import retrofit2.http.Query;
 
 public interface ApiInterface {
 
@@ -49,6 +52,14 @@ public interface ApiInterface {
 
     @GET("categories")
     Call<CategoryResponse> getCategoriesList();
+
+    @FormUrlEncoded
+    @POST("services")
+    Call<ServicesResponse> getServicesList(@Query(ApiConstant.PAGE) Integer page, @FieldMap HashMap<String, String> params);
+
+    @FormUrlEncoded
+    @POST("singleService")
+    Call<SingleServiceResponse> getSingleServicesList(@Field(ApiConstant.ID) int id);
 
     //Auth APIs
     @Multipart

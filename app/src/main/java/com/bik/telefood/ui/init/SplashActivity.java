@@ -1,9 +1,9 @@
 package com.bik.telefood.ui.init;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -23,19 +23,23 @@ public class SplashActivity extends AppCompatActivity {
         ActivitySplashBinding binding = ActivitySplashBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            Intent intent;
-            if (SharedPreferencesHelper.isLoggedIn(SplashActivity.this.getApplication())) {
-                intent = new Intent(SplashActivity.this, MainActivity.class);
-            } else {
-                intent = new Intent(SplashActivity.this, OnBoardingActivity.class);
-            }
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-        }, 2500);
-
         CategoriesViewModel categoriesViewModel = new ViewModelProvider(this).get(CategoriesViewModel.class);
         categoriesViewModel.updateCategoriesList(this, getSupportFragmentManager());
+
+        binding.lottieLogo.playAnimation();
+        binding.lottieLogo.addAnimatorListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                Intent intent;
+                if (SharedPreferencesHelper.isLoggedIn(SplashActivity.this.getApplication())) {
+                    intent = new Intent(SplashActivity.this, MainActivity.class);
+                } else {
+                    intent = new Intent(SplashActivity.this, OnBoardingActivity.class);
+                }
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
 
     }
 }

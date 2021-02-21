@@ -40,7 +40,12 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         });
         binding.btnLogin.setOnClickListener(v -> checkValidation());
+
+        binding.tvActionAsGuest.setOnClickListener(v -> {
+            moveToMain();
+        });
     }
+
 
     private void checkValidation() {
         String phoneNumber = binding.etPhoneNumber.getText().toString();
@@ -83,11 +88,15 @@ public class LoginActivity extends AppCompatActivity {
             typeEditor.putString(AppConstant.USER_TYPE, userRole);
             typeEditor.apply();
 
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
+            moveToMain();
         });
 
+    }
+
+    private void moveToMain() {
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
 }

@@ -1,7 +1,6 @@
 package com.bik.telefood.ui.common.adapter;
 
 import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -56,10 +55,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Log.d("wasd", "onBindViewHolder: loading" + isLoading);
-        Log.d("wasd", "onBindViewHolder: lastpage" + isLastPage);
-        Log.d("wasd", "onBindViewHolder: position" + position);
-        Log.d("wasd", "onBindViewHolder: servicesItemModels size" + servicesItemModels.size());
         if (!isLoading && !isLastPage && position == servicesItemModels.size() - 2) {
             onLoadingRequestListener.onLoadRequest(++pageNumber);
         }

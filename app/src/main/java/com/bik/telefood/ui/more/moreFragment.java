@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bik.telefood.CommonUtils.AppConstant;
+import com.bik.telefood.CommonUtils.LoginDialog;
+import com.bik.telefood.CommonUtils.SharedPreferencesHelper;
 import com.bik.telefood.R;
 import com.bik.telefood.databinding.FragmentMoreBinding;
 import com.bik.telefood.model.entity.general.UserModel;
@@ -101,6 +103,11 @@ public class moreFragment extends Fragment {
         authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
         categoriesViewModel = new ViewModelProvider(this).get(CategoriesViewModel.class);
 
+        if (!SharedPreferencesHelper.isLoggedIn(getActivity().getApplication())) {
+            new LoginDialog().show(getActivity().getSupportFragmentManager(), "LoginDialog");
+            binding.swipeToRefresh.setEnabled(false);
+            return;
+        }
         setUserInfo();
 
         binding.includeCardUserInfo.btnEditUserInfo.setOnClickListener(v -> {
@@ -196,8 +203,8 @@ public class moreFragment extends Fragment {
         SharedPreferences.Editor editor = getActivity().getSharedPreferences(AppConstant.USER_STATUS, Context.MODE_PRIVATE).edit();
         editor.putBoolean(AppConstant.USER_STATUS, false);
         editor.apply();
-
-/*        FirebaseMessaging firebaseMessaging = FirebaseMessaging.getInstance();
+/*
+        FirebaseMessaging firebaseMessaging = FirebaseMessaging.getInstance();
         firebaseMessaging.setAutoInitEnabled(false);
         firebaseMessaging.deleteToken();*/
     }

@@ -29,7 +29,7 @@
     <string name="title_sign_up">Sign up</string>
     <string name="label_phone_number">Phone number</string>
     <string name="password">Password</string>
-    <string name="label_login_as_guest">Log in as a visitor</string>
+    <string name="label_login_as_guest">visitor</string>
     <string name="label_forget_password">Forgot your password</string>
     <string name="label_full_name">Full Name</string>
     <string name="label_governorate">governorate</string>
@@ -136,4 +136,5 @@
     <string name="error_msg_missing_ads_images">Attach the product image</string>
     <string name="unknown">Unknown</string>
     <string name="clear_filter">Clear filter</string>
+    <string name="msg_visitor_login">Sorry, you have to log in to your account first do you have an account?</string>
 </resources>

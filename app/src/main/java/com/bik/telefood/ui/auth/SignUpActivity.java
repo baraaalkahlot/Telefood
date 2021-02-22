@@ -47,7 +47,6 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
-
 public class SignUpActivity extends AppCompatActivity {
     private static final int ACTION_PICK_IMAGE = 105;
     private static final int ACTION_VERIFY_NUMBER = 101;

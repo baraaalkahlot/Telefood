@@ -9,4 +9,12 @@
         <item>1</item>
         <item>2</item>
     </string-array>
+
+    <string-array name="price_entries">
+        <item>1–25 SAR</item>
+        <item>25–50 SAR</item>
+        <item>50–100 SAR</item>
+        <item>100–500 SAR</item>
+        <item>500–1000 SAR</item>
+    </string-array>
 </resources>

@@ -3,7 +3,7 @@ package com.bik.telefood.model.network;
 public interface ApiConstant {
     String BASE_URL = "http://waseeem.com/old/backend/TeleFood/public/api/";
 
-    String COUNTRY_CODE = "+970";
+    String COUNTRY_CODE = "+966";
     String ACCEPT_LANGUAGE = "Accept-Language";
     String ACCEPT = "Accept";
     String AUTHORIZATION = "Authorization";
@@ -40,4 +40,6 @@ public interface ApiConstant {
     String FILTER_CATEGORY = "category";
     String FILTER_GOVERNORATE = "governorate";
     String FILTER_CITY = "city";
+    String FILTER_FROM_PRICE = "price_from";
+    String FILTER_TO_PRICE = "price_to";
 }

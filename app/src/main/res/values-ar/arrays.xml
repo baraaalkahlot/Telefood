@@ -9,4 +9,13 @@
         <item>1</item>
         <item>2</item>
     </string-array>
+
+    <string-array name="price_entries">
+        <item>1–25 ريال</item>
+        <item>25–50 ريال</item>
+        <item>50–100 ريال</item>
+        <item>100–500 ريال</item>
+        <item>500–1000 ريال</item>
+    </string-array>
+
 </resources>

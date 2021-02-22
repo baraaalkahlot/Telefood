@@ -115,9 +115,8 @@ public class MealsFragment extends Fragment implements FilterDialogFragment.OnFi
         startActivity(intent);
     }
 
-
     @Override
-    public void onChanged(int governorateModelId, int cityModelId) {
+    public void onChanged(int governorateModelId, int cityModelId, int fromPrice, int toPrice) {
         servicesItemModels.clear();
         params.clear();
         productAdapter.resetPager();
@@ -127,9 +126,14 @@ public class MealsFragment extends Fragment implements FilterDialogFragment.OnFi
         if (cityModelId != 0)
             params.put(ApiConstant.FILTER_CITY, String.valueOf(cityModelId));
 
+        if (fromPrice != 0)
+            params.put(ApiConstant.FILTER_FROM_PRICE, String.valueOf(fromPrice));
+
+        if (toPrice != 0)
+            params.put(ApiConstant.FILTER_TO_PRICE, String.valueOf(toPrice));
+
         loadServiceList(1, params);
     }
-
 
     @Override
     public void onClearFilterClick() {

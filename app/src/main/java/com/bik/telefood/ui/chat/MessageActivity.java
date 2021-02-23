@@ -3,7 +3,6 @@ package com.bik.telefood.ui.chat;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,13 +28,11 @@ public class MessageActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (count == 0) {
-                    binding.ivImage.setImageResource(R.drawable.ic_image);
-                    binding.ivLocation.setVisibility(View.VISIBLE);
-                } else {
-                    binding.ivImage.setImageResource(R.drawable.ic_send);
-                    binding.ivLocation.setVisibility(View.GONE);
-                }
+                if (count == 0)
+                    binding.ivLocation.setImageResource(R.drawable.ic_my_location);
+                else binding.ivLocation.setImageResource(R.drawable.ic_send);
+
+
             }
 
             @Override

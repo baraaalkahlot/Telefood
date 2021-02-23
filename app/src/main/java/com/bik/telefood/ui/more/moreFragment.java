@@ -20,6 +20,7 @@ import com.bik.telefood.CommonUtils.SharedPreferencesHelper;
 import com.bik.telefood.R;
 import com.bik.telefood.databinding.FragmentMoreBinding;
 import com.bik.telefood.model.entity.general.UserModel;
+import com.bik.telefood.model.network.ApiConstant;
 import com.bik.telefood.ui.auth.AuthViewModel;
 import com.bik.telefood.ui.auth.login.LoginActivity;
 import com.bik.telefood.ui.auth.login.LoginViewModel;
@@ -49,6 +50,9 @@ public class moreFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentMoreBinding.inflate(inflater, container, false);
+
+        if (!SharedPreferencesHelper.getUserType(getActivity().getApplication()).equals(ApiConstant.ROLE_VENDOR))
+            binding.cardMyAds.cardViewItemMore.setVisibility(View.GONE);
 
         binding.cardMyAds.ivItemMore.setImageResource(R.drawable.ic_ads);
         binding.cardProviders.ivItemMore.setImageResource(R.drawable.ic_providers);

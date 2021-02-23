@@ -14,6 +14,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.bik.telefood.R;
 import com.bik.telefood.databinding.ActivityMainBinding;
+import com.bik.telefood.model.network.ApiConstant;
 import com.bik.telefood.ui.chat.ChatListActivity;
 import com.bik.telefood.ui.notifications.NotificationActivity;
 
@@ -37,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
-//        binding.navView.getMenu().removeItem(R.id.navigation_add_ads);
+        if (!SharedPreferencesHelper.getUserType(getApplication()).equals(ApiConstant.ROLE_VENDOR))
+            binding.navView.getMenu().removeItem(R.id.navigation_add_ads);
     }
 
     @Override

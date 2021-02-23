@@ -136,7 +136,7 @@ public class SignUpActivity extends AppCompatActivity {
         String password = binding.etPassword.getText().toString();
         boolean isChecked = binding.cbPrivacyPolicy.isChecked();
 
-        if (img_profile == null) {
+        if (img_profile == null && userRole.equals(ApiConstant.ROLE_VENDOR)) {
             binding.tvProfileImage.setError(getString(R.string.error_msg_missing_profile_image_required));
             binding.svSignUp.fullScroll(ScrollView.FOCUS_UP);
             return;

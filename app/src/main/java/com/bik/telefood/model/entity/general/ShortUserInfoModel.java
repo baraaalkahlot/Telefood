@@ -13,6 +13,9 @@ public class ShortUserInfoModel {
     @SerializedName("avatar")
     @Expose
     private String avatar;
+    @SerializedName("rating")
+    @Expose
+    private String rating;
 
     public long getId() {
         return id;
@@ -36,5 +39,13 @@ public class ShortUserInfoModel {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 }

@@ -89,7 +89,7 @@ public class MealsFragment extends Fragment implements FilterDialogFragment.OnFi
 
         servicesItemModels = new ArrayList<>();
         params = new HashMap<>();
-        productAdapter = new ProductAdapter(servicesItemModels, this);
+        productAdapter = new ProductAdapter(servicesItemModels, this, getContext());
         binding.rvProduct.setAdapter(productAdapter);
         productAdapter.setOnLoadingRequestListener(page -> loadServiceList(page, params));
         loadServiceList(1, params);

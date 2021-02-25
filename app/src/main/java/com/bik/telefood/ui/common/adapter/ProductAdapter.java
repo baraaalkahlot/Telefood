@@ -1,5 +1,6 @@
 package com.bik.telefood.ui.common.adapter;
 
+import android.content.Context;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -22,10 +23,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     private boolean isLastPage = false;
     private boolean isLoading = true;
     private int pageNumber = 1;
+    private Context context;
 
-    public ProductAdapter(List<ServicesItemModel> servicesItemModels, OnProductClickListener onProductClickListener) {
+    public ProductAdapter(List<ServicesItemModel> servicesItemModels, OnProductClickListener onProductClickListener, Context context) {
         this.servicesItemModels = servicesItemModels;
         this.onProductClickListener = onProductClickListener;
+        this.context = context;
     }
 
     public void setOnLoadingRequestListener(OnLoadingRequestListener onLoadingRequestListener) {
@@ -86,7 +89,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                     .placeholder(R.color.concrete)
                     .into(itemProductBinding.ivProduct);
             itemProductBinding.tvProductName.setText(servicesItemModel.getName());
-            itemProductBinding.tvProductPrice.setText(servicesItemModel.getPrice());
+            itemProductBinding.tvProductPrice.setText(context.getString(R.string.bind_price, servicesItemModel.getPrice()));
             itemProductBinding.getRoot().setOnClickListener(v -> onProductClickListener.OnProductClick(servicesItemModel.getId()));
         }
     }

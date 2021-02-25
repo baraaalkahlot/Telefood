@@ -96,7 +96,7 @@ public class HomeFragment extends Fragment implements ViewPager2.PageTransformer
 
         servicesItemModels = new ArrayList<>();
         params = new HashMap<>();
-        productAdapter = new ProductAdapter(servicesItemModels, this);
+        productAdapter = new ProductAdapter(servicesItemModels, this, getContext());
         binding.rvProduct.setAdapter(productAdapter);
         productAdapter.setOnLoadingRequestListener(page -> loadServiceList(page, params));
         loadServiceList(1, params);

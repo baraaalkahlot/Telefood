@@ -37,7 +37,7 @@ public class ProvidersDetailsActivity extends AppCompatActivity implements Categ
 
 
         servicesViewModel.getServices(null, null, this, getSupportFragmentManager(), true).observe(this, servicesResponse -> {
-            productAdapter = new ProductAdapter(servicesResponse.getServices().getData(), null);
+            productAdapter = new ProductAdapter(servicesResponse.getServices().getData(), null, this);
             binding.rvProduct.setAdapter(productAdapter);
         });
     }

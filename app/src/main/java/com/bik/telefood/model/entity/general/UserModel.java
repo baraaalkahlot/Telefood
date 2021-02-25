@@ -45,6 +45,9 @@ public class UserModel {
     @SerializedName("remainingDaysInPlan")
     @Expose
     private String remainingDaysInPlan;
+    @SerializedName("rating")
+    @Expose
+    private String rating;
 
     public Long getId() {
         return id;
@@ -141,4 +144,13 @@ public class UserModel {
     public void setRemainingDaysInPlan(String remainingDaysInPlan) {
         this.remainingDaysInPlan = remainingDaysInPlan;
     }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
 }

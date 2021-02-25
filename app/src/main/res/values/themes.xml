@@ -123,6 +123,10 @@
         <item name="colorOnSecondary">@color/white</item>
     </style>
 
+    <style name="FavoriteFabTheme" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="colorOnSecondary">@color/maroon_flush</item>
+    </style>
+
     <style name="DialogSolidButtonTheme">
         <item name="backgroundTint">@color/mandy</item>
         <item name="android:textSize">@dimen/text_size_regular</item>

@@ -22,6 +22,17 @@
             app:sliderAutoCycleEnabled="true"
             app:sliderIndicatorAnimationDuration="600" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/size_large"
+            android:theme="@style/FavoriteFabTheme"
+            app:backgroundTint="@color/wild_sand"
+            app:layout_constraintBottom_toBottomOf="@+id/imageSlider"
+            app:layout_constraintEnd_toEndOf="@+id/imageSlider"
+            app:layout_constraintTop_toBottomOf="@+id/imageSlider"
+            app:srcCompat="@drawable/ic_favorite_unchecked" />
+
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_category"
             android:layout_width="wrap_content"

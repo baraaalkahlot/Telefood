@@ -97,8 +97,12 @@ public class MealsFragment extends Fragment implements FilterDialogFragment.OnFi
     }
 
     private void loadServiceList(Integer page, HashMap<String, String> mParams) {
+        hideEmptyStatus();
         servicesViewModel.getServices(page, mParams, getContext(), getActivity().getSupportFragmentManager(), true).observe(getViewLifecycleOwner(), servicesResponse -> {
             ServicesListModel servicesListModel = servicesResponse.getServices();
+            if (servicesListModel.getData() == null || servicesListModel.getData().isEmpty()) {
+                showEmptyStatus();
+            }
             if (servicesListModel.getLastPage() == servicesListModel.getCurrentPage()) {
                 productAdapter.setLastPage(true);
             }
@@ -150,5 +154,15 @@ public class MealsFragment extends Fragment implements FilterDialogFragment.OnFi
         productAdapter.resetPager();
         params.put(ApiConstant.FILTER_CATEGORY, String.valueOf(id));
         loadServiceList(1, params);
+    }
+
+    private void showEmptyStatus() {
+        binding.rvProduct.setVisibility(View.GONE);
+        binding.includeEmptyStatusProduct.constraintLayoutEmptyStatusProduct.setVisibility(View.VISIBLE);
+    }
+
+    private void hideEmptyStatus() {
+        binding.rvProduct.setVisibility(View.VISIBLE);
+        binding.includeEmptyStatusProduct.constraintLayoutEmptyStatusProduct.setVisibility(View.GONE);
     }
 }

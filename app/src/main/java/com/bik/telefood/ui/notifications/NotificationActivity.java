@@ -1,6 +1,7 @@
 package com.bik.telefood.ui.notifications;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,5 +20,9 @@ public class NotificationActivity extends AppCompatActivity {
 
         notificationAdapter = new NotificationAdapter();
         binding.rvNotifications.setAdapter(notificationAdapter);
+
+        binding.lottieEmptyNotification.playAnimation();
+        binding.lottieEmptyNotification.setVisibility(View.VISIBLE);
+        binding.rvNotifications.setVisibility(View.GONE);
     }
 }

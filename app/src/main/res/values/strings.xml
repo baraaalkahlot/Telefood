@@ -138,4 +138,5 @@
     <string name="clear_filter">Clear filter</string>
     <string name="msg_visitor_login">Sorry, you have to log in to your account first do you have an account?</string>
     <string name="bind_price">%s SAR</string>
+    <string name="title_empty_status_product">There is no product matching the search result</string>
 </resources>

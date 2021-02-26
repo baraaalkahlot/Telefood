@@ -11,6 +11,18 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/padding_layout">
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimationView"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/e_mail" />
+
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_title_contact_us"
             style="@style/SubTitleTheme"
@@ -25,7 +37,7 @@
             android:textSize="@dimen/text_size_regular"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/lottieAnimationView" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/materialTextView4"

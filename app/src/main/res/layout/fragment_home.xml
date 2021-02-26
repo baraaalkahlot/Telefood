@@ -39,16 +39,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/et_search" />
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/pager_providers"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_providers"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/recycler_height_size"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_regular"
-            android:clipChildren="false"
             android:clipToPadding="false"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_search" />
+            app:layout_constraintTop_toBottomOf="@+id/et_search"
+            tools:itemCount="20"
+            tools:listitem="@layout/item_providers_card" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_category"
@@ -60,7 +63,7 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pager_providers"
+            app:layout_constraintTop_toBottomOf="@+id/rv_providers"
             tools:itemCount="20"
             tools:listitem="@layout/item_category" />
 
@@ -78,6 +81,17 @@
             app:spanCount="@integer/number_product_item_grid_home"
             tools:itemCount="20"
             tools:listitem="@layout/item_product" />
+
+        <include
+            android:id="@+id/include_empty_status_product"
+            layout="@layout/layout_empty_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_large"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rv_category" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

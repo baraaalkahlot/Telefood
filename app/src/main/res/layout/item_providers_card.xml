@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     style="@style/CardViewTheme"
     android:layout_width="@dimen/size_providers_item_width"
     android:layout_height="@dimen/size_providers_item_height"
     android:layout_gravity="center_horizontal"
-    tools:cardUseCompatPadding="false">
+    app:cardUseCompatPadding="false">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -36,16 +35,15 @@
             android:numStars="5"
             android:progressTint="@color/gold"
             android:rating="5"
-            app:layout_constraintBottom_toTopOf="@+id/tv_account_number"
+            app:layout_constraintBottom_toTopOf="@+id/tv_provider_name"
             app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_account_number"
+            android:id="@+id/tv_provider_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/size_small"
             android:fontFamily="@font/cairo_semibold"
-            android:text="مطعم براء الكحلوت"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_mid"
             app:layout_constraintBottom_toBottomOf="parent"

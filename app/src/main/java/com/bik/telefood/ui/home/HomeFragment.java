@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bik.telefood.CommonUtils.AppConstant;
+import com.bik.telefood.R;
 import com.bik.telefood.databinding.FragmentHomeBinding;
 import com.bik.telefood.model.entity.general.services.ServicesItemModel;
 import com.bik.telefood.model.entity.general.services.ServicesListModel;
@@ -25,6 +26,8 @@ import com.bik.telefood.ui.common.adapter.ProductAdapter;
 import com.bik.telefood.ui.common.ui.ProductDetailsActivity;
 import com.bik.telefood.ui.common.viewmodel.CategoriesViewModel;
 import com.bik.telefood.ui.common.viewmodel.ServicesViewModel;
+import com.ethanhua.skeleton.Skeleton;
+import com.ethanhua.skeleton.SkeletonScreen;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,6 +42,7 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnProductCl
     private ServicesViewModel servicesViewModel;
     private List<ServicesItemModel> servicesItemModels;
     private HashMap<String, String> params;
+    private SkeletonScreen productSkeleton;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
@@ -84,6 +88,7 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnProductCl
         HomeSliderAdapter homeSliderAdapter = new HomeSliderAdapter(this);
         binding.rvProviders.setAdapter(homeSliderAdapter);
 
+
         CategoriesViewModel categoriesViewModel = new ViewModelProvider(this).get(CategoriesViewModel.class);
         categoriesViewModel.getCategoriesListLiveData().observe(getViewLifecycleOwner(), categoryModelList -> {
             categoryAdapter = new CategoryAdapter(categoryModelList, this);
@@ -94,6 +99,12 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnProductCl
         params = new HashMap<>();
         productAdapter = new ProductAdapter(servicesItemModels, this, getContext());
         binding.rvProduct.setAdapter(productAdapter);
+        productSkeleton = Skeleton.bind(binding.rvProduct)
+                .adapter(productAdapter)
+                .color(R.color.alto)
+                .duration(500)
+                .load(R.layout.item_product)
+                .show();
         productAdapter.setOnLoadingRequestListener(page -> loadServiceList(page, params));
         loadServiceList(1, params);
 
@@ -101,8 +112,9 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnProductCl
     }
 
     private void loadServiceList(Integer page, HashMap<String, String> mParams) {
+        productSkeleton.show();
         hideEmptyStatus();
-        servicesViewModel.getServices(page, mParams, getContext(), getActivity().getSupportFragmentManager(), true).observe(getViewLifecycleOwner(), servicesResponse -> {
+        servicesViewModel.getServices(page, mParams, getContext(), getActivity().getSupportFragmentManager(), false).observe(getViewLifecycleOwner(), servicesResponse -> {
             ServicesListModel servicesListModel = servicesResponse.getServices();
             if (servicesListModel.getData() == null || servicesListModel.getData().isEmpty()) {
                 showEmptyStatus();
@@ -113,6 +125,7 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnProductCl
             servicesItemModels.addAll(servicesListModel.getData());
             productAdapter.notifyDataSetChanged();
             productAdapter.setLoading(false);
+            productSkeleton.hide();
         });
     }
 

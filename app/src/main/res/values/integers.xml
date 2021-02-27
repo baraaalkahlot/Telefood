@@ -7,4 +7,5 @@
     <integer name="number_providers_item_grid_my_ads">3</integer>
     <integer name="number_product_item_grid_home">3</integer>
     <integer name="number_product_item_grid_meals">3</integer>
+    <integer name="anim_duration_long">400</integer>
 </resources>

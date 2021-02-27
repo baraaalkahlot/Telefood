@@ -11,6 +11,7 @@
         android:id="@+id/lottie_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:lottie_speed="1.8"
         android:layout_gravity="center"
         app:lottie_rawRes="@raw/anim_logo" />
 </FrameLayout>

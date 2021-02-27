@@ -79,6 +79,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         public ViewHolder(@NonNull ItemProductBinding itemView) {
             super(itemView.getRoot());
             itemProductBinding = itemView;
+            itemView.tvProductName.setBackground(null);
+            itemView.tvProductPrice.setBackground(null);
         }
 
         public void bind(int position) {

@@ -2,6 +2,8 @@ package com.bik.telefood.ui.meals;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -107,21 +109,26 @@ public class MealsFragment extends Fragment implements FilterDialogFragment.OnFi
     }
 
     private void loadServiceList(Integer page, HashMap<String, String> mParams) {
-        productSkeleton.show();
-        hideEmptyStatus();
-        servicesViewModel.getServices(page, mParams, getContext(), getActivity().getSupportFragmentManager(), false).observe(getViewLifecycleOwner(), servicesResponse -> {
-            ServicesListModel servicesListModel = servicesResponse.getServices();
-            if (servicesListModel.getData() == null || servicesListModel.getData().isEmpty()) {
-                showEmptyStatus();
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                productSkeleton.show();
+                hideEmptyStatus();
+                servicesViewModel.getServices(page, mParams, getContext(), getActivity().getSupportFragmentManager(), false).observe(getViewLifecycleOwner(), servicesResponse -> {
+                    ServicesListModel servicesListModel = servicesResponse.getServices();
+                    if (servicesListModel.getData() == null || servicesListModel.getData().isEmpty()) {
+                        showEmptyStatus();
+                    }
+                    if (servicesListModel.getLastPage() == servicesListModel.getCurrentPage()) {
+                        productAdapter.setLastPage(true);
+                    }
+                    servicesItemModels.addAll(servicesListModel.getData());
+                    productAdapter.notifyDataSetChanged();
+                    productAdapter.setLoading(false);
+                    productSkeleton.hide();
+                });
             }
-            if (servicesListModel.getLastPage() == servicesListModel.getCurrentPage()) {
-                productAdapter.setLastPage(true);
-            }
-            servicesItemModels.addAll(servicesListModel.getData());
-            productAdapter.notifyDataSetChanged();
-            productAdapter.setLoading(false);
-            productSkeleton.hide();
-        });
+        }, 3000);
     }
 
     @Override

@@ -11,9 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.constraintlayout.motion.widget.MotionLayout
+            android:id="@+id/constraintLayout2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:layoutDescription="@xml/fragment_more_xml_constraintlayout2_scene">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/shapeableImageView8"
@@ -38,8 +40,11 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/flow"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_marginTop="@dimen/size_large"
+                android:layout_marginBottom="@dimen/size_large"
                 android:padding="@dimen/padding_layout"
                 app:constraint_referenced_ids="card_my_ads , card_providers , card_support , card_setting , card_privacy_policy , card_about_app , card_edit_password , card_sign_out"
                 app:flow_horizontalGap="@dimen/size_regular"
@@ -98,7 +103,7 @@
                 layout="@layout/item_more"
                 android:layout_width="@dimen/size_item_more_width"
                 android:layout_height="@dimen/size_item_more_height" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.motion.widget.MotionLayout>
     </ScrollView>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

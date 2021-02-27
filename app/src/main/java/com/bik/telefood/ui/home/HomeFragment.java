@@ -13,6 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.PagerSnapHelper;
+import androidx.recyclerview.widget.SnapHelper;
 
 import com.bik.telefood.CommonUtils.AppConstant;
 import com.bik.telefood.R;
@@ -87,7 +89,8 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnProductCl
 
         HomeSliderAdapter homeSliderAdapter = new HomeSliderAdapter(this);
         binding.rvProviders.setAdapter(homeSliderAdapter);
-
+        SnapHelper snapHelper = new PagerSnapHelper();
+        snapHelper.attachToRecyclerView(binding.rvProviders);
 
         CategoriesViewModel categoriesViewModel = new ViewModelProvider(this).get(CategoriesViewModel.class);
         categoriesViewModel.getCategoriesListLiveData().observe(getViewLifecycleOwner(), categoryModelList -> {
@@ -101,10 +104,11 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnProductCl
         binding.rvProduct.setAdapter(productAdapter);
         productSkeleton = Skeleton.bind(binding.rvProduct)
                 .adapter(productAdapter)
-                .color(R.color.alto)
+                .color(R.color.mercury)
                 .duration(500)
                 .load(R.layout.item_product)
                 .show();
+
         productAdapter.setOnLoadingRequestListener(page -> loadServiceList(page, params));
         loadServiceList(1, params);
 

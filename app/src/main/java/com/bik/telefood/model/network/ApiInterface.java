@@ -1,6 +1,8 @@
 package com.bik.telefood.model.network;
 
 import com.bik.telefood.model.entity.Autherntication.CategoryResponse;
+import com.bik.telefood.model.entity.Autherntication.MyServiceResponse;
+import com.bik.telefood.model.entity.Autherntication.NotificationResponse;
 import com.bik.telefood.model.entity.Autherntication.UpdateProfileResponse;
 import com.bik.telefood.model.entity.MainResponse;
 import com.bik.telefood.model.entity.auth.LoginResponse;
@@ -77,7 +79,8 @@ public interface ApiInterface {
     @POST("auth/logout")
     Call<MainResponse> logout();
 
-    //Authenticated Api
+
+    /*-----------{Authenticated Api}-------------*/
 
     //User Information
     @Multipart
@@ -99,4 +102,20 @@ public interface ApiInterface {
     @Multipart
     @POST("addService")
     Call<MainResponse> addService(@PartMap HashMap<String, RequestBody> params, @Part MultipartBody.Part[] images);
+
+    @Multipart
+    @POST("updateService")
+    Call<MainResponse> updateService(@PartMap HashMap<String, RequestBody> params, @Part MultipartBody.Part[] images);
+
+    @FormUrlEncoded
+    @POST("deleteService")
+    Call<MainResponse> deleteService(@Field(ApiConstant.ID) int id);
+
+    @GET("myService")
+    Call<MyServiceResponse> myService();
+
+
+    //Notification
+    @GET("myNotifications")
+    Call<NotificationResponse> getNotification();
 }

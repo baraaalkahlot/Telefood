@@ -9,6 +9,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.bik.telefood.model.entity.Autherntication.MyServiceResponse;
 import com.bik.telefood.model.entity.MainResponse;
 import com.bik.telefood.model.network.BaseCallBack;
 import com.bik.telefood.model.network.NetworkUtils;
@@ -21,14 +22,25 @@ import retrofit2.Response;
 
 public class AdsViewModel extends AndroidViewModel {
 
-    private NetworkUtils networkUtils;
+    private final NetworkUtils networkUtils;
     private MutableLiveData<MainResponse> mainResponseMutableLiveData;
+    private MutableLiveData<MyServiceResponse> myServiceResponseMutableLiveData;
 
     public AdsViewModel(@NonNull Application application) {
         super(application);
         networkUtils = NetworkUtils.getInstance(application);
     }
 
+    public LiveData<MyServiceResponse> getMyAds(Context context, FragmentManager fragmentManager) {
+        myServiceResponseMutableLiveData = new MutableLiveData<>();
+        networkUtils.getApiInterface().myService().enqueue(new BaseCallBack<MyServiceResponse>(context, fragmentManager, false) {
+            @Override
+            protected void onFinishWithSuccess(MyServiceResponse result, Response<MyServiceResponse> response) {
+                myServiceResponseMutableLiveData.setValue(result);
+            }
+        });
+        return myServiceResponseMutableLiveData;
+    }
 
     public LiveData<MainResponse> addService(HashMap<String, RequestBody> params, MultipartBody.Part[] images, Context context, FragmentManager fragmentManager) {
         mainResponseMutableLiveData = new MutableLiveData<>();
@@ -36,6 +48,28 @@ public class AdsViewModel extends AndroidViewModel {
             @Override
             protected void onFinishWithSuccess(MainResponse result, Response<MainResponse> response) {
                 mainResponseMutableLiveData.setValue(response.body());
+            }
+        });
+        return mainResponseMutableLiveData;
+    }
+
+    public LiveData<MainResponse> updateService(HashMap<String, RequestBody> params, MultipartBody.Part[] images, Context context, FragmentManager fragmentManager) {
+        mainResponseMutableLiveData = new MutableLiveData<>();
+        networkUtils.getApiInterface().updateService(params, images).enqueue(new BaseCallBack<MainResponse>(context, fragmentManager, true) {
+            @Override
+            protected void onFinishWithSuccess(MainResponse result, Response<MainResponse> response) {
+                mainResponseMutableLiveData.setValue(response.body());
+            }
+        });
+        return mainResponseMutableLiveData;
+    }
+
+    public LiveData<MainResponse> deleteService(int id, Context context, FragmentManager fragmentManager) {
+        mainResponseMutableLiveData = new MutableLiveData<>();
+        networkUtils.getApiInterface().deleteService(id).enqueue(new BaseCallBack<MainResponse>(context, fragmentManager, true) {
+            @Override
+            protected void onFinishWithSuccess(MainResponse result, Response<MainResponse> response) {
+                mainResponseMutableLiveData.setValue(result);
             }
         });
         return mainResponseMutableLiveData;

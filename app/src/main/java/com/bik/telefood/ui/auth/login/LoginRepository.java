@@ -55,8 +55,8 @@ public class LoginRepository {
         return loginResponseMutableLiveData;
     }
 
-    public void updateUserModel(String m_avatar, String m_name, String m_phone, String m_governorate_id, String m_city_id) {
-        userSectionDao.updateUserSectionItems(m_avatar, m_name, m_phone, m_governorate_id, m_city_id);
+    public void updateUserModel(String m_avatar, String m_name, String m_phone, String m_governorate_id, String m_city_id, String m_governorate, String m_city) {
+        userSectionDao.updateUserSectionItems(m_avatar, m_name, m_phone, m_governorate_id, m_city_id, m_governorate, m_city);
     }
 
     public void deleteUserTable() {

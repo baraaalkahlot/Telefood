@@ -14,4 +14,5 @@ public interface AppConstant {
     String FORCE_RESENDING_TOKEN = "forceResendingToken";
     String IS_ABOUT_APP = "about app";
     String PRODUCT_ID = "id";
+    String PRODUCT_MODEL = "product model";
 }

@@ -53,7 +53,7 @@ public class MoreViewModel extends AndroidViewModel {
 
     public LiveData<UpdateProfileResponse> getProfile(Context context, FragmentManager fragmentManager) {
         updateResponseMutableLiveData = new MutableLiveData<>();
-        networkUtils.getApiInterface().getProfile().enqueue(new BaseCallBack<UpdateProfileResponse>(context, fragmentManager, true) {
+        networkUtils.getApiInterface().getProfile().enqueue(new BaseCallBack<UpdateProfileResponse>(context, fragmentManager, false) {
             @Override
             protected void onFinishWithSuccess(UpdateProfileResponse result, Response<UpdateProfileResponse> response) {
                 updateResponseMutableLiveData.setValue(response.body());

@@ -51,5 +51,6 @@
     <dimen name="size_recyclerview_height_ads_image">150dp</dimen>
     <dimen name="size_image_width_add_ads">100dp</dimen>
     <dimen name="size_image_height_add_ads">100dp</dimen>
+    <dimen name="size_very_small">4dp</dimen>
 
 </resources>

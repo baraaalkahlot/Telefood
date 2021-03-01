@@ -1,7 +1,7 @@
 package com.bik.telefood.model.network;
 
 public interface ApiConstant {
-    String BASE_URL = "http://waseeem.com/old/backend/TeleFood/public/api/";
+    String BASE_URL = "https://telefoodsa.com/api/";
 
     String COUNTRY_CODE = "+966";
     String ACCEPT_LANGUAGE = "Accept-Language";

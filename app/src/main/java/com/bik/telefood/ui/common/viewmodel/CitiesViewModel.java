@@ -26,13 +26,19 @@ public class CitiesViewModel extends AndroidViewModel {
     }
 
     public LiveData<CitiesResponse> getCityList(int governorate, Context context, FragmentManager fragmentManager) {
-        citiesResponseMutableLiveData = new MutableLiveData<>();
-        networkUtils.getApiInterface().getCitiesResponseList(governorate).enqueue(new BaseCallBack<CitiesResponse>(context, fragmentManager, true) {
-            @Override
-            protected void onFinishWithSuccess(CitiesResponse result, Response<CitiesResponse> response) {
-                citiesResponseMutableLiveData.setValue(response.body());
-            }
-        });
+        if (citiesResponseMutableLiveData == null) {
+            citiesResponseMutableLiveData = new MutableLiveData<>();
+            networkUtils.getApiInterface().getCitiesResponseList(governorate).enqueue(new BaseCallBack<CitiesResponse>(context, fragmentManager, true) {
+                @Override
+                protected void onFinishWithSuccess(CitiesResponse result, Response<CitiesResponse> response) {
+                    citiesResponseMutableLiveData.setValue(response.body());
+                }
+            });
+        }
         return citiesResponseMutableLiveData;
+    }
+
+    public void setLiveDataNull() {
+        citiesResponseMutableLiveData = null;
     }
 }

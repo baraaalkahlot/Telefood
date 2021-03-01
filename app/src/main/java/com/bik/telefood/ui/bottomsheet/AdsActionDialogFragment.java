@@ -15,13 +15,22 @@ import org.jetbrains.annotations.NotNull;
 
 public class AdsActionDialogFragment extends BottomSheetDialogFragment {
 
-    private static final String ARG_ITEM_COUNT = "item_count";
+    private static final String ARG_ITEM_ID = "item_id";
     private FragmentAdsActionDialogBinding binding;
+    private int id;
+    private ConfirmDialogFragment.OnDeleteItemConfirmListener onDeleteItemConfirmListener;
+    private OnEditAdsListener onEditAdsListener;
 
-    public static AdsActionDialogFragment newInstance() {
-        final AdsActionDialogFragment fragment = new AdsActionDialogFragment();
+    public AdsActionDialogFragment(int id, ConfirmDialogFragment.OnDeleteItemConfirmListener onDeleteItemConfirmListener, OnEditAdsListener onEditAdsListener) {
+        this.onDeleteItemConfirmListener = onDeleteItemConfirmListener;
+        this.onEditAdsListener = onEditAdsListener;
+        this.id = id;
+    }
+
+    public static AdsActionDialogFragment newInstance(int id, ConfirmDialogFragment.OnDeleteItemConfirmListener onDeleteItemConfirmListener, OnEditAdsListener onEditAdsListener) {
+        final AdsActionDialogFragment fragment = new AdsActionDialogFragment(id, onDeleteItemConfirmListener, onEditAdsListener);
         final Bundle args = new Bundle();
-//        args.putInt(ARG_ITEM_COUNT, itemCount);
+        args.putInt(ARG_ITEM_ID, id);
         fragment.setArguments(args);
         return fragment;
     }
@@ -30,6 +39,7 @@ public class AdsActionDialogFragment extends BottomSheetDialogFragment {
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentAdsActionDialogBinding.inflate(inflater, container, false);
+        id = getArguments().getInt(ARG_ITEM_ID, 0);
         return binding.getRoot();
     }
 
@@ -37,7 +47,17 @@ public class AdsActionDialogFragment extends BottomSheetDialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         binding.tvDeletePromotion.setOnClickListener(v -> {
             dismiss();
-            ConfirmDialogFragment.newInstance().show(getActivity().getSupportFragmentManager(), "ConfirmDialogFragment");
+            if (id != 0)
+                ConfirmDialogFragment.newInstance(id, onDeleteItemConfirmListener).show(getActivity().getSupportFragmentManager(), "ConfirmDialogFragment");
         });
+
+        binding.tvEditPromotion.setOnClickListener(v -> {
+            dismiss();
+            onEditAdsListener.onEdit(id);
+        });
+    }
+
+    public interface OnEditAdsListener {
+        void onEdit(int id);
     }
 }

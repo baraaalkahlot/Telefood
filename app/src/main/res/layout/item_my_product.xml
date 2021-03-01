@@ -10,18 +10,19 @@
         android:id="@+id/iv_product"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_item_my_product_iv_height"
+        android:background="@color/concrete"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/template_cake" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_product_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_very_small"
+        android:background="@color/concrete"
         android:gravity="center"
-        android:text="كيكة كبيرة"
         android:textColor="@color/tundora"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,8 +33,9 @@
         style="@style/PriceTitleTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_very_small"
+        android:background="@color/concrete"
         android:gravity="center"
-        android:text="100ريال"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_product_name" />

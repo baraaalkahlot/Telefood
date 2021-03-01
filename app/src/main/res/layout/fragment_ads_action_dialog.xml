@@ -28,7 +28,7 @@
         android:drawablePadding="@dimen/size_xlarge"
         android:paddingTop="@dimen/size_small"
         android:paddingBottom="@dimen/size_small"
-        android:text="@string/label_promotion_detail"
+        android:text="@string/label_edit_promotion"
         android:textColor="@color/tundora" />
 
     <com.google.android.material.textview.MaterialTextView

@@ -36,9 +36,15 @@ public class UserModel {
     @SerializedName("governorate_id")
     @Expose
     private String governorateId;
+    @SerializedName("governorate")
+    @Expose
+    private String governorate;
     @SerializedName("city_id")
     @Expose
     private String cityId;
+    @SerializedName("city")
+    @Expose
+    private String city;
     @SerializedName("choosedPlanName")
     @Expose
     private String choosedPlanName;
@@ -121,12 +127,28 @@ public class UserModel {
         this.governorateId = governorateId;
     }
 
+    public String getGovernorate() {
+        return governorate;
+    }
+
+    public void setGovernorate(String governorate) {
+        this.governorate = governorate;
+    }
+
     public String getCityId() {
         return cityId;
     }
 
     public void setCityId(String cityId) {
         this.cityId = cityId;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getChoosedPlanName() {
@@ -152,5 +174,4 @@ public class UserModel {
     public void setRating(String rating) {
         this.rating = rating;
     }
-
 }

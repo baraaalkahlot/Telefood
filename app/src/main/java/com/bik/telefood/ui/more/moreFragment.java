@@ -88,6 +88,7 @@ public class moreFragment extends Fragment {
                     .into(binding.includeCardUserInfo.ivUserAvatar);
 
             binding.includeCardUserInfo.tvUserName.setText(userModel.getName());
+            binding.includeCardUserInfo.rbSupplierRating.setRating(Float.parseFloat(userModel.getRating()));
 
             if (userModel.getChoosedPlanName() != null)
                 binding.includeCardUserInfo.tvPlanName.setText(userModel.getChoosedPlanName());
@@ -179,6 +180,7 @@ public class moreFragment extends Fragment {
                         .into(binding.includeCardUserInfo.ivUserAvatar);
 
                 binding.includeCardUserInfo.tvUserName.setText(userModel.getName());
+                binding.includeCardUserInfo.rbSupplierRating.setRating(Float.parseFloat(userModel.getRating()));
 
                 if (userModel.getChoosedPlanName() != null)
                     binding.includeCardUserInfo.tvPlanName.setText(userModel.getChoosedPlanName());

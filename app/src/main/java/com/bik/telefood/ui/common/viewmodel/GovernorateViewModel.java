@@ -17,7 +17,7 @@ import retrofit2.Response;
 
 public class GovernorateViewModel extends AndroidViewModel {
 
-    private NetworkUtils networkUtils;
+    private final NetworkUtils networkUtils;
     private MutableLiveData<GovernoratesResponse> governoratesResponseMutableLiveData;
 
     public GovernorateViewModel(@NonNull Application application) {

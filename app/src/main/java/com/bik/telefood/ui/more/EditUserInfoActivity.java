@@ -65,6 +65,9 @@ public class EditUserInfoActivity extends AppCompatActivity {
         binding.ivProfileImage.setOnClickListener(v -> pickImage());
 
         binding.btnSave.setOnClickListener(v -> updateProfile());
+
+        binding.spGovernorate.setOnClickListener(v -> getGovernorateSpinnersValuesById());
+        binding.spCity.setOnClickListener(v -> getCitiesSpinnersValuesById(governorateModelId));
     }
 
     private void setUserInfo() {
@@ -78,10 +81,12 @@ public class EditUserInfoActivity extends AppCompatActivity {
 
             binding.etFullName.setText(userModel.getName());
             binding.etPhoneNumber.setText(userModel.getPhone());
+            binding.spCity.setText(userModel.getCity());
+            binding.spGovernorate.setText(userModel.getGovernorate());
 
             governorateModelId = Integer.parseInt(userModel.getGovernorateId());
             cityModelId = Integer.parseInt(userModel.getCityId());
-            initGovernorateSpinnersValues();
+
         });
     }
 
@@ -120,31 +125,25 @@ public class EditUserInfoActivity extends AppCompatActivity {
 
         moreViewModel.updateProfile(params, img_profile, this, getSupportFragmentManager()).observe(this, updateProfileResponse -> {
             UserModel userModel = updateProfileResponse.getUser();
-            loginViewModel.updateUserSection(userModel.getAvatar(), userModel.getName(), userModel.getPhone(), userModel.getGovernorateId(), userModel.getCityId());
+            loginViewModel.updateUserSection(userModel.getAvatar(), userModel.getName(), userModel.getPhone(), userModel.getGovernorateId(), userModel.getCityId(), userModel.getGovernorate(), userModel.getCity());
             setResult(RESULT_OK);
             finish();
         });
     }
 
 
-    private void initGovernorateSpinnersValues() {
+    private void getGovernorateSpinnersValuesById() {
         //Set Governorate List Values
         governorateViewModel.getGovernorateList(this, getSupportFragmentManager()).observe(this, governoratesResponse -> {
             List<Governorate> governorateList = governoratesResponse.getGovernorates();
             binding.spGovernorate.setAdapter(new GovernorateAdapter(this, governorateList));
-
-            for (Governorate governorate : governorateList) {
-                if (governorate.getId() == governorateModelId) {
-                    binding.spGovernorate.setText(governorate.getTitle(), false);
-                    break;
-                }
-            }
-            getCitiesSpinnersValuesById(governorateModelId, cityModelId);
+            binding.spGovernorate.performClick();
 
             binding.spGovernorate.setOnItemClickListener((parent, view, position, id) -> {
                 Governorate items = (Governorate) parent.getItemAtPosition(position);
                 binding.spGovernorate.setText(items.getTitle(), false);
                 governorateModelId = items.getId();
+                citiesViewModel.setLiveDataNull();
                 getCitiesSpinnersValuesById(governorateModelId);
                 binding.ilCity.setHint(R.string.label_city);
                 binding.spCity.setText("");
@@ -157,27 +156,13 @@ public class EditUserInfoActivity extends AppCompatActivity {
         citiesViewModel.getCityList(governorate, this, getSupportFragmentManager()).observe(this, citiesResponse -> {
             List<City> cityList = citiesResponse.getCities();
             binding.spCity.setAdapter(new CityAdapter(this, cityList));
+            binding.spCity.performClick();
 
             binding.spCity.setOnItemClickListener((parent, view, position, id) -> {
                 City items = (City) parent.getItemAtPosition(position);
                 binding.spCity.setText(items.getTitle(), false);
                 cityModelId = items.getId();
             });
-        });
-    }
-
-    private void getCitiesSpinnersValuesById(int governorate, int cityId) {
-        //Set City List Values
-        citiesViewModel.getCityList(governorate, this, getSupportFragmentManager()).observe(this, citiesResponse -> {
-            List<City> cityList = citiesResponse.getCities();
-            binding.spCity.setAdapter(new CityAdapter(this, cityList));
-
-            for (City city : cityList) {
-                if (city.getId() == cityId) {
-                    binding.spCity.setText(city.getTitle(), false);
-                    break;
-                }
-            }
         });
     }
 

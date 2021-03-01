@@ -102,6 +102,7 @@
     <string name="label_back">رجوع</string>
     <string name="message_sent_successfully">تم الارسال بنجاح</string>
     <string name="label_delete_promotion">حذف الاعلان</string>
+    <string name="label_edit_promotion">تعديل الاعلان</string>
     <string name="title_delete_ads_message">هل تريد حذف هذا المنتج؟</string>
     <string name="label_delete">حذف</string>
     <string name="label_cancel">الغاء</string>

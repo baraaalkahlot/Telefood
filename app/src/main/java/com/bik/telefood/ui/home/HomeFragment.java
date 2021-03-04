@@ -1,5 +1,6 @@
 package com.bik.telefood.ui.home;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.PagerSnapHelper;
@@ -31,6 +33,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment implements ProductAdapter.OnProductClickListener, CategoryAdapter.OnCategorySelectListener, HomeSliderAdapter.OnHomeSliderClickListener, FeaturedServicesAdapter.OnProductClickListener {
 
+    private static final int ACTION_GO_TO_PRODUCT_DETAILS = 103;
     private FragmentHomeBinding binding;
     private HomeViewModel homeViewModel;
     private CategoryAdapter categoryAdapter;
@@ -102,7 +105,7 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnProductCl
         Intent intent = new Intent(getActivity(), ProductDetailsActivity.class);
         intent.putExtra(AppConstant.PRODUCT_ID, id);
         intent.putExtra(AppConstant.PRODUCT_IS_FAVORITE, favorite);
-        startActivity(intent);
+        startActivityForResult(intent, ACTION_GO_TO_PRODUCT_DETAILS);
     }
 
     @Override
@@ -126,4 +129,12 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnProductCl
         binding.includeEmptyStatusProduct.constraintLayoutEmptyStatusProduct.setVisibility(View.GONE);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == ACTION_GO_TO_PRODUCT_DETAILS && resultCode == Activity.RESULT_OK) {
+            servicesItemModels.clear();
+            loadFeaturedProductList(null);
+        }
+    }
 }

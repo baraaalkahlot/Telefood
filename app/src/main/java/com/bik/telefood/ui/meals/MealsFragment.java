@@ -1,5 +1,6 @@
 package com.bik.telefood.ui.meals;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -34,6 +36,7 @@ import java.util.List;
 
 public class MealsFragment extends Fragment implements FilterDialogFragment.OnFilterChangeListener, ProductAdapter.OnProductClickListener, CategoryAdapter.OnCategorySelectListener {
 
+    private static final int ACTION_GO_TO_PRODUCT_DETAILS = 103;
     private FragmentMealsBinding binding;
     private MealsViewModel mealsViewModel;
     private CategoryAdapter categoryAdapter;
@@ -129,7 +132,7 @@ public class MealsFragment extends Fragment implements FilterDialogFragment.OnFi
         Intent intent = new Intent(getActivity(), ProductDetailsActivity.class);
         intent.putExtra(AppConstant.PRODUCT_ID, id);
         intent.putExtra(AppConstant.PRODUCT_IS_FAVORITE, favorite);
-        startActivity(intent);
+        startActivityForResult(intent, ACTION_GO_TO_PRODUCT_DETAILS);
     }
 
     @Override
@@ -177,5 +180,16 @@ public class MealsFragment extends Fragment implements FilterDialogFragment.OnFi
     private void hideEmptyStatus() {
         binding.rvProduct.setVisibility(View.VISIBLE);
         binding.includeEmptyStatusProduct.constraintLayoutEmptyStatusProduct.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == ACTION_GO_TO_PRODUCT_DETAILS && resultCode == Activity.RESULT_OK) {
+            servicesItemModels.clear();
+            params.clear();
+            productAdapter.resetPager();
+            loadServiceList(1, params);
+        }
     }
 }

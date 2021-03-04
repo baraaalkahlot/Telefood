@@ -31,6 +31,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements ImageSl
 
     private ActivityProductDetailsBinding binding;
     private int product_id;
+    private boolean favoriteUpdated = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,21 +97,25 @@ public class ProductDetailsActivity extends AppCompatActivity implements ImageSl
             binding.imageSlider.setScrollTimeInSec(3);
             binding.imageSlider.startAutoCycle();
 
-            binding.btnFavorite.setOnClickListener(v -> {
-                toggleFavorite();
-            });
+            binding.btnFavorite.setOnClickListener(v -> toggleFavorite());
 
         });
     }
 
     private void toggleFavorite() {
         ToggleFavoriteViewModel toggleFavoriteViewModel = new ViewModelProvider(this).get(ToggleFavoriteViewModel.class);
-        toggleFavoriteViewModel.favoriteToggle(ApiConstant.FAVORITE_TYPE_SERVICE, product_id, this, getSupportFragmentManager()).observe(this, mainResponse -> {
-        });
+        toggleFavoriteViewModel.favoriteToggle(ApiConstant.FAVORITE_TYPE_SERVICE, product_id, this, getSupportFragmentManager()).observe(this, mainResponse -> favoriteUpdated = true);
     }
 
     @Override
     public void onImageClick(String path) {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (favoriteUpdated)
+            setResult(RESULT_OK);
+        finish();
     }
 }

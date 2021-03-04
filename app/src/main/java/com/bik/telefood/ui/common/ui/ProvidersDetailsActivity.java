@@ -1,9 +1,11 @@
 package com.bik.telefood.ui.common.ui;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -28,6 +30,7 @@ import java.util.List;
 
 public class ProvidersDetailsActivity extends AppCompatActivity implements CategoryAdapter.OnCategorySelectListener, ProductAdapter.OnProductClickListener {
 
+    private static final int ACTION_GO_TO_PRODUCT_DETAILS = 103;
     private ActivityProvidersDetailsBinding binding;
     private CategoryAdapter categoryAdapter;
     private ProductAdapter productAdapter;
@@ -114,6 +117,16 @@ public class ProvidersDetailsActivity extends AppCompatActivity implements Categ
         Intent intent = new Intent(this, ProductDetailsActivity.class);
         intent.putExtra(AppConstant.PRODUCT_ID, id);
         intent.putExtra(AppConstant.PRODUCT_IS_FAVORITE, favorite);
-        startActivity(intent);
+        startActivityForResult(intent, ACTION_GO_TO_PRODUCT_DETAILS);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == ACTION_GO_TO_PRODUCT_DETAILS && resultCode == Activity.RESULT_OK) {
+            servicesItemModels.clear();
+            productAdapter.resetPager();
+            loadData(1);
+        }
     }
 }

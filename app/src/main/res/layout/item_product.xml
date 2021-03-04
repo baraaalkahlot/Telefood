@@ -9,11 +9,12 @@
         android:id="@+id/iv_product"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_item_product_iv_height"
-        android:background="@color/concrete"
+        android:background="@drawable/shape_product_round_rectangle"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerCut" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_product_name"

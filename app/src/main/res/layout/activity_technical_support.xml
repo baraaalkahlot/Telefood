@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/alabaster"
     android:padding="@dimen/padding_layout"
     tools:context=".ui.support.TechnicalSupportActivity">
 
@@ -23,7 +24,5 @@
         android:layout_margin="@dimen/size_regular"
         android:src="@drawable/ic_send"
         android:theme="@style/FabTheme"
-        app:backgroundTint="@color/lochinvar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:backgroundTint="@color/lochinvar" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

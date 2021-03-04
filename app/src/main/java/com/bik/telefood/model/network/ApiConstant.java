@@ -29,7 +29,9 @@ public interface ApiConstant {
     String IMAGE = "image";
     String PACKAGE = "package";
     String ADD_ADS_IMAGES = "imgs[]";
+    String UPLOAD_ADS_IMAGE = "img";
 
+    String PRODUCT_ID = "id";
     String PRODUCT_NAME = "name";
     String PRODUCT_CATEGORY = "category";
     String PRODUCT_PRICE = "price";
@@ -42,4 +44,11 @@ public interface ApiConstant {
     String FILTER_CITY = "city";
     String FILTER_FROM_PRICE = "price_from";
     String FILTER_TO_PRICE = "price_to";
+    String OPEN = "open";
+    String CLOSED = "closed";
+    String ATTACHMENT = "attachments";
+    String TICKET_SUBJECT = "subject";
+    String TICKET_DETAILS = "details";
+    String FAVORITE_TYPE = "type";
+    String FAVORITE_TYPE_VENDOR = "vendor";
 }

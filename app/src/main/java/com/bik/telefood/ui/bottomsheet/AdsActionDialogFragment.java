@@ -19,16 +19,16 @@ public class AdsActionDialogFragment extends BottomSheetDialogFragment {
     private FragmentAdsActionDialogBinding binding;
     private int id;
     private ConfirmDialogFragment.OnDeleteItemConfirmListener onDeleteItemConfirmListener;
-    private OnEditAdsListener onEditAdsListener;
+    private OnAdsClickListener onAdsClickListener;
 
-    public AdsActionDialogFragment(int id, ConfirmDialogFragment.OnDeleteItemConfirmListener onDeleteItemConfirmListener, OnEditAdsListener onEditAdsListener) {
+    public AdsActionDialogFragment(int id, ConfirmDialogFragment.OnDeleteItemConfirmListener onDeleteItemConfirmListener, OnAdsClickListener onAdsClickListener) {
         this.onDeleteItemConfirmListener = onDeleteItemConfirmListener;
-        this.onEditAdsListener = onEditAdsListener;
+        this.onAdsClickListener = onAdsClickListener;
         this.id = id;
     }
 
-    public static AdsActionDialogFragment newInstance(int id, ConfirmDialogFragment.OnDeleteItemConfirmListener onDeleteItemConfirmListener, OnEditAdsListener onEditAdsListener) {
-        final AdsActionDialogFragment fragment = new AdsActionDialogFragment(id, onDeleteItemConfirmListener, onEditAdsListener);
+    public static AdsActionDialogFragment newInstance(int id, ConfirmDialogFragment.OnDeleteItemConfirmListener onDeleteItemConfirmListener, OnAdsClickListener onAdsClickListener) {
+        final AdsActionDialogFragment fragment = new AdsActionDialogFragment(id, onDeleteItemConfirmListener, onAdsClickListener);
         final Bundle args = new Bundle();
         args.putInt(ARG_ITEM_ID, id);
         fragment.setArguments(args);
@@ -53,11 +53,18 @@ public class AdsActionDialogFragment extends BottomSheetDialogFragment {
 
         binding.tvEditPromotion.setOnClickListener(v -> {
             dismiss();
-            onEditAdsListener.onEdit(id);
+            onAdsClickListener.onEdit(id);
+        });
+
+        binding.tvPromotionDetails.setOnClickListener(v -> {
+            dismiss();
+            onAdsClickListener.onDetailsPreview(id);
         });
     }
 
-    public interface OnEditAdsListener {
+    public interface OnAdsClickListener {
         void onEdit(int id);
+
+        void onDetailsPreview(int id);
     }
 }

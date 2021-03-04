@@ -24,9 +24,9 @@ import com.bik.telefood.model.network.ApiConstant;
 import com.bik.telefood.ui.auth.AuthViewModel;
 import com.bik.telefood.ui.auth.login.LoginActivity;
 import com.bik.telefood.ui.auth.login.LoginViewModel;
-import com.bik.telefood.ui.common.ui.ProvidersDetailsActivity;
 import com.bik.telefood.ui.common.viewmodel.CategoriesViewModel;
 import com.bik.telefood.ui.more.ads.MyAdsActivity;
+import com.bik.telefood.ui.more.vendors.VendorsListActivity;
 import com.bik.telefood.ui.support.TechnicalSupportActivity;
 import com.squareup.picasso.Picasso;
 
@@ -131,7 +131,7 @@ public class moreFragment extends Fragment {
         });
 
         binding.cardProviders.cardViewItemMore.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), ProvidersDetailsActivity.class);
+            Intent intent = new Intent(getActivity(), VendorsListActivity.class);
             startActivityForResult(intent, ACTION_MOVE_TO_PROVIDERS_DETAILS);
         });
 

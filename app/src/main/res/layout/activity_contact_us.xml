@@ -88,19 +88,31 @@
                 android:minHeight="@dimen/min_height_details_edit_text" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_reset_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_large"
+            android:src="@drawable/ic_baseline_delete_forever_24"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/il_details" />
+
         <LinearLayout
             android:id="@+id/ll_attach_file"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_large"
+            android:layout_marginTop="@dimen/size_mid"
             android:background="@drawable/shape_dashed_stroke_rectangle"
             android:gravity="center"
             android:orientation="vertical"
+            android:padding="@dimen/size_mid"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/il_details">
+            app:layout_constraintTop_toBottomOf="@+id/iv_reset_view">
 
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_attach_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_mid"
@@ -108,11 +120,22 @@
                 android:drawableStart="@drawable/ic_paperclip"
                 android:drawablePadding="@dimen/size_mid"
                 android:gravity="center"
-                android:text="@string/title_note_add_image" />
+                android:text="@string/title_note_add_attach"
+                tools:visibility="gone" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_attach_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_add_ads_image_list"
+                tools:visibility="visible" />
         </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_send"
             style="@style/GradientButtonTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -121,57 +144,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ll_attach_file" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/materialTextView5"
-            style="@style/ColoredTitleTheme"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_xx_large"
-            android:text="@string/title_contact_info"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_login" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_mid"
-            android:drawableStart="@drawable/ic_address_bg"
-            android:drawablePadding="@dimen/size_mid"
-            android:gravity="center"
-            android:text="السعودية - الرياض - شارع الهرم"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/materialTextView5" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_regular"
-            android:drawableStart="@drawable/ic_email_bg"
-            android:drawablePadding="@dimen/size_mid"
-            android:gravity="center"
-            android:text="ToffeeCafe@gmail.com"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_address" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_mobile_no"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_regular"
-            android:drawableStart="@drawable/ic_phone_bg"
-            android:drawablePadding="@dimen/size_mid"
-            android:gravity="center"
-            android:text="00 966 123 456 789"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_email" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

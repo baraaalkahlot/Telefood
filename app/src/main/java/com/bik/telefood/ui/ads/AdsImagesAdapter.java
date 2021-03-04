@@ -1,13 +1,17 @@
 package com.bik.telefood.ui.ads;
 
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bik.telefood.R;
 import com.bik.telefood.databinding.ItemAddAdsImageListBinding;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -31,16 +35,15 @@ public class AdsImagesAdapter extends RecyclerView.Adapter<AdsImagesAdapter.View
         holder.bind(position);
     }
 
+
     @Override
     public int getItemCount() {
-        if (uriList.isEmpty()) {
-            mListener.onClick();
-        }
-        return uriList.size();
+        Log.d("wasd", "getItemCount: " + uriList.size());
+        return uriList.size() + 1;
     }
 
     public interface OnCancelImageListener {
-        void onClick();
+        void onAddImageClick();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -52,14 +55,16 @@ public class AdsImagesAdapter extends RecyclerView.Adapter<AdsImagesAdapter.View
             itemCategoryBinding = itemView;
         }
 
-        public void bind(int position) {
-            Uri uri = uriList.get(position);
-            itemCategoryBinding.ivAdsImage.setImageURI(uri);
-            itemCategoryBinding.ivRemoveImage.setOnClickListener(v -> {
-                uriList.remove(position);
-                notifyItemRemoved(position);
-                notifyItemRangeChanged(position, uriList.size());
-            });
+        private void bind(int position) {
+            if (position < uriList.size()) {
+                Uri uri = uriList.get(position);
+                Picasso.get().load(uri).fit().into(itemCategoryBinding.ivAdsImage);
+                Log.d("wasd", "bind: test " + position);
+            } else {
+                itemCategoryBinding.ivAdsImage.setImageResource(R.drawable.ic_add_photo);
+                itemCategoryBinding.ivAdsImage.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+                itemCategoryBinding.getRoot().setOnClickListener(v -> mListener.onAddImageClick());
+            }
         }
     }
 }

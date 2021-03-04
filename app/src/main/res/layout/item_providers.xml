@@ -14,7 +14,7 @@
         android:padding="@dimen/size_mid">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/circleImageView2"
+            android:id="@+id/iv_avatar"
             android:layout_width="@dimen/size_user_image"
             android:layout_height="@dimen/size_user_image"
             android:src="@drawable/template_cake"
@@ -28,11 +28,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_regular"
             android:fontFamily="@font/cairo_semibold"
-            android:text="براء اياد الكحلوت"
             android:textColor="@color/tundora"
+            android:textDirection="locale"
             android:textSize="@dimen/text_size_regular"
             app:layout_constraintEnd_toStartOf="@+id/btn_favorite"
-            app:layout_constraintStart_toEndOf="@+id/circleImageView2"
+            app:layout_constraintStart_toEndOf="@+id/iv_avatar"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatRatingBar

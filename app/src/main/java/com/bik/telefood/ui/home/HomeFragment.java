@@ -73,7 +73,7 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnProductCl
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (count == 0) {
+                if (s.length() == 0) {
                     servicesItemModels.clear();
                     params.clear();
                     productAdapter.resetPager();

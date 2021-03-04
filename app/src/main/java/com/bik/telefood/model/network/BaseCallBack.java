@@ -3,7 +3,6 @@ package com.bik.telefood.model.network;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
@@ -78,7 +77,6 @@ public abstract class BaseCallBack<T> implements Callback<T> {
 
     private void endProgress() {
         if (progressBarDialog != null) {
-            Log.d("wasd", "endProgress: ");
             if (progressBarDialog.isVisible()) {
                 progressBarDialog.dismiss();
             }

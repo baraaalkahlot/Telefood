@@ -1,9 +1,13 @@
 package com.bik.telefood.model.network;
 
+import com.bik.telefood.model.entity.AddServicesRequestBody;
 import com.bik.telefood.model.entity.Autherntication.CategoryResponse;
 import com.bik.telefood.model.entity.Autherntication.MyServiceResponse;
 import com.bik.telefood.model.entity.Autherntication.NotificationResponse;
 import com.bik.telefood.model.entity.Autherntication.UpdateProfileResponse;
+import com.bik.telefood.model.entity.Autherntication.UploadImagesResponse;
+import com.bik.telefood.model.entity.Autherntication.vendors.SingleVendorsResponse;
+import com.bik.telefood.model.entity.Autherntication.vendors.VendorsResponse;
 import com.bik.telefood.model.entity.MainResponse;
 import com.bik.telefood.model.entity.auth.LoginResponse;
 import com.bik.telefood.model.entity.general.AboutAppResponse;
@@ -14,12 +18,14 @@ import com.bik.telefood.model.entity.general.PackageResponse;
 import com.bik.telefood.model.entity.general.PrivacyPolicyResponse;
 import com.bik.telefood.model.entity.general.services.ServicesResponse;
 import com.bik.telefood.model.entity.general.singleservices.SingleServiceResponse;
+import com.bik.telefood.model.entity.support.MyTicketResponse;
 
 import java.util.HashMap;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
@@ -32,7 +38,7 @@ import retrofit2.http.Query;
 
 public interface ApiInterface {
 
-    //General
+    /*-----------{General}-------------*/
     @GET("governorates")
     Call<GovernoratesResponse> getGovernoratesList();
 
@@ -55,6 +61,16 @@ public interface ApiInterface {
     @GET("categories")
     Call<CategoryResponse> getCategoriesList();
 
+    //Vendors
+    @FormUrlEncoded
+    @POST("vendors")
+    Call<VendorsResponse> getVendors(@Query(ApiConstant.PAGE) Integer page, @FieldMap HashMap<String, String> params);
+
+    @FormUrlEncoded
+    @POST("singleVendor")
+    Call<SingleVendorsResponse> getSingleVendors(@Query(ApiConstant.PAGE) Integer page, @Field(ApiConstant.ID) int id);
+
+    //Services
     @FormUrlEncoded
     @POST("services")
     Call<ServicesResponse> getServicesList(@Query(ApiConstant.PAGE) Integer page, @FieldMap HashMap<String, String> params);
@@ -63,7 +79,8 @@ public interface ApiInterface {
     @POST("singleService")
     Call<SingleServiceResponse> getSingleServicesList(@Field(ApiConstant.ID) int id);
 
-    //Auth APIs
+
+    /*-----------{Auth}-------------*/
     @Multipart
     @POST("auth/register")
     Call<MainResponse> register(@PartMap HashMap<String, RequestBody> params, @Part MultipartBody.Part avatar);
@@ -99,21 +116,40 @@ public interface ApiInterface {
     Call<MainResponse> newSubscription(@Part MultipartBody.Part image, @Part(ApiConstant.PACKAGE) int packageId);
 
     //Services
-    @Multipart
-    @POST("addService")
-    Call<MainResponse> addService(@PartMap HashMap<String, RequestBody> params, @Part MultipartBody.Part[] images);
+    @POST("addNewService")
+    Call<MainResponse> addService(@Body AddServicesRequestBody body);
 
-    @Multipart
     @POST("updateService")
-    Call<MainResponse> updateService(@PartMap HashMap<String, RequestBody> params, @Part MultipartBody.Part[] images);
+    Call<MainResponse> updateService(@Body AddServicesRequestBody body);
 
     @FormUrlEncoded
     @POST("deleteService")
     Call<MainResponse> deleteService(@Field(ApiConstant.ID) int id);
 
-    @GET("myService")
-    Call<MyServiceResponse> myService();
+    @FormUrlEncoded
+    @POST("myService")
+    Call<MyServiceResponse> myService(@FieldMap HashMap<String, String> params);
 
+    @Multipart
+    @POST("uploadServiceImage")
+    Call<UploadImagesResponse> uploadImage(@Part MultipartBody.Part image);
+
+    //Favorite
+    @FormUrlEncoded
+    @POST("myFavorites")
+    Call<VendorsResponse> myFavoritesVendors(@Field(ApiConstant.FAVORITE_TYPE) String type);
+
+    @FormUrlEncoded
+    @POST("favoriteToggle")
+    Call<MainResponse> favoriteToggle(@Field(ApiConstant.FAVORITE_TYPE) String type, @Field(ApiConstant.ID) int id);
+
+    //Support Center
+    @GET("tickets/all")
+    Call<MyTicketResponse> getMyTicket();
+
+    @Multipart
+    @POST("tickets/add")
+    Call<MainResponse> addTicket(@PartMap HashMap<String, RequestBody> params, @Part MultipartBody.Part[] attachment);
 
     //Notification
     @GET("myNotifications")

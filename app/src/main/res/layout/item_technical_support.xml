@@ -5,7 +5,8 @@
     style="@style/CardViewTheme"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/size_large"
+    android:layout_marginBottom="@dimen/size_small"
+    app:cardBackgroundColor="@color/concrete"
     tools:cardUseCompatPadding="false">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,7 +18,7 @@
             android:id="@+id/tv_ticket_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/shape_ticket_staus"
+            android:background="@color/white"
             android:paddingStart="@dimen/padding_layout"
             android:paddingEnd="@dimen/padding_layout"
             android:text="مغلق"
@@ -29,17 +30,16 @@
             android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="19 يناير 2021"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_title_notification"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_regular"
+            android:background="@color/white"
             android:fontFamily="@font/cairo_semibold"
-            android:text="عنوان الرسال  او الموضوع المرسل مدخل هنا"
             android:textColor="@color/mine_shaft"
             android:textSize="@dimen/text_size_regular"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_regular"
-            android:text="هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص"
+            android:background="@color/white"
             android:textSize="@dimen/text_size_regular"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

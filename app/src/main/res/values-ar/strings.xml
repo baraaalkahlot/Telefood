@@ -123,6 +123,7 @@
     <string name="error_msg_missing_governorate">حقل المنطقة مطلوب</string>
     <string name="error_msg_missing_password">حقل كلمة المرور مطلوب</string>
     <string name="error_msg_missing_category">حقل التصنيف مطلوب</string>
+    <string name="error_msg_missing_subject">حقل الموضوع مطلوب</string>
     <string name="error_msg_missing_verification_code">قم بادخال الرمز الذي ارسلناه لك</string>
     <string name="hint_add_your_image_profile">اضف صورتك الشخصية</string>
     <string name="title_request_permission">طلب اذن</string>
@@ -139,4 +140,7 @@
     <string name="msg_visitor_login">نأسف عليك الدخول لحسابك أولا هل لديك حساب؟</string>
     <string name="bind_price">%s ريال</string>
     <string name="title_empty_status_product">لا يوجد اي منتج مطابق لنتيجة البحث</string>
+    <string name="label_open">مفتوح</string>
+    <string name="label_closed">مغلق</string>
+    <string name="title_note_add_attach">ارفق ملفات (اختياري)</string>
 </resources>

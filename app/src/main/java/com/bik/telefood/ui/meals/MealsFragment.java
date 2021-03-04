@@ -71,7 +71,7 @@ public class MealsFragment extends Fragment implements FilterDialogFragment.OnFi
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (count == 0) {
+                if (s.length() == 0) {
                     servicesItemModels.clear();
                     params.clear();
                     productAdapter.resetPager();

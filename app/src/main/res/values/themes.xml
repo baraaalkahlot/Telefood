@@ -72,6 +72,7 @@
     <style name="DescTextTheme">
         <item name="android:textColor">@color/tundora</item>
         <item name="android:textSize">@dimen/text_size_regular</item>
+        <item name="android:inputType">textMultiLine</item>
     </style>
 
     <style name="ColoredTitleTheme">
@@ -112,11 +113,11 @@
 
     <style name="InputLayoutTextTheme" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxStrokeColor">@color/selector_input_layout_stroke</item>
+        <item name="boxBackgroundColor">@color/white</item>
     </style>
 
     <style name="SpinnerTextTheme" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="boxStrokeColor">@color/selector_input_layout_stroke</item>
-        <item name="android:background">@color/white</item>
     </style>
 
     <style name="FabTheme" parent="Widget.MaterialComponents.FloatingActionButton">
@@ -133,5 +134,9 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="cornerRadius">@dimen/radius_dialog_button</item>
         <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerCut" parent="">
+        <item name="cornerSize">15dp</item>
     </style>
 </resources>

@@ -56,7 +56,7 @@
             android:label="@string/label_providers_details"
             android:theme="@style/Theme.Telefood.ActionBar" />
         <activity
-            android:name=".ui.more.ProvidersListActivity"
+            android:name=".ui.more.vendors.VendorsListActivity"
             android:label="@string/label_providers"
             android:theme="@style/Theme.Telefood.ActionBar" />
         <activity

@@ -124,6 +124,7 @@
     <string name="error_msg_missing_password">The password field is required</string>
     <string name="error_msg_missing_verification_code">Enter the code we sent you</string>
     <string name="error_msg_missing_category">The category field is required</string>
+    <string name="error_msg_missing_subject">The subject field is required</string>
     <string name="hint_add_your_image_profile">Add your personal photo</string>
     <string name="title_request_permission">Request permission</string>
     <string name="msg_request_permission">You must be granted access permission to be able to choose an image</string>
@@ -140,4 +141,7 @@
     <string name="bind_price">%s SAR</string>
     <string name="title_empty_status_product">There is no product matching the search result</string>
     <string name="label_edit_promotion">Edit Promotion</string>
+    <string name="label_open">Open</string>
+    <string name="label_closed">Closed</string>
+    <string name="title_note_add_attach">Attach files (optional)</string>
 </resources>

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import com.bik.telefood.CommonUtils.MessageDialog;
 import com.bik.telefood.CommonUtils.spinners.CategoriesAdapter;
 import com.bik.telefood.R;
 import com.bik.telefood.databinding.FragmentAdsBinding;
+import com.bik.telefood.model.entity.AddServicesRequestBody;
 import com.bik.telefood.model.entity.Autherntication.CategoryModel;
 import com.bik.telefood.model.network.ApiConstant;
 import com.bik.telefood.ui.bottomsheet.SuccessDialogFragment;
@@ -30,7 +32,6 @@ import com.bik.telefood.ui.common.viewmodel.CategoriesViewModel;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import okhttp3.MediaType;
@@ -43,8 +44,11 @@ public class AdsFragment extends Fragment implements AdsImagesAdapter.OnCancelIm
     private AdsViewModel adsViewModel;
     private CategoriesViewModel categoriesViewModel;
     private ArrayList<Uri> mArrayUri;
-    private MultipartBody.Part[] images;
     private int categoryModelId = 0;
+    private List<Integer> imagesId;
+    private AdsImagesAdapter adsImagesAdapter;
+    private int UPLOADED_IMAGES_COUNT = 0;
+    private int imageCounter = 0;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -52,7 +56,10 @@ public class AdsFragment extends Fragment implements AdsImagesAdapter.OnCancelIm
         adsViewModel = new ViewModelProvider(this).get(AdsViewModel.class);
         categoriesViewModel = new ViewModelProvider(this).get(CategoriesViewModel.class);
         mArrayUri = new ArrayList<>();
+        imagesId = new ArrayList<>();
+        adsImagesAdapter = new AdsImagesAdapter(mArrayUri, this);
 
+        binding.btnSend.setEnabled(false);
         binding.llImage.setOnClickListener(v -> pickImage());
         binding.btnSend.setOnClickListener(v -> checkValidation());
 
@@ -66,7 +73,7 @@ public class AdsFragment extends Fragment implements AdsImagesAdapter.OnCancelIm
         String productPrice = binding.etProductPrice.getText().toString();
         String productDesc = binding.etProductDesc.getText().toString();
 
-        if ((images == null || images.length == 0)) {
+        if (imagesId.isEmpty()) {
             new MessageDialog(getContext(), getString(R.string.title_error_message), getString(R.string.error_msg_missing_ads_images));
             binding.tvAttachImage.setError(getString(R.string.title_note_add_image));
             binding.scrollView.fullScroll(ScrollView.FOCUS_UP);
@@ -93,13 +100,9 @@ public class AdsFragment extends Fragment implements AdsImagesAdapter.OnCancelIm
             return;
         }
 
-        HashMap<String, RequestBody> params = new HashMap<>();
-        params.put(ApiConstant.PRODUCT_NAME, RequestBody.create(productName, MediaType.parse(ApiConstant.MULTIPART_FORM_DATA)));
-        params.put(ApiConstant.PRODUCT_CATEGORY, RequestBody.create(String.valueOf(categoryModelId), MediaType.parse(ApiConstant.MULTIPART_FORM_DATA)));
-        params.put(ApiConstant.PRODUCT_PRICE, RequestBody.create(productPrice, MediaType.parse(ApiConstant.MULTIPART_FORM_DATA)));
-        params.put(ApiConstant.PRODUCT_DETAILS, RequestBody.create(productDesc, MediaType.parse(ApiConstant.MULTIPART_FORM_DATA)));
+        AddServicesRequestBody body = new AddServicesRequestBody(productName, categoryModelId, productPrice, productDesc, imagesId);
 
-        adsViewModel.addService(params, images, getContext(), getActivity().getSupportFragmentManager()).observe(getViewLifecycleOwner(), mainResponse -> {
+        adsViewModel.addService(body, getContext(), getActivity().getSupportFragmentManager()).observe(getViewLifecycleOwner(), mainResponse -> {
             resetView();
             SuccessDialogFragment.newInstance(mainResponse.getMsg()).show(getActivity().getSupportFragmentManager(), "SuccessDialogFragment");
         });
@@ -121,40 +124,32 @@ public class AdsFragment extends Fragment implements AdsImagesAdapter.OnCancelIm
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), ACTION_PICK_IMAGE);
     }
 
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         try {
-            images = null;
-            mArrayUri.clear();
             // When an Image is picked
             if (requestCode == ACTION_PICK_IMAGE && resultCode == Activity.RESULT_OK && null != data) {
 
+                binding.btnSend.setEnabled(false);
+                showUploadAnim();
+                binding.ivResetView.setVisibility(View.VISIBLE);
+                binding.ivResetView.setOnClickListener(v -> resetRecyclerView());
+
                 if (data.getClipData() != null) {
                     ClipData mClipData = data.getClipData();
+                    UPLOADED_IMAGES_COUNT += mClipData.getItemCount();
                     for (int i = 0; i < mClipData.getItemCount(); i++) {
                         ClipData.Item item = mClipData.getItemAt(i);
                         Uri uri = item.getUri();
                         mArrayUri.add(uri);
+                        uploadImage(uri);
                     }
-                    images = new MultipartBody.Part[mArrayUri.size()];
-                    for (int i = 0; i < mArrayUri.size(); i++) {
-                        Uri uri = mArrayUri.get(i);
-                        File file = FileUtils.getFile(getContext(), uri);
-                        RequestBody requestPhoto = RequestBody.create(file, MediaType.parse(getContext().getContentResolver().getType(uri)));
-                        images[i] = MultipartBody.Part.createFormData(ApiConstant.ADD_ADS_IMAGES, file.getName(), requestPhoto);
-                    }
-                    showAdsImagesList(mArrayUri);
                 } else if (data.getData() != null) {
+                    UPLOADED_IMAGES_COUNT++;
                     Uri uri = data.getData();
-                    File file = FileUtils.getFile(getContext(), uri);
-                    RequestBody requestPhoto = RequestBody.create(file, MediaType.parse(getContext().getContentResolver().getType(uri)));
-                    images = new MultipartBody.Part[1];
-                    images[0] = MultipartBody.Part.createFormData(ApiConstant.ADD_ADS_IMAGES, file.getName(), requestPhoto);
                     mArrayUri.add(uri);
-                    showAdsImagesList(mArrayUri);
+                    uploadImage(uri);
                 }
-
             }
 
         } catch (Exception e) {
@@ -171,15 +166,24 @@ public class AdsFragment extends Fragment implements AdsImagesAdapter.OnCancelIm
         }
     }
 
-    private void showAdsImagesList(List<Uri> uriList) {
+    private void showAdsImagesList() {
         binding.tvAttachImage.setVisibility(View.GONE);
         binding.ivAddImage.setVisibility(View.GONE);
         binding.rvAdsImage.setVisibility(View.VISIBLE);
-        AdsImagesAdapter adsImagesAdapter = new AdsImagesAdapter(uriList, this);
         binding.rvAdsImage.setAdapter(adsImagesAdapter);
+        adsImagesAdapter.notifyDataSetChanged();
     }
 
     private void resetView() {
+        binding.btnSend.setEnabled(false);
+        hideUploadAnim();
+        mArrayUri.clear();
+        imagesId.clear();
+        categoryModelId = 0;
+        UPLOADED_IMAGES_COUNT = 0;
+        imageCounter = 0;
+
+        binding.ivResetView.setVisibility(View.GONE);
         binding.tvAttachImage.setVisibility(View.VISIBLE);
         binding.ivAddImage.setVisibility(View.VISIBLE);
         binding.rvAdsImage.setVisibility(View.GONE);
@@ -188,10 +192,20 @@ public class AdsFragment extends Fragment implements AdsImagesAdapter.OnCancelIm
         binding.spCategory.setText("");
         binding.etProductPrice.setText("");
         binding.etProductDesc.setText("");
+    }
 
+    private void resetRecyclerView() {
+        binding.btnSend.setEnabled(false);
+        hideUploadAnim();
         mArrayUri.clear();
-        images = null;
-        categoryModelId = 0;
+        imagesId.clear();
+        UPLOADED_IMAGES_COUNT = 0;
+        imageCounter = 0;
+
+        binding.ivResetView.setVisibility(View.GONE);
+        binding.tvAttachImage.setVisibility(View.VISIBLE);
+        binding.ivAddImage.setVisibility(View.VISIBLE);
+        binding.rvAdsImage.setVisibility(View.GONE);
     }
 
     private void initCategorySpinnersValues() {
@@ -207,10 +221,36 @@ public class AdsFragment extends Fragment implements AdsImagesAdapter.OnCancelIm
     }
 
     @Override
-    public void onClick() {
-        binding.tvAttachImage.setVisibility(View.VISIBLE);
-        binding.ivAddImage.setVisibility(View.VISIBLE);
+    public void onAddImageClick() {
+        pickImage();
+    }
+
+    private void uploadImage(Uri uri) {
+        File file = FileUtils.getFile(getContext(), uri);
+        RequestBody requestPhoto = RequestBody.create(file, MediaType.parse(getContext().getContentResolver().getType(uri)));
+        MultipartBody.Part body = MultipartBody.Part.createFormData(ApiConstant.UPLOAD_ADS_IMAGE, file.getName(), requestPhoto);
+        adsViewModel.uploadImage(body, getContext(), getActivity().getSupportFragmentManager()).observe(getViewLifecycleOwner(), uploadImagesResponse -> {
+            imagesId.add(uploadImagesResponse.getImageId());
+            imageCounter++;
+            Log.d("wasd", "uploadImage: real" + UPLOADED_IMAGES_COUNT);
+            Log.d("wasd", "uploadImage: counter" + imageCounter);
+            if (imageCounter == UPLOADED_IMAGES_COUNT) {
+                binding.btnSend.setEnabled(true);
+                hideUploadAnim();
+                showAdsImagesList();
+            }
+        });
+    }
+
+    private void showUploadAnim() {
+        binding.lottieUploadImage.setVisibility(View.VISIBLE);
+        binding.lottieUploadImage.playAnimation();
         binding.rvAdsImage.setVisibility(View.GONE);
     }
 
+    private void hideUploadAnim() {
+        binding.lottieUploadImage.cancelAnimation();
+        binding.lottieUploadImage.setVisibility(View.GONE);
+        binding.rvAdsImage.setVisibility(View.VISIBLE);
+    }
 }

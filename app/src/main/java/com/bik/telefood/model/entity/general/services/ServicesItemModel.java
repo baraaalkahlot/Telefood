@@ -19,6 +19,17 @@ public class ServicesItemModel implements Parcelable {
     @SerializedName("price")
     @Expose
     private String price;
+    @SerializedName("favorite")
+    private Boolean favorite;
+
+    protected ServicesItemModel(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+        img = in.readString();
+        price = in.readString();
+        byte tmpFavorite = in.readByte();
+        favorite = tmpFavorite == 0 ? null : tmpFavorite == 1;
+    }
 
     public static final Creator<ServicesItemModel> CREATOR = new Creator<ServicesItemModel>() {
         @Override
@@ -31,13 +42,6 @@ public class ServicesItemModel implements Parcelable {
             return new ServicesItemModel[size];
         }
     };
-
-    protected ServicesItemModel(Parcel in) {
-        id = in.readInt();
-        name = in.readString();
-        img = in.readString();
-        price = in.readString();
-    }
 
     public int getId() {
         return id;
@@ -71,6 +75,14 @@ public class ServicesItemModel implements Parcelable {
         this.price = price;
     }
 
+    public Boolean getFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(Boolean favorite) {
+        this.favorite = favorite;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -82,5 +94,6 @@ public class ServicesItemModel implements Parcelable {
         dest.writeString(name);
         dest.writeString(img);
         dest.writeString(price);
+        dest.writeByte((byte) (favorite == null ? 0 : favorite ? 1 : 2));
     }
 }

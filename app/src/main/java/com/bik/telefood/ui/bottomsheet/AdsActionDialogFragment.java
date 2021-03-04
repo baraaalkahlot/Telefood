@@ -18,19 +18,17 @@ public class AdsActionDialogFragment extends BottomSheetDialogFragment {
     private static final String ARG_ITEM_ID = "item_id";
     private FragmentAdsActionDialogBinding binding;
     private int id;
-    private Boolean favorite;
     private ConfirmDialogFragment.OnDeleteItemConfirmListener onDeleteItemConfirmListener;
     private OnAdsClickListener onAdsClickListener;
 
-    public AdsActionDialogFragment(int id, Boolean favorite, ConfirmDialogFragment.OnDeleteItemConfirmListener onDeleteItemConfirmListener, OnAdsClickListener onAdsClickListener) {
+    public AdsActionDialogFragment(int id, ConfirmDialogFragment.OnDeleteItemConfirmListener onDeleteItemConfirmListener, OnAdsClickListener onAdsClickListener) {
         this.onDeleteItemConfirmListener = onDeleteItemConfirmListener;
         this.onAdsClickListener = onAdsClickListener;
         this.id = id;
-        this.favorite = favorite;
     }
 
-    public static AdsActionDialogFragment newInstance(int id, Boolean favorite, ConfirmDialogFragment.OnDeleteItemConfirmListener onDeleteItemConfirmListener, OnAdsClickListener onAdsClickListener) {
-        final AdsActionDialogFragment fragment = new AdsActionDialogFragment(id, favorite, onDeleteItemConfirmListener, onAdsClickListener);
+    public static AdsActionDialogFragment newInstance(int id, ConfirmDialogFragment.OnDeleteItemConfirmListener onDeleteItemConfirmListener, OnAdsClickListener onAdsClickListener) {
+        final AdsActionDialogFragment fragment = new AdsActionDialogFragment(id, onDeleteItemConfirmListener, onAdsClickListener);
         final Bundle args = new Bundle();
         args.putInt(ARG_ITEM_ID, id);
         fragment.setArguments(args);
@@ -60,13 +58,13 @@ public class AdsActionDialogFragment extends BottomSheetDialogFragment {
 
         binding.tvPromotionDetails.setOnClickListener(v -> {
             dismiss();
-            onAdsClickListener.onDetailsPreview(id, favorite);
+            onAdsClickListener.onDetailsPreview(id);
         });
     }
 
     public interface OnAdsClickListener {
         void onEdit(int id);
 
-        void onDetailsPreview(int id, Boolean favorite);
+        void onDetailsPreview(int id);
     }
 }

@@ -44,7 +44,7 @@ public class MyAdsAdapter extends RecyclerView.Adapter<MyAdsAdapter.ViewHolder> 
     }
 
     public interface OnCardClickListener {
-        void onClick(int id, Boolean favorite);
+        void onClick(int id);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -67,7 +67,7 @@ public class MyAdsAdapter extends RecyclerView.Adapter<MyAdsAdapter.ViewHolder> 
 
             itemProductBinding.tvProductName.setText(servicesItemModel.getName());
             itemProductBinding.tvProductPrice.setText(context.getString(R.string.bind_price, servicesItemModel.getPrice()));
-            itemProductBinding.getRoot().setOnClickListener(v -> mListener.onClick(servicesItemModel.getId(), servicesItemModel.getFavorite()));
+            itemProductBinding.getRoot().setOnClickListener(v -> mListener.onClick(servicesItemModel.getId()));
         }
     }
 }

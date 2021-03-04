@@ -30,7 +30,6 @@ import java.util.List;
 public class ProductDetailsActivity extends AppCompatActivity implements ImageSliderAdapter.OnImageSliderListener {
 
     private ActivityProductDetailsBinding binding;
-    private ServicesViewModel servicesViewModel;
     private int product_id;
 
     @Override
@@ -46,9 +45,13 @@ public class ProductDetailsActivity extends AppCompatActivity implements ImageSl
         Intent intent = getIntent();
         product_id = intent.getIntExtra(AppConstant.PRODUCT_ID, 0);
         boolean isFavorite = intent.getBooleanExtra(AppConstant.PRODUCT_IS_FAVORITE, false);
-        binding.btnFavorite.setChecked(isFavorite);
+        boolean isMyFavorite = intent.getBooleanExtra(AppConstant.PRODUCT_NO_FAVORITE, false);
+        if (isMyFavorite)
+            binding.btnFavorite.setVisibility(View.GONE);
+        else
+            binding.btnFavorite.setChecked(isFavorite);
 
-        servicesViewModel = new ViewModelProvider(this).get(ServicesViewModel.class);
+        ServicesViewModel servicesViewModel = new ViewModelProvider(this).get(ServicesViewModel.class);
         servicesViewModel.getSingleServicesList(product_id, this, getSupportFragmentManager(), true).observe(this, servicesResponse -> {
             SingleServiceModel singleServiceModel = servicesResponse.getService();
             ShortUserInfoModel shortUserInfoModel = singleServiceModel.getUser();

@@ -131,8 +131,8 @@ public class MyAdsActivity extends AppCompatActivity implements MyAdsAdapter.OnC
     }
 
     @Override
-    public void onClick(int id, Boolean favorite) {
-        AdsActionDialogFragment.newInstance(id, favorite, this, this).show(getSupportFragmentManager(), "AdsActionDialogFragment");
+    public void onClick(int id) {
+        AdsActionDialogFragment.newInstance(id, this, this).show(getSupportFragmentManager(), "AdsActionDialogFragment");
     }
 
     @Override
@@ -156,10 +156,10 @@ public class MyAdsActivity extends AppCompatActivity implements MyAdsAdapter.OnC
     }
 
     @Override
-    public void onDetailsPreview(int id, Boolean favorite) {
+    public void onDetailsPreview(int id) {
         Intent intent = new Intent(this, ProductDetailsActivity.class);
         intent.putExtra(AppConstant.PRODUCT_ID, id);
-        intent.putExtra(AppConstant.PRODUCT_IS_FAVORITE, favorite);
+        intent.putExtra(AppConstant.PRODUCT_NO_FAVORITE, true);
         startActivity(intent);
     }
 

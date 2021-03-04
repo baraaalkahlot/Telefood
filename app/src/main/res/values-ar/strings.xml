@@ -143,4 +143,5 @@
     <string name="label_open">مفتوح</string>
     <string name="label_closed">مغلق</string>
     <string name="title_note_add_attach">ارفق ملفات (اختياري)</string>
+    <string name="title_all">الكل</string>
 </resources>

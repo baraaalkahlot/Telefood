@@ -2,10 +2,12 @@ package com.bik.telefood.model.network;
 
 import com.bik.telefood.model.entity.AddServicesRequestBody;
 import com.bik.telefood.model.entity.Autherntication.CategoryResponse;
+import com.bik.telefood.model.entity.Autherntication.FeaturedProductResponse;
 import com.bik.telefood.model.entity.Autherntication.MyServiceResponse;
 import com.bik.telefood.model.entity.Autherntication.NotificationResponse;
 import com.bik.telefood.model.entity.Autherntication.UpdateProfileResponse;
 import com.bik.telefood.model.entity.Autherntication.UploadImagesResponse;
+import com.bik.telefood.model.entity.Autherntication.vendors.FeaturedVendorsResponse;
 import com.bik.telefood.model.entity.Autherntication.vendors.SingleVendorsResponse;
 import com.bik.telefood.model.entity.Autherntication.vendors.VendorsResponse;
 import com.bik.telefood.model.entity.MainResponse;
@@ -70,6 +72,9 @@ public interface ApiInterface {
     @POST("singleVendor")
     Call<SingleVendorsResponse> getSingleVendors(@Query(ApiConstant.PAGE) Integer page, @Field(ApiConstant.ID) int id);
 
+    @POST("featuredVendors")
+    Call<FeaturedVendorsResponse> getFeaturedVendors();
+
     //Services
     @FormUrlEncoded
     @POST("services")
@@ -78,6 +83,9 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("singleService")
     Call<SingleServiceResponse> getSingleServicesList(@Field(ApiConstant.ID) int id);
+
+    @POST("featuredServices")
+    Call<FeaturedProductResponse> getFeaturedServices();
 
 
     /*-----------{Auth}-------------*/
@@ -119,7 +127,7 @@ public interface ApiInterface {
     @POST("addNewService")
     Call<MainResponse> addService(@Body AddServicesRequestBody body);
 
-    @POST("updateService")
+    @POST("updateNewService")
     Call<MainResponse> updateService(@Body AddServicesRequestBody body);
 
     @FormUrlEncoded

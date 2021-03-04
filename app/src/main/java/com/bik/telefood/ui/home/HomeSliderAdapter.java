@@ -6,13 +6,25 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bik.telefood.R;
 import com.bik.telefood.databinding.ItemProvidersCardBinding;
+import com.bik.telefood.model.entity.Autherntication.vendors.FeaturedVendorsModel;
+import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 public class HomeSliderAdapter extends RecyclerView.Adapter<HomeSliderAdapter.ViewHolder> {
     private OnHomeSliderClickListener onHomeSliderClickListener;
+    private List<FeaturedVendorsModel> featuredVendorsModels;
 
-    public HomeSliderAdapter(OnHomeSliderClickListener onHomeSliderClickListener) {
+    public HomeSliderAdapter(OnHomeSliderClickListener onHomeSliderClickListener, List<FeaturedVendorsModel> featuredVendorsModels) {
         this.onHomeSliderClickListener = onHomeSliderClickListener;
+        this.featuredVendorsModels = featuredVendorsModels;
+    }
+
+    public void setFeaturedVendorsModels(List<FeaturedVendorsModel> featuredVendorsModels) {
+        this.featuredVendorsModels = featuredVendorsModels;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -28,11 +40,11 @@ public class HomeSliderAdapter extends RecyclerView.Adapter<HomeSliderAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return 10;
+        return featuredVendorsModels.size();
     }
 
     public interface OnHomeSliderClickListener {
-        void onHomeSliderClick(int id);
+        void onHomeSliderClick(long id);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -45,14 +57,16 @@ public class HomeSliderAdapter extends RecyclerView.Adapter<HomeSliderAdapter.Vi
         }
 
         public void bind(int position) {
-/*            Picasso.get()
-                    .load(categoryModel.getImg())
+            FeaturedVendorsModel featuredVendorsModel = featuredVendorsModels.get(position);
+            Picasso.get()
+                    .load(featuredVendorsModel.getImg())
                     .error(R.color.concrete)
                     .placeholder(R.color.concrete)
-                    .into(itemCategoryBinding.ivCategoryImage);*/
+                    .into(itemCategoryBinding.ivProvidersCover);
 
-            itemCategoryBinding.tvProviderName.setText("براء اياد الكحلوت");
-//            itemCategoryBinding.getRoot().setOnClickListener(v -> onHomeSliderClickListener.onHomeSliderClick(categoryModel.getId()));
+            itemCategoryBinding.tvProviderName.setText(featuredVendorsModel.getName());
+            itemCategoryBinding.rbSupplierRating.setRating(featuredVendorsModel.getRating());
+            itemCategoryBinding.getRoot().setOnClickListener(v -> onHomeSliderClickListener.onHomeSliderClick(featuredVendorsModel.getId()));
         }
     }
 }

@@ -47,7 +47,7 @@ public class ProvidersDetailsActivity extends AppCompatActivity implements Categ
         vendorsViewModel = new ViewModelProvider(this).get(VendorsViewModel.class);
         CategoriesViewModel categoriesViewModel = new ViewModelProvider(this).get(CategoriesViewModel.class);
         categoriesViewModel.getCategoriesListLiveData().observe(this, categoryModelList -> {
-            categoryAdapter = new CategoryAdapter(categoryModelList, this);
+            categoryAdapter = new CategoryAdapter(categoryModelList, this, this);
             binding.rvCategory.setAdapter(categoryAdapter);
         });
 
@@ -110,9 +110,10 @@ public class ProvidersDetailsActivity extends AppCompatActivity implements Categ
     }
 
     @Override
-    public void OnProductClick(int id) {
+    public void OnProductClick(int id, Boolean favorite) {
         Intent intent = new Intent(this, ProductDetailsActivity.class);
         intent.putExtra(AppConstant.PRODUCT_ID, id);
+        intent.putExtra(AppConstant.PRODUCT_IS_FAVORITE, favorite);
         startActivity(intent);
     }
 }

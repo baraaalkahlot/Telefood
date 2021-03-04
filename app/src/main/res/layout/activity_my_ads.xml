@@ -42,6 +42,8 @@
         android:layout_marginTop="@dimen/size_large"
         android:clipToPadding="false"
         android:orientation="horizontal"
+        app:reverseLayout="true"
+        app:stackFromEnd="true"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

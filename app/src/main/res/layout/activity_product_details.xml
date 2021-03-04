@@ -22,16 +22,15 @@
             app:sliderAutoCycleEnabled="true"
             app:sliderIndicatorAnimationDuration="600" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/btn_favorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_large"
-            android:theme="@style/FavoriteFabTheme"
-            app:backgroundTint="@color/wild_sand"
+            android:button="@drawable/selector_menu_favorite"
             app:layout_constraintBottom_toBottomOf="@+id/imageSlider"
             app:layout_constraintEnd_toEndOf="@+id/imageSlider"
-            app:layout_constraintTop_toBottomOf="@+id/imageSlider"
-            app:srcCompat="@drawable/ic_favorite_unchecked" />
+            app:layout_constraintTop_toBottomOf="@+id/imageSlider" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_category"

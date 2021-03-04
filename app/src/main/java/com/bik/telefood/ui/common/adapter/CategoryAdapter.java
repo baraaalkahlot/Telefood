@@ -1,11 +1,14 @@
 package com.bik.telefood.ui.common.adapter;
 
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bik.telefood.CommonUtils.AppConstant;
 import com.bik.telefood.R;
 import com.bik.telefood.databinding.ItemCategoryBinding;
 import com.bik.telefood.model.entity.Autherntication.CategoryModel;
@@ -16,10 +19,12 @@ import java.util.List;
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
     private final List<CategoryModel> categoryModelList;
     private OnCategorySelectListener onCategorySelectListener;
+    private Activity context;
 
-    public CategoryAdapter(List<CategoryModel> categoryModelList, OnCategorySelectListener onCategorySelectListener) {
+    public CategoryAdapter(List<CategoryModel> categoryModelList, OnCategorySelectListener onCategorySelectListener, Activity context) {
         this.categoryModelList = categoryModelList;
         this.onCategorySelectListener = onCategorySelectListener;
+        this.context = context;
     }
 
     @NonNull
@@ -35,7 +40,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return categoryModelList.size();
+        return categoryModelList.size() + 1;
     }
 
     public interface OnCategorySelectListener {
@@ -52,15 +57,23 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         }
 
         public void bind(int position) {
-            CategoryModel categoryModel = categoryModelList.get(position);
-            Picasso.get()
-                    .load(categoryModel.getImg())
-                    .error(R.color.concrete)
-                    .placeholder(R.color.concrete)
-                    .into(itemCategoryBinding.ivCategoryImage);
+            if (position < categoryModelList.size()) {
+                CategoryModel categoryModel = categoryModelList.get(position);
+                Picasso.get()
+                        .load(categoryModel.getImg())
+                        .error(R.color.concrete)
+                        .placeholder(R.color.concrete)
+                        .into(itemCategoryBinding.ivCategoryImage);
 
-            itemCategoryBinding.tvCategoryName.setText(categoryModel.getTitle());
-            itemCategoryBinding.getRoot().setOnClickListener(v -> onCategorySelectListener.onSelect(categoryModel.getId()));
+                itemCategoryBinding.ivCategoryImage.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.ic_ellipse_light_gray, context.getTheme()));
+                itemCategoryBinding.tvCategoryName.setText(categoryModel.getTitle());
+                itemCategoryBinding.getRoot().setOnClickListener(v -> onCategorySelectListener.onSelect(categoryModel.getId()));
+            } else {
+                itemCategoryBinding.ivCategoryImage.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.ic_ellipse_lochinvar, context.getTheme()));
+                itemCategoryBinding.tvCategoryName.setText((R.string.title_all));
+                itemCategoryBinding.ivCategoryImage.setImageResource(R.drawable.ic_category_all);
+                itemCategoryBinding.getRoot().setOnClickListener(v -> onCategorySelectListener.onSelect(AppConstant.CATEGORY_ALL_ID));
+            }
         }
     }
 }

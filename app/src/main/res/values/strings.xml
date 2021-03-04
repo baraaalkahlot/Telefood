@@ -144,4 +144,5 @@
     <string name="label_open">Open</string>
     <string name="label_closed">Closed</string>
     <string name="title_note_add_attach">Attach files (optional)</string>
+    <string name="title_all">All</string>
 </resources>

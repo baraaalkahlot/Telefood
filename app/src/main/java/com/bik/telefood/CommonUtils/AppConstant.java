@@ -15,4 +15,6 @@ public interface AppConstant {
     String IS_ABOUT_APP = "about app";
     String PRODUCT_ID = "id";
     String PRODUCT_MODEL = "product model";
+    int CATEGORY_ALL_ID = 0;
+    String PRODUCT_IS_FAVORITE = "is favorite";
 }

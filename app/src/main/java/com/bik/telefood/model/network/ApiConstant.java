@@ -51,4 +51,5 @@ public interface ApiConstant {
     String TICKET_DETAILS = "details";
     String FAVORITE_TYPE = "type";
     String FAVORITE_TYPE_VENDOR = "vendor";
+    String FAVORITE_TYPE_SERVICE = "service";
 }

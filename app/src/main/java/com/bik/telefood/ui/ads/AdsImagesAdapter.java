@@ -38,7 +38,6 @@ public class AdsImagesAdapter extends RecyclerView.Adapter<AdsImagesAdapter.View
 
     @Override
     public int getItemCount() {
-        Log.d("wasd", "getItemCount: " + uriList.size());
         return uriList.size() + 1;
     }
 

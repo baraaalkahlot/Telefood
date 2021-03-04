@@ -137,7 +137,6 @@ public class EditUserInfoActivity extends AppCompatActivity {
         governorateViewModel.getGovernorateList(this, getSupportFragmentManager()).observe(this, governoratesResponse -> {
             List<Governorate> governorateList = governoratesResponse.getGovernorates();
             binding.spGovernorate.setAdapter(new GovernorateAdapter(this, governorateList));
-            binding.spGovernorate.performClick();
 
             binding.spGovernorate.setOnItemClickListener((parent, view, position, id) -> {
                 Governorate items = (Governorate) parent.getItemAtPosition(position);
@@ -156,7 +155,6 @@ public class EditUserInfoActivity extends AppCompatActivity {
         citiesViewModel.getCityList(governorate, this, getSupportFragmentManager()).observe(this, citiesResponse -> {
             List<City> cityList = citiesResponse.getCities();
             binding.spCity.setAdapter(new CityAdapter(this, cityList));
-            binding.spCity.performClick();
 
             binding.spCity.setOnItemClickListener((parent, view, position, id) -> {
                 City items = (City) parent.getItemAtPosition(position);

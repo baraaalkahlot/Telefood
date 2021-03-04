@@ -87,7 +87,7 @@ public class MealsFragment extends Fragment implements FilterDialogFragment.OnFi
 
         CategoriesViewModel categoriesViewModel = new ViewModelProvider(this).get(CategoriesViewModel.class);
         categoriesViewModel.getCategoriesListLiveData().observe(getViewLifecycleOwner(), categoryModelList -> {
-            categoryAdapter = new CategoryAdapter(categoryModelList, this);
+            categoryAdapter = new CategoryAdapter(categoryModelList, this, getActivity());
             binding.rvCategory.setAdapter(categoryAdapter);
         });
 
@@ -125,9 +125,10 @@ public class MealsFragment extends Fragment implements FilterDialogFragment.OnFi
     }
 
     @Override
-    public void OnProductClick(int id) {
+    public void OnProductClick(int id, Boolean favorite) {
         Intent intent = new Intent(getActivity(), ProductDetailsActivity.class);
         intent.putExtra(AppConstant.PRODUCT_ID, id);
+        intent.putExtra(AppConstant.PRODUCT_IS_FAVORITE, favorite);
         startActivity(intent);
     }
 

@@ -9,7 +9,7 @@
         android:id="@+id/iv_product"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_item_product_iv_height"
-        android:background="@drawable/shape_product_round_rectangle"
+        android:background="@color/concrete"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

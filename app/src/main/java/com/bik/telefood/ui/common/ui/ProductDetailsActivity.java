@@ -19,6 +19,7 @@ import com.bik.telefood.model.network.ApiConstant;
 import com.bik.telefood.ui.chat.MessageActivity;
 import com.bik.telefood.ui.common.adapter.ImageSliderAdapter;
 import com.bik.telefood.ui.common.viewmodel.ServicesViewModel;
+import com.bik.telefood.ui.common.viewmodel.ToggleFavoriteViewModel;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
@@ -30,6 +31,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements ImageSl
 
     private ActivityProductDetailsBinding binding;
     private ServicesViewModel servicesViewModel;
+    private int product_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +44,9 @@ public class ProductDetailsActivity extends AppCompatActivity implements ImageSl
             binding.ivContactWithProvider.setOnClickListener(v -> startActivity(new Intent(this, MessageActivity.class)));
         }
         Intent intent = getIntent();
-        int product_id = intent.getIntExtra(AppConstant.PRODUCT_ID, 0);
+        product_id = intent.getIntExtra(AppConstant.PRODUCT_ID, 0);
+        boolean isFavorite = intent.getBooleanExtra(AppConstant.PRODUCT_IS_FAVORITE, false);
+        binding.btnFavorite.setChecked(isFavorite);
 
         servicesViewModel = new ViewModelProvider(this).get(ServicesViewModel.class);
         servicesViewModel.getSingleServicesList(product_id, this, getSupportFragmentManager(), true).observe(this, servicesResponse -> {
@@ -88,9 +92,19 @@ public class ProductDetailsActivity extends AppCompatActivity implements ImageSl
             binding.imageSlider.setIndicatorUnselectedColor(Color.WHITE);
             binding.imageSlider.setScrollTimeInSec(3);
             binding.imageSlider.startAutoCycle();
+
+            binding.btnFavorite.setOnClickListener(v -> {
+                toggleFavorite();
+            });
+
         });
     }
 
+    private void toggleFavorite() {
+        ToggleFavoriteViewModel toggleFavoriteViewModel = new ViewModelProvider(this).get(ToggleFavoriteViewModel.class);
+        toggleFavoriteViewModel.favoriteToggle(ApiConstant.FAVORITE_TYPE_SERVICE, product_id, this, getSupportFragmentManager()).observe(this, mainResponse -> {
+        });
+    }
 
     @Override
     public void onImageClick(String path) {

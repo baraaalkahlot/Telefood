@@ -70,11 +70,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     }
 
     public interface OnProductClickListener {
-        void OnProductClick(int id);
+        void OnProductClick(int id, Boolean favorite);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private ItemProductBinding itemProductBinding;
+        private final ItemProductBinding itemProductBinding;
 
         public ViewHolder(@NonNull ItemProductBinding itemView) {
             super(itemView.getRoot());
@@ -92,7 +92,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                     .into(itemProductBinding.ivProduct);
             itemProductBinding.tvProductName.setText(servicesItemModel.getName());
             itemProductBinding.tvProductPrice.setText(context.getString(R.string.bind_price, servicesItemModel.getPrice()));
-            itemProductBinding.getRoot().setOnClickListener(v -> onProductClickListener.OnProductClick(servicesItemModel.getId()));
+            itemProductBinding.getRoot().setOnClickListener(v -> onProductClickListener.OnProductClick(servicesItemModel.getId(), servicesItemModel.getFavorite()));
         }
     }
 }

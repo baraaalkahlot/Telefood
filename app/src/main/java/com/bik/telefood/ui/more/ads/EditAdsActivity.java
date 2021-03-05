@@ -56,6 +56,7 @@ public class EditAdsActivity extends AppCompatActivity implements AdsImagesAdapt
     private int UPLOADED_IMAGES_COUNT = 0;
     private int imageCounter = 0;
     private String product_id = null;
+    private boolean isImagesEdited = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,6 +140,7 @@ public class EditAdsActivity extends AppCompatActivity implements AdsImagesAdapt
             return;
         }
 
+        if (!isImagesEdited) imagesId = null;
         AddServicesRequestBody body = new AddServicesRequestBody(product_id, productName, categoryModelId, productPrice, productDesc, imagesId);
 
         adsViewModel.updateService(body, this, getSupportFragmentManager()).observe(this, mainResponse -> {
@@ -248,6 +250,7 @@ public class EditAdsActivity extends AppCompatActivity implements AdsImagesAdapt
         RequestBody requestPhoto = RequestBody.create(file, MediaType.parse(this.getContentResolver().getType(uri)));
         MultipartBody.Part body = MultipartBody.Part.createFormData(ApiConstant.UPLOAD_ADS_IMAGE, file.getName(), requestPhoto);
         adsViewModel.uploadImage(body, this, getSupportFragmentManager()).observe(this, uploadImagesResponse -> {
+            isImagesEdited = true;
             imagesId.add(uploadImagesResponse.getImageId());
             imageCounter++;
             if (imageCounter == UPLOADED_IMAGES_COUNT) {

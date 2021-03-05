@@ -2,7 +2,6 @@ package com.bik.telefood.model.network;
 
 import com.bik.telefood.model.entity.AddServicesRequestBody;
 import com.bik.telefood.model.entity.Autherntication.CategoryResponse;
-import com.bik.telefood.model.entity.Autherntication.FeaturedProductResponse;
 import com.bik.telefood.model.entity.Autherntication.MyServiceResponse;
 import com.bik.telefood.model.entity.Autherntication.NotificationResponse;
 import com.bik.telefood.model.entity.Autherntication.UpdateProfileResponse;
@@ -85,8 +84,9 @@ public interface ApiInterface {
     @POST("singleService")
     Call<SingleServiceResponse> getSingleServicesList(@Field(ApiConstant.ID) int id);
 
+    @FormUrlEncoded
     @POST("featuredServices")
-    Call<FeaturedProductResponse> getFeaturedServices();
+    Call<ServicesResponse> getFeaturedServices(@Query(ApiConstant.PAGE) Integer page, @FieldMap HashMap<String, String> params);
 
 
     /*-----------{Auth}-------------*/
@@ -147,6 +147,10 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("myFavorites")
     Call<VendorsResponse> myFavoritesVendors(@Field(ApiConstant.FAVORITE_TYPE) String type);
+
+    @FormUrlEncoded
+    @POST("myFavorites")
+    Call<ServicesResponse> myFavoritesProduct(@Field(ApiConstant.FAVORITE_TYPE) String type);
 
     @FormUrlEncoded
     @POST("favoriteToggle")

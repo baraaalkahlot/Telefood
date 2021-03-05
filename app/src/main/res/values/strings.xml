@@ -147,4 +147,6 @@
     <string name="title_all">All</string>
     <string name="label_attach_file">Attach a file</string>
     <string name="label_attach_photos">Attach photos</string>
+    <string name="title_empty_status_favorite_providers">There is no provider in your favorites!</string>
+    <string name="title_empty_status_favorite_product">There is no product in your wishlist!</string>
 </resources>

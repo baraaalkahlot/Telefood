@@ -24,18 +24,17 @@ public class FavoriteProvidersViewModel extends AndroidViewModel {
     public FavoriteProvidersViewModel(@NonNull Application application) {
         super(application);
         networkUtils = NetworkUtils.getInstance(application);
+        vendorsResponseMutableLiveData = new MutableLiveData<>();
+        vendorsResponseLiveData = Transformations.map(vendorsResponseMutableLiveData, input -> input);
+
     }
 
     public void setNameQuery(String type, Context context, FragmentManager fragmentManager) {
-        vendorsResponseMutableLiveData = new MutableLiveData<>();
-        vendorsResponseLiveData = Transformations.map(vendorsResponseMutableLiveData, input -> {
-            networkUtils.getApiInterface().myFavoritesVendors(type).enqueue(new BaseCallBack<VendorsResponse>(context, fragmentManager, false) {
-                @Override
-                protected void onFinishWithSuccess(VendorsResponse result, Response<VendorsResponse> response) {
-                    vendorsResponseMutableLiveData.setValue(result);
-                }
-            });
-            return input;
+        networkUtils.getApiInterface().myFavoritesVendors(type).enqueue(new BaseCallBack<VendorsResponse>(context, fragmentManager, false) {
+            @Override
+            protected void onFinishWithSuccess(VendorsResponse result, Response<VendorsResponse> response) {
+                vendorsResponseMutableLiveData.setValue(result);
+            }
         });
     }
 

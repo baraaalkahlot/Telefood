@@ -9,8 +9,8 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.bik.telefood.model.entity.Autherntication.FeaturedProductResponse;
 import com.bik.telefood.model.entity.Autherntication.vendors.FeaturedVendorsResponse;
+import com.bik.telefood.model.entity.general.services.ServicesResponse;
 import com.bik.telefood.model.network.BaseCallBack;
 import com.bik.telefood.model.network.NetworkUtils;
 
@@ -21,7 +21,7 @@ import retrofit2.Response;
 public class HomeViewModel extends AndroidViewModel {
 
     private final NetworkUtils networkUtils;
-    private MutableLiveData<FeaturedProductResponse> featuredProductResponseMutableLiveData;
+    private MutableLiveData<ServicesResponse> servicesResponseMutableLiveData;
     private MutableLiveData<FeaturedVendorsResponse> featuredVendorsResponseMutableLiveData;
 
     public HomeViewModel(@NonNull Application application) {
@@ -29,15 +29,15 @@ public class HomeViewModel extends AndroidViewModel {
         networkUtils = NetworkUtils.getInstance(application);
     }
 
-    public LiveData<FeaturedProductResponse> getFeaturedServices(HashMap<String, String> params, Context context, FragmentManager fragmentManager, boolean progressEnabled) {
-        featuredProductResponseMutableLiveData = new MutableLiveData<>();
-        networkUtils.getApiInterface().getFeaturedServices().enqueue(new BaseCallBack<FeaturedProductResponse>(context, fragmentManager, progressEnabled) {
+    public LiveData<ServicesResponse> getFeaturedServices(Integer page, HashMap<String, String> params, Context context, FragmentManager fragmentManager, boolean progressEnabled) {
+        servicesResponseMutableLiveData = new MutableLiveData<>();
+        networkUtils.getApiInterface().getFeaturedServices(page, params).enqueue(new BaseCallBack<ServicesResponse>(context, fragmentManager, progressEnabled) {
             @Override
-            protected void onFinishWithSuccess(FeaturedProductResponse result, Response<FeaturedProductResponse> response) {
-                featuredProductResponseMutableLiveData.setValue(response.body());
+            protected void onFinishWithSuccess(ServicesResponse result, Response<ServicesResponse> response) {
+                servicesResponseMutableLiveData.setValue(response.body());
             }
         });
-        return featuredProductResponseMutableLiveData;
+        return servicesResponseMutableLiveData;
     }
 
     public LiveData<FeaturedVendorsResponse> getFeaturedVendors(Context context, FragmentManager fragmentManager, boolean progressEnabled) {

@@ -21,4 +21,14 @@
         tools:itemCount="20"
         tools:listitem="@layout/item_favorite_product" />
 
+    <include
+        android:id="@+id/include_empty_status_product"
+        layout="@layout/layout_empty_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_large"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

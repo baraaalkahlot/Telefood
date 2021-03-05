@@ -146,4 +146,6 @@
     <string name="title_all">الكل</string>
     <string name="label_attach_file">ارفق ملف</string>
     <string name="label_attach_photos">ارفاق صور</string>
+    <string name="title_empty_status_favorite_providers">لا يوجد اي مزود في مفضلتك!</string>
+    <string name="title_empty_status_favorite_product">لا يوجد اي منتج في مفضلتك!</string>
 </resources>

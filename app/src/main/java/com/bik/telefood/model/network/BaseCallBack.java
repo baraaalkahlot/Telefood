@@ -65,7 +65,11 @@ public abstract class BaseCallBack<T> implements Callback<T> {
     @Override
     public void onFailure(@NotNull Call<T> call, @NotNull Throwable t) {
         endProgress();
-        new NoConnectionDialog().show(fragmentManager, "NoConnectionDialog");
+        try {
+            new NoConnectionDialog().show(fragmentManager, "NoConnectionDialog");
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        }
     }
 
     protected abstract void onFinishWithSuccess(T result, Response<T> response);

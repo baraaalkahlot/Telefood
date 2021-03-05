@@ -127,6 +127,16 @@ public class MealsFragment extends Fragment implements FilterDialogFragment.OnFi
         });
     }
 
+    private void showEmptyStatus() {
+        binding.rvProduct.setVisibility(View.GONE);
+        binding.includeEmptyStatusProduct.constraintLayoutEmptyStatusProduct.setVisibility(View.VISIBLE);
+    }
+
+    private void hideEmptyStatus() {
+        binding.rvProduct.setVisibility(View.VISIBLE);
+        binding.includeEmptyStatusProduct.constraintLayoutEmptyStatusProduct.setVisibility(View.GONE);
+    }
+
     @Override
     public void OnProductClick(int id, Boolean favorite) {
         Intent intent = new Intent(getActivity(), ProductDetailsActivity.class);
@@ -170,16 +180,6 @@ public class MealsFragment extends Fragment implements FilterDialogFragment.OnFi
         productAdapter.resetPager();
         params.put(ApiConstant.FILTER_CATEGORY, String.valueOf(id));
         loadServiceList(1, params);
-    }
-
-    private void showEmptyStatus() {
-        binding.rvProduct.setVisibility(View.GONE);
-        binding.includeEmptyStatusProduct.constraintLayoutEmptyStatusProduct.setVisibility(View.VISIBLE);
-    }
-
-    private void hideEmptyStatus() {
-        binding.rvProduct.setVisibility(View.VISIBLE);
-        binding.includeEmptyStatusProduct.constraintLayoutEmptyStatusProduct.setVisibility(View.GONE);
     }
 
     @Override

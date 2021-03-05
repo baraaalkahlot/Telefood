@@ -7,8 +7,25 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bik.telefood.databinding.ItemFavoriteProductBinding;
+import com.bik.telefood.model.entity.general.services.ServicesItemModel;
+import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 public class FavoriteProductAdapter extends RecyclerView.Adapter<FavoriteProductAdapter.ViewHolder> {
+    private List<ServicesItemModel> data;
+    private OnCardClickListener onCardClickListener;
+
+    public FavoriteProductAdapter(List<ServicesItemModel> data, OnCardClickListener onCardClickListener) {
+        this.data = data;
+        this.onCardClickListener = onCardClickListener;
+    }
+
+    @Override
+    public int getItemCount() {
+        return data.size();
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -20,18 +37,26 @@ public class FavoriteProductAdapter extends RecyclerView.Adapter<FavoriteProduct
         holder.bind(position);
     }
 
-    @Override
-    public int getItemCount() {
-        return 20;
+    public interface OnCardClickListener {
+        void onClick(int id);
+
+        void onFavClick(int id, int position);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        private ItemFavoriteProductBinding binding;
+
         public ViewHolder(@NonNull ItemFavoriteProductBinding itemView) {
             super(itemView.getRoot());
+            binding = itemView;
         }
 
         public void bind(int position) {
-
+            ServicesItemModel servicesItemModel = data.get(position);
+            binding.tvProductName.setText(servicesItemModel.getName());
+            Picasso.get().load(servicesItemModel.getImg()).fit().into(binding.ivProduct);
+            binding.btnFavorite.setOnClickListener(v -> onCardClickListener.onFavClick(servicesItemModel.getId(), position));
+            binding.getRoot().setOnClickListener(v -> onCardClickListener.onClick(servicesItemModel.getId()));
         }
     }
 }

@@ -21,7 +21,6 @@ import com.bik.telefood.CommonUtils.MessageDialog;
 import com.bik.telefood.R;
 import com.bik.telefood.databinding.ActivityContactUsBinding;
 import com.bik.telefood.model.network.ApiConstant;
-import com.bik.telefood.ui.ads.AdsImagesAdapter;
 import com.bik.telefood.ui.bottomsheet.ActionTypeDialogFragment;
 
 import java.io.File;
@@ -32,14 +31,14 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
-public class ContactUsActivity extends AppCompatActivity implements AdsImagesAdapter.OnCancelImageListener, ActionTypeDialogFragment.OnActionSelectListener {
+public class ContactUsActivity extends AppCompatActivity implements ActionTypeDialogFragment.OnActionSelectListener, AttachmentAdapter.OnCancelImageListener {
 
     private static final int ACTION_PICK_FILE = 2;
     private static final int ACTION_PICK_IMAGE = 105;
     private ActivityContactUsBinding binding;
     private ArrayList<Uri> mArrayUri;
     private MultipartBody.Part[] attachments;
-    private AdsImagesAdapter adsImagesAdapter;
+    private AttachmentAdapter attachmentAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +48,7 @@ public class ContactUsActivity extends AppCompatActivity implements AdsImagesAda
         setContentView(binding.getRoot());
 
         mArrayUri = new ArrayList<>();
-        adsImagesAdapter = new AdsImagesAdapter(mArrayUri, this, this);
+        attachmentAdapter = new AttachmentAdapter(mArrayUri, this, this);
 
         binding.llAttachFile.setOnClickListener(v -> chooseAttachType());
         binding.btnSend.setOnClickListener(v -> {
@@ -125,8 +124,8 @@ public class ContactUsActivity extends AppCompatActivity implements AdsImagesAda
     private void showAdsImagesList() {
         binding.tvAttachImage.setVisibility(View.GONE);
         binding.rvAttachImage.setVisibility(View.VISIBLE);
-        binding.rvAttachImage.setAdapter(adsImagesAdapter);
-        adsImagesAdapter.notifyDataSetChanged();
+        binding.rvAttachImage.setAdapter(attachmentAdapter);
+        attachmentAdapter.notifyDataSetChanged();
     }
 
 

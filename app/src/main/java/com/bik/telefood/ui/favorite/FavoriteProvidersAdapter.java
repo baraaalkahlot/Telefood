@@ -14,9 +14,11 @@ import java.util.List;
 
 public class FavoriteProvidersAdapter extends RecyclerView.Adapter<FavoriteProvidersAdapter.ViewHolder> {
     private List<VendorsModel> data;
+    private OnCardClickListener onCardClickListener;
 
-    public FavoriteProvidersAdapter(List<VendorsModel> data) {
+    public FavoriteProvidersAdapter(List<VendorsModel> data, OnCardClickListener onCardClickListener) {
         this.data = data;
+        this.onCardClickListener = onCardClickListener;
     }
 
     @NonNull
@@ -35,6 +37,12 @@ public class FavoriteProvidersAdapter extends RecyclerView.Adapter<FavoriteProvi
         return data.size();
     }
 
+    public interface OnCardClickListener {
+        void onClick(int id);
+
+        void onFavClick(int id, int position);
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         private ItemProvidersBinding itemProvidersBinding;
 
@@ -48,6 +56,8 @@ public class FavoriteProvidersAdapter extends RecyclerView.Adapter<FavoriteProvi
             itemProvidersBinding.tvFullName.setText(vendorsModel.getName());
             Picasso.get().load(vendorsModel.getAvatar()).fit().into(itemProvidersBinding.ivAvatar);
             itemProvidersBinding.rbSupplierRating.setRating((vendorsModel.getRating()));
+            itemProvidersBinding.btnFavorite.setOnClickListener(v -> onCardClickListener.onFavClick(vendorsModel.getId(), position));
+            itemProvidersBinding.getRoot().setOnClickListener(v -> onCardClickListener.onClick(vendorsModel.getId()));
         }
     }
 }

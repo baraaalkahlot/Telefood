@@ -46,7 +46,7 @@ public interface ApiConstant {
     String FILTER_TO_PRICE = "price_to";
     String OPEN = "open";
     String CLOSED = "closed";
-    String ATTACHMENT = "attachments";
+    String ATTACHMENT = "attachments[]";
     String TICKET_SUBJECT = "subject";
     String TICKET_DETAILS = "details";
     String FAVORITE_TYPE = "type";

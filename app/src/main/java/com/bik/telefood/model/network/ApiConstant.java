@@ -52,4 +52,7 @@ public interface ApiConstant {
     String FAVORITE_TYPE = "type";
     String FAVORITE_TYPE_VENDOR = "vendor";
     String FAVORITE_TYPE_SERVICE = "service";
+
+    String CHAT_TYPE_CURRENT_USER = "currentUser";
+    String MESSAGE = "message";
 }

@@ -14,7 +14,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Telefood">
-        <activity android:name=".ui.more.ads.EditAdsActivity"></activity>
+        <activity android:name=".ui.more.ads.EditAdsActivity" />
+        <activity
+            android:name=".ui.support.SupportMessageActivity"
+            android:label="@string/label_support"
+            android:theme="@style/Theme.Telefood.ActionBar" />
         <activity android:name=".ui.common.ui.ProductDetailsActivity" />
         <activity android:name=".ui.init.SplashActivity">
             <intent-filter>

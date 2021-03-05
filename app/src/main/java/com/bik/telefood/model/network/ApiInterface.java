@@ -21,6 +21,7 @@ import com.bik.telefood.model.entity.general.PrivacyPolicyResponse;
 import com.bik.telefood.model.entity.general.services.ServicesResponse;
 import com.bik.telefood.model.entity.general.singleservices.SingleServiceResponse;
 import com.bik.telefood.model.entity.support.MyTicketResponse;
+import com.bik.telefood.model.entity.support.ShowDetailsResponse;
 
 import java.util.HashMap;
 
@@ -158,6 +159,14 @@ public interface ApiInterface {
     @Multipart
     @POST("tickets/add")
     Call<MainResponse> addTicket(@PartMap HashMap<String, RequestBody> params, @Part MultipartBody.Part[] attachment);
+
+    @FormUrlEncoded
+    @POST("tickets/show")
+    Call<ShowDetailsResponse> showTicket(@Field(ApiConstant.ID) String id);
+
+    @Multipart
+    @POST("tickets/sendMessage")
+    Call<MainResponse> sendMessage(@PartMap HashMap<String, RequestBody> params, @Part MultipartBody.Part[] attachment);
 
     //Notification
     @GET("myNotifications")

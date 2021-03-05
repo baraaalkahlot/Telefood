@@ -10,18 +10,17 @@
         android:id="@+id/tv_sent_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minWidth="100dp"
         android:background="@drawable/shape_sent_message"
         android:paddingStart="@dimen/size_mid"
         android:paddingTop="@dimen/size_small"
         android:paddingEnd="@dimen/size_mid"
         android:paddingBottom="@dimen/size_small"
-        android:text="هذا النص هو مثال لنص يمكن أن يستبدل في "
         android:textColor="@color/mine_shaft" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/size_small"
-        android:text="ص 10:24" />
+        android:layout_marginRight="@dimen/size_small" />
 </LinearLayout>

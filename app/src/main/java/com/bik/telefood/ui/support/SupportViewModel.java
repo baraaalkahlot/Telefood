@@ -11,6 +11,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.bik.telefood.model.entity.MainResponse;
 import com.bik.telefood.model.entity.support.MyTicketResponse;
+import com.bik.telefood.model.entity.support.ShowDetailsResponse;
 import com.bik.telefood.model.network.BaseCallBack;
 import com.bik.telefood.model.network.NetworkUtils;
 
@@ -26,6 +27,7 @@ public class SupportViewModel extends AndroidViewModel {
     private final NetworkUtils networkUtils;
     private MutableLiveData<MyTicketResponse> myTicketResponseMutableLiveData;
     private MutableLiveData<MainResponse> mainResponseMutableLiveData;
+    private MutableLiveData<ShowDetailsResponse> showDetailsResponseMutableLiveData;
 
     public SupportViewModel(@NonNull Application application) {
         super(application);
@@ -46,6 +48,29 @@ public class SupportViewModel extends AndroidViewModel {
     public LiveData<MainResponse> addTicket(HashMap<String, RequestBody> params, @Part MultipartBody.Part[] attachment, Context context, FragmentManager fragmentManager) {
         mainResponseMutableLiveData = new MutableLiveData<>();
         networkUtils.getApiInterface().addTicket(params, attachment).enqueue(new BaseCallBack<MainResponse>(context, fragmentManager, true) {
+            @Override
+            protected void onFinishWithSuccess(MainResponse result, Response<MainResponse> response) {
+                mainResponseMutableLiveData.setValue(result);
+            }
+        });
+        return mainResponseMutableLiveData;
+    }
+
+    public LiveData<ShowDetailsResponse> showTicket(String id, Context context, FragmentManager fragmentManager) {
+        showDetailsResponseMutableLiveData = new MutableLiveData<>();
+        networkUtils.getApiInterface().showTicket(id).enqueue(new BaseCallBack<ShowDetailsResponse>(context, fragmentManager, false) {
+            @Override
+            protected void onFinishWithSuccess(ShowDetailsResponse result, Response<ShowDetailsResponse> response) {
+                showDetailsResponseMutableLiveData.setValue(result);
+            }
+        });
+        return showDetailsResponseMutableLiveData;
+    }
+
+
+    public LiveData<MainResponse> sendMessage(HashMap<String, RequestBody> params, @Part MultipartBody.Part[] attachment, Context context, FragmentManager fragmentManager) {
+        mainResponseMutableLiveData = new MutableLiveData<>();
+        networkUtils.getApiInterface().sendMessage(params, attachment).enqueue(new BaseCallBack<MainResponse>(context, fragmentManager, false) {
             @Override
             protected void onFinishWithSuccess(MainResponse result, Response<MainResponse> response) {
                 mainResponseMutableLiveData.setValue(result);

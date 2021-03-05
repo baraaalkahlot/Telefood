@@ -18,4 +18,6 @@ public interface AppConstant {
     int CATEGORY_ALL_ID = 0;
     String PRODUCT_IS_FAVORITE = "is favorite";
     String PRODUCT_NO_FAVORITE = "no favorite";
+    String TICKET_ID = "id";
+    String TYPE_PDF = "application/pdf";
 }

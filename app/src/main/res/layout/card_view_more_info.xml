@@ -22,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_user_name"
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_mid"
@@ -44,7 +44,7 @@
             android:rating="4"
             app:layout_constraintBottom_toBottomOf="@+id/iv_user_avatar"
             app:layout_constraintStart_toEndOf="@+id/iv_user_avatar"
-            app:layout_constraintTop_toBottomOf="@+id/tv_user_name" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_edit_user_info"

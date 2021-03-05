@@ -145,4 +145,6 @@
     <string name="label_closed">Closed</string>
     <string name="title_note_add_attach">Attach files (optional)</string>
     <string name="title_all">All</string>
+    <string name="label_attach_file">Attach a file</string>
+    <string name="label_attach_photos">Attach photos</string>
 </resources>

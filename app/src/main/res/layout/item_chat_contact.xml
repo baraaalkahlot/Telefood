@@ -9,12 +9,11 @@
     android:padding="@dimen/size_large">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_user_name"
+        android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="@dimen/size_mid"
         android:fontFamily="@font/cairo_semibold"
-        android:text="براء اياد الكحلوت"
         android:textColor="@color/mine_shaft"
         android:textSize="@dimen/text_size_regular"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -20,10 +20,12 @@ public class SupportTicketAdapter extends RecyclerView.Adapter<SupportTicketAdap
 
     private List<TicketModel> tickets;
     private Context context;
+    private OnCardClickListener onCardClickListener;
 
-    public SupportTicketAdapter(List<TicketModel> tickets, Context context) {
+    public SupportTicketAdapter(List<TicketModel> tickets, Context context, OnCardClickListener onCardClickListener) {
         this.tickets = tickets;
         this.context = context;
+        this.onCardClickListener = onCardClickListener;
     }
 
     @NonNull
@@ -40,6 +42,10 @@ public class SupportTicketAdapter extends RecyclerView.Adapter<SupportTicketAdap
     @Override
     public int getItemCount() {
         return tickets.size();
+    }
+
+    public interface OnCardClickListener {
+        void onCardClick(long id);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -65,6 +71,9 @@ public class SupportTicketAdapter extends RecyclerView.Adapter<SupportTicketAdap
                 binding.tvTicketStatus.setBackground(ResourcesCompat.getDrawable(context.getResources(), R.drawable.shape_ticket_status_closed, context.getTheme()));
                 binding.tvTicketStatus.setText(R.string.label_closed);
             }
+            binding.getRoot().setOnClickListener(v -> {
+                onCardClickListener.onCardClick(ticketModel.getId());
+            });
         }
     }
 }

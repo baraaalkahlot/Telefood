@@ -22,6 +22,7 @@ import com.bik.telefood.R;
 import com.bik.telefood.databinding.ActivityContactUsBinding;
 import com.bik.telefood.model.network.ApiConstant;
 import com.bik.telefood.ui.ads.AdsImagesAdapter;
+import com.bik.telefood.ui.bottomsheet.ActionTypeDialogFragment;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
-public class ContactUsActivity extends AppCompatActivity implements AdsImagesAdapter.OnCancelImageListener {
+public class ContactUsActivity extends AppCompatActivity implements AdsImagesAdapter.OnCancelImageListener, ActionTypeDialogFragment.OnActionSelectListener {
 
     private static final int ACTION_PICK_FILE = 2;
     private static final int ACTION_PICK_IMAGE = 105;
@@ -48,13 +49,12 @@ public class ContactUsActivity extends AppCompatActivity implements AdsImagesAda
         setContentView(binding.getRoot());
 
         mArrayUri = new ArrayList<>();
-        adsImagesAdapter = new AdsImagesAdapter(mArrayUri, this);
+        adsImagesAdapter = new AdsImagesAdapter(mArrayUri, this, this);
 
-        binding.llAttachFile.setOnClickListener(v -> pickFile());
+        binding.llAttachFile.setOnClickListener(v -> chooseAttachType());
         binding.btnSend.setOnClickListener(v -> {
             String subject = binding.etSubject.getText().toString();
             String details = binding.etDetails.getText().toString();
-
             if (subject.isEmpty()) {
                 binding.ilSubject.setError(getString(R.string.error_msg_missing_subject));
                 return;
@@ -74,6 +74,10 @@ public class ContactUsActivity extends AppCompatActivity implements AdsImagesAda
                 finish();
             });
         });
+    }
+
+    private void chooseAttachType() {
+        ActionTypeDialogFragment.newInstance(this).show(getSupportFragmentManager(), "ActionTypeDialogFragment");
     }
 
     private void pickImage() {
@@ -156,12 +160,13 @@ public class ContactUsActivity extends AppCompatActivity implements AdsImagesAda
                         File file = FileUtils.getFile(this, uri);
                         RequestBody requestPhoto = RequestBody.create(file, MediaType.parse(getContentResolver().getType(uri)));
                         attachments[i] = MultipartBody.Part.createFormData(ApiConstant.ATTACHMENT, file.getName(), requestPhoto);
+
                     }
                     showAdsImagesList();
                 } else if (data.getData() != null) {
                     Uri uri = data.getData();
                     File file = FileUtils.getFile(this, uri);
-                    RequestBody requestPhoto = RequestBody.create(file, MediaType.parse(this.getContentResolver().getType(uri)));
+                    RequestBody requestPhoto = RequestBody.create(file, MediaType.parse(getContentResolver().getType(uri)));
                     attachments = new MultipartBody.Part[1];
                     attachments[0] = MultipartBody.Part.createFormData(ApiConstant.ATTACHMENT, file.getName(), requestPhoto);
                     mArrayUri.add(uri);
@@ -170,9 +175,11 @@ public class ContactUsActivity extends AppCompatActivity implements AdsImagesAda
             } else if (requestCode == ACTION_PICK_FILE && resultCode == Activity.RESULT_OK && data != null) {
                 Uri uri = data.getData();
                 File file = FileUtils.getFile(this, uri);
-                RequestBody requestPhoto = RequestBody.create(file, MediaType.parse(this.getContentResolver().getType(uri)));
+                RequestBody requestPhoto = RequestBody.create(file, MediaType.parse(getContentResolver().getType(uri)));
                 attachments = new MultipartBody.Part[1];
                 attachments[0] = MultipartBody.Part.createFormData(ApiConstant.ATTACHMENT, file.getName(), requestPhoto);
+                mArrayUri.add(uri);
+                showAdsImagesList();
             }
 
         } catch (Exception e) {
@@ -182,6 +189,16 @@ public class ContactUsActivity extends AppCompatActivity implements AdsImagesAda
 
     @Override
     public void onAddImageClick() {
+        chooseAttachType();
+    }
+
+    @Override
+    public void onAttachFile() {
+        pickFile();
+    }
+
+    @Override
+    public void onAttachPhotos() {
         pickImage();
     }
 }

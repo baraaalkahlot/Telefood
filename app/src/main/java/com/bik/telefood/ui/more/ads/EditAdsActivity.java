@@ -68,7 +68,7 @@ public class EditAdsActivity extends AppCompatActivity implements AdsImagesAdapt
 
         mArrayUri = new ArrayList<>();
         imagesId = new ArrayList<>();
-        adsImagesAdapter = new AdsImagesAdapter(mArrayUri, this);
+        adsImagesAdapter = new AdsImagesAdapter(mArrayUri, this, this);
         productId = getIntent().getIntExtra(AppConstant.PRODUCT_ID, 0);
         setInitValue();
 

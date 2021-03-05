@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_sent_message"
+        android:id="@+id/tv_recived_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
@@ -17,14 +17,11 @@
         android:paddingTop="@dimen/size_small"
         android:paddingEnd="@dimen/size_mid"
         android:paddingBottom="@dimen/size_small"
-        android:text="هذا النص هو مثال لنص يمكن أن يستبدل في "
         android:textColor="@color/white" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_marginLeft="@dimen/size_small"
-        android:text="ص 10:24" />
+        android:layout_gravity="left" />
 </LinearLayout>

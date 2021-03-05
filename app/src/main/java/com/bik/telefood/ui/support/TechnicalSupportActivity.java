@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bik.telefood.CommonUtils.AppConstant;
 import com.bik.telefood.R;
 import com.bik.telefood.databinding.ActivityTechnicalSupportBinding;
 import com.bik.telefood.model.entity.support.TicketModel;
@@ -16,7 +17,7 @@ import com.ethanhua.skeleton.SkeletonScreen;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TechnicalSupportActivity extends AppCompatActivity {
+public class TechnicalSupportActivity extends AppCompatActivity implements SupportTicketAdapter.OnCardClickListener {
 
     private static final int ACTION_GO_TO_ADD_TICKET = 111;
     private SupportTicketAdapter supportTicketAdapter;
@@ -32,7 +33,7 @@ public class TechnicalSupportActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         tickets = new ArrayList<>();
-        supportTicketAdapter = new SupportTicketAdapter(tickets, this);
+        supportTicketAdapter = new SupportTicketAdapter(tickets, this, this);
         binding.rvTicket.setAdapter(supportTicketAdapter);
         skeletonScreen = Skeleton.bind(binding.rvTicket)
                 .adapter(supportTicketAdapter)
@@ -58,7 +59,15 @@ public class TechnicalSupportActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == ACTION_GO_TO_ADD_TICKET && resultCode == RESULT_OK) {
             skeletonScreen.show();
+            tickets.clear();
             loadTicketList();
         }
+    }
+
+    @Override
+    public void onCardClick(long id) {
+        Intent intent = new Intent(this, SupportMessageActivity.class);
+        intent.putExtra(AppConstant.TICKET_ID, String.valueOf(id));
+        startActivity(intent);
     }
 }

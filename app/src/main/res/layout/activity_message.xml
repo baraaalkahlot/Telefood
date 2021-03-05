@@ -32,7 +32,7 @@
         android:layout_margin="@dimen/size_small"
         android:background="@drawable/shape_edit_text_messaeg"
         android:hint="@string/hint_type_message"
-        android:maxLength="5"
+        android:maxLines="5"
         android:padding="@dimen/size_small"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/iv_location"
@@ -53,10 +53,11 @@
         android:id="@+id/rv_messages"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:padding="@dimen/padding_layout"
+        android:paddingStart="@dimen/padding_layout"
+        android:paddingEnd="@dimen/padding_layout"
         app:layout_constraintBottom_toTopOf="@id/divider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/include_chat_contact"
-        tools:listitem="@layout/item_recived_message" />
+        tools:listitem="@layout/item_sent_messae" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -57,7 +57,7 @@ public class AdsFragment extends Fragment implements AdsImagesAdapter.OnCancelIm
         categoriesViewModel = new ViewModelProvider(this).get(CategoriesViewModel.class);
         mArrayUri = new ArrayList<>();
         imagesId = new ArrayList<>();
-        adsImagesAdapter = new AdsImagesAdapter(mArrayUri, this);
+        adsImagesAdapter = new AdsImagesAdapter(mArrayUri, this, getContext());
 
         binding.btnSend.setEnabled(false);
         binding.llImage.setOnClickListener(v -> pickImage());

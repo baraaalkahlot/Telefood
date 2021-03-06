@@ -68,9 +68,9 @@ public class SupportViewModel extends AndroidViewModel {
     }
 
 
-    public LiveData<MainResponse> sendMessage(HashMap<String, RequestBody> params, @Part MultipartBody.Part[] attachment, Context context, FragmentManager fragmentManager) {
+    public LiveData<MainResponse> sendMessage(HashMap<String, RequestBody> params, @Part MultipartBody.Part[] attachment, Context context, FragmentManager fragmentManager, boolean processable) {
         mainResponseMutableLiveData = new MutableLiveData<>();
-        networkUtils.getApiInterface().sendMessage(params, attachment).enqueue(new BaseCallBack<MainResponse>(context, fragmentManager, false) {
+        networkUtils.getApiInterface().sendMessage(params, attachment).enqueue(new BaseCallBack<MainResponse>(context, fragmentManager, processable) {
             @Override
             protected void onFinishWithSuccess(MainResponse result, Response<MainResponse> response) {
                 mainResponseMutableLiveData.setValue(result);

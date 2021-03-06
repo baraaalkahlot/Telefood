@@ -29,6 +29,11 @@ public class SupportMessageAdapter extends RecyclerView.Adapter {
         this.context = context;
     }
 
+    public void setMessages(List<SupportMessageModel> messages) {
+        messages.addAll(messages);
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

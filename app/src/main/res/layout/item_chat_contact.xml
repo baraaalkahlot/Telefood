@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/size_small"
-    android:background="@color/white"
+    android:background="@color/alabaster"
     android:padding="@dimen/size_large">
 
     <com.google.android.material.textview.MaterialTextView
@@ -16,8 +16,22 @@
         android:fontFamily="@font/cairo_semibold"
         android:textColor="@color/mine_shaft"
         android:textSize="@dimen/text_size_regular"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_desc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_desc"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/size_mid"
+        android:fontFamily="@font/cairo_semibold"
+        android:maxLines="1"
+        android:textColor="@color/dusty_gray"
+        android:textSize="@dimen/text_size_small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title" />
 </androidx.constraintlayout.widget.ConstraintLayout>

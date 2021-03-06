@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bik.telefood.R;
 import com.bik.telefood.databinding.ItemProvidersBinding;
 import com.bik.telefood.model.entity.Autherntication.vendors.VendorsModel;
 import com.squareup.picasso.Picasso;
@@ -54,7 +55,7 @@ public class FavoriteProvidersAdapter extends RecyclerView.Adapter<FavoriteProvi
         public void bind(int position) {
             VendorsModel vendorsModel = data.get(position);
             itemProvidersBinding.tvFullName.setText(vendorsModel.getName());
-            Picasso.get().load(vendorsModel.getAvatar()).fit().into(itemProvidersBinding.ivAvatar);
+            Picasso.get().load(vendorsModel.getAvatar()).placeholder(R.drawable.ic_baseline_person).error(R.drawable.ic_baseline_person).fit().into(itemProvidersBinding.ivAvatar);
             itemProvidersBinding.rbSupplierRating.setRating((vendorsModel.getRating()));
             itemProvidersBinding.btnFavorite.setOnClickListener(v -> onCardClickListener.onFavClick(vendorsModel.getId(), position));
             itemProvidersBinding.getRoot().setOnClickListener(v -> onCardClickListener.onClick(vendorsModel.getId()));

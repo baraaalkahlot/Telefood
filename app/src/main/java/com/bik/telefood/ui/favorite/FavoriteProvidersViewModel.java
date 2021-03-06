@@ -29,7 +29,7 @@ public class FavoriteProvidersViewModel extends AndroidViewModel {
 
     }
 
-    public void setNameQuery(String type, Context context, FragmentManager fragmentManager) {
+    public void setFavoriteProviders(String type, Context context, FragmentManager fragmentManager) {
         networkUtils.getApiInterface().myFavoritesVendors(type).enqueue(new BaseCallBack<VendorsResponse>(context, fragmentManager, false) {
             @Override
             protected void onFinishWithSuccess(VendorsResponse result, Response<VendorsResponse> response) {

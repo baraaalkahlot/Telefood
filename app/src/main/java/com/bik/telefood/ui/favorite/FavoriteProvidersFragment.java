@@ -1,5 +1,6 @@
 package com.bik.telefood.ui.favorite;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -30,6 +31,7 @@ import java.util.List;
 
 public class FavoriteProvidersFragment extends Fragment implements FavoriteProvidersAdapter.OnCardClickListener {
 
+    private static final int ACTION_GO_TO_PRODUCT_DETAILS = 106;
     private static final String ARG_SECTION_NUMBER = "section_number";
     private FragmentFavoriteProvidersBinding binding;
     private FavoriteProvidersViewModel mViewModel;
@@ -67,7 +69,7 @@ public class FavoriteProvidersFragment extends Fragment implements FavoriteProvi
                 .show();
 
         getFavoriteProviders();
-        mViewModel.setNameQuery(ApiConstant.FAVORITE_TYPE_VENDOR, getContext(), getActivity().getSupportFragmentManager());
+        mViewModel.setFavoriteProviders(ApiConstant.FAVORITE_TYPE_VENDOR, getContext(), getActivity().getSupportFragmentManager());
     }
 
     private void getFavoriteProviders() {
@@ -86,11 +88,18 @@ public class FavoriteProvidersFragment extends Fragment implements FavoriteProvi
         });
     }
 
+
+    private void showEmptyStatus() {
+        binding.includeEmptyStatusProduct.getRoot().setVisibility(View.VISIBLE);
+        binding.rvProviders.setVisibility(View.GONE);
+        binding.includeEmptyStatusProduct.tvEmptyStatusTitle.setText(R.string.title_empty_status_favorite_providers);
+    }
+
     @Override
     public void onClick(int id) {
         Intent intent = new Intent(getActivity(), ProvidersDetailsActivity.class);
-        intent.putExtra(AppConstant.USER_ID, (int) id);
-        startActivity(intent);
+        intent.putExtra(AppConstant.USER_ID, id);
+        startActivityForResult(intent, ACTION_GO_TO_PRODUCT_DETAILS);
     }
 
     @Override
@@ -104,9 +113,13 @@ public class FavoriteProvidersFragment extends Fragment implements FavoriteProvi
         });
     }
 
-    private void showEmptyStatus() {
-        binding.includeEmptyStatusProduct.getRoot().setVisibility(View.VISIBLE);
-        binding.rvProviders.setVisibility(View.GONE);
-        binding.includeEmptyStatusProduct.tvEmptyStatusTitle.setText(R.string.title_empty_status_favorite_providers);
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent i) {
+        super.onActivityResult(requestCode, resultCode, i);
+        if (requestCode == ACTION_GO_TO_PRODUCT_DETAILS && resultCode == Activity.RESULT_OK) {
+            data.clear();
+            mViewModel.setFavoriteProviders(ApiConstant.FAVORITE_TYPE_VENDOR, getContext(), getActivity().getSupportFragmentManager());
+        }
     }
 }

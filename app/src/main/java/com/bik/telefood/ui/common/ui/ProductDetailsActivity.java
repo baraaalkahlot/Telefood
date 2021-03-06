@@ -25,8 +25,6 @@ import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
-
 public class ProductDetailsActivity extends AppCompatActivity implements ImageSliderAdapter.OnImageSliderListener {
 
     private ActivityProductDetailsBinding binding;
@@ -84,11 +82,9 @@ public class ProductDetailsActivity extends AppCompatActivity implements ImageSl
                     .into(binding.ivUserProfileImage);
 
             // Set Images to Image Slider
-            List<String> imageAllItemsList = singleServiceModel.getImages();
-            ImageSliderAdapter imageSliderAdapter = new ImageSliderAdapter();
-            imageSliderAdapter.setOnImageSliderListener(this);
-            imageSliderAdapter.setmSliderItems(imageAllItemsList);
+            ImageSliderAdapter imageSliderAdapter = new ImageSliderAdapter(singleServiceModel.getImages());
             binding.imageSlider.setSliderAdapter(imageSliderAdapter);
+            imageSliderAdapter.setOnImageSliderListener(this);
             binding.imageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM); //set indicator animation by using IndicatorAnimationType. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
             binding.imageSlider.setSliderTransformAnimation(SliderAnimations.CUBEINROTATIONTRANSFORMATION);
             binding.imageSlider.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
@@ -105,17 +101,10 @@ public class ProductDetailsActivity extends AppCompatActivity implements ImageSl
     private void toggleFavorite() {
         ToggleFavoriteViewModel toggleFavoriteViewModel = new ViewModelProvider(this).get(ToggleFavoriteViewModel.class);
         toggleFavoriteViewModel.favoriteToggle(ApiConstant.FAVORITE_TYPE_SERVICE, product_id, this, getSupportFragmentManager()).observe(this, mainResponse -> favoriteUpdated = true);
+        setResult(RESULT_OK);
     }
 
     @Override
     public void onImageClick(String path) {
-
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (favoriteUpdated)
-            setResult(RESULT_OK);
-        finish();
     }
 }

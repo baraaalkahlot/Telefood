@@ -125,7 +125,7 @@ public class EditUserInfoActivity extends AppCompatActivity {
 
         moreViewModel.updateProfile(params, img_profile, this, getSupportFragmentManager()).observe(this, updateProfileResponse -> {
             UserModel userModel = updateProfileResponse.getUser();
-            loginViewModel.updateUserSection(userModel.getAvatar(), userModel.getName(), userModel.getPhone(), userModel.getGovernorateId(), userModel.getCityId(), userModel.getGovernorate(), userModel.getCity());
+            loginViewModel.updateUserSection(userModel.getAvatar(), userModel.getName(), userModel.getPhone(), userModel.getGovernorateId(), userModel.getCityId(), userModel.getGovernorate(), userModel.getCity(), userModel.getChoosedPlanName(), userModel.getRemainingDaysInPlan());
             setResult(RESULT_OK);
             finish();
         });

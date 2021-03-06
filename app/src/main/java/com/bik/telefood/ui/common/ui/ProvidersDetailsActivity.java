@@ -16,7 +16,6 @@ import com.bik.telefood.model.entity.Autherntication.vendors.VendorsModel;
 import com.bik.telefood.model.entity.general.services.ServicesItemModel;
 import com.bik.telefood.model.entity.general.services.ServicesListModel;
 import com.bik.telefood.model.network.ApiConstant;
-import com.bik.telefood.ui.common.adapter.CategoryAdapter;
 import com.bik.telefood.ui.common.adapter.ProductAdapter;
 import com.bik.telefood.ui.common.viewmodel.ToggleFavoriteViewModel;
 import com.bik.telefood.ui.common.viewmodel.VendorsViewModel;
@@ -31,7 +30,6 @@ public class ProvidersDetailsActivity extends AppCompatActivity implements Produ
 
     private static final int ACTION_GO_TO_PRODUCT_DETAILS = 103;
     private ActivityProvidersDetailsBinding binding;
-    private CategoryAdapter categoryAdapter;
     private ProductAdapter productAdapter;
     private VendorsViewModel vendorsViewModel;
     private List<ServicesItemModel> servicesItemModels;
@@ -60,8 +58,7 @@ public class ProvidersDetailsActivity extends AppCompatActivity implements Produ
                 .show();
         loadData(1);
         binding.btnFavorite.setOnClickListener(v -> {
-            toggleFavoriteViewModel.favoriteToggle(ApiConstant.FAVORITE_TYPE_VENDOR, id, this, getSupportFragmentManager()).observe(this, mainResponse -> {
-            });
+            toggleFavoriteViewModel.favoriteToggle(ApiConstant.FAVORITE_TYPE_VENDOR, id, this, getSupportFragmentManager()).observe(this, mainResponse -> setResult(RESULT_OK));
         });
     }
 

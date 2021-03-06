@@ -113,7 +113,7 @@ public class FavoriteProductFragment extends Fragment implements FavoriteProvide
         super.onActivityResult(requestCode, resultCode, i);
         if (requestCode == ACTION_GO_TO_PRODUCT_DETAILS && resultCode == Activity.RESULT_OK) {
             data.clear();
-            getFavoriteProduct();
+            mViewModel.setFavoritesProduct(ApiConstant.FAVORITE_TYPE_SERVICE, getContext(), getActivity().getSupportFragmentManager());
         }
     }
 

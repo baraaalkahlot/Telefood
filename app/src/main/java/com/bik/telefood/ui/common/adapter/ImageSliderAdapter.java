@@ -1,6 +1,5 @@
 package com.bik.telefood.ui.common.adapter;
 
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -8,13 +7,16 @@ import com.bik.telefood.databinding.ImageSliderLayoutItemBinding;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ImageSliderAdapter extends SliderViewAdapter<ImageSliderAdapter.SliderAdapterVH> {
 
-    private List<String> mSliderItems = new ArrayList<>();
+    private List<String> mSliderItems;
     private OnImageSliderListener onImageSliderListener;
+
+    public ImageSliderAdapter(List<String> mSliderItems) {
+        this.mSliderItems = mSliderItems;
+    }
 
     public void setOnImageSliderListener(OnImageSliderListener onImageSliderListener) {
         this.onImageSliderListener = onImageSliderListener;
@@ -40,11 +42,6 @@ public class ImageSliderAdapter extends SliderViewAdapter<ImageSliderAdapter.Sli
         notifyDataSetChanged();
     }
 
-    public void setmSliderItems(List<String> mSliderItems) {
-        this.mSliderItems = mSliderItems;
-        notifyDataSetChanged();
-    }
-
     @Override
     public SliderAdapterVH onCreateViewHolder(ViewGroup parent) {
         return new SliderAdapterVH(ImageSliderLayoutItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
@@ -57,7 +54,6 @@ public class ImageSliderAdapter extends SliderViewAdapter<ImageSliderAdapter.Sli
 
     @Override
     public int getCount() {
-        //slider view count could be dynamic size
         return mSliderItems.size();
     }
 
@@ -75,7 +71,7 @@ public class ImageSliderAdapter extends SliderViewAdapter<ImageSliderAdapter.Sli
 
         private void bind(int position) {
             String sliderItem = mSliderItems.get(position);
-            Picasso.get().load(Uri.parse(sliderItem)).fit().into(binding.ivAutoImageSlider);
+            Picasso.get().load(sliderItem).fit().into(binding.ivAutoImageSlider);
             binding.getRoot().setOnClickListener(v -> onImageSliderListener.onImageClick(mSliderItems.get(position)));
         }
     }

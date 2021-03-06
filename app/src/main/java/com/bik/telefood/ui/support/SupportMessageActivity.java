@@ -110,6 +110,8 @@ public class SupportMessageActivity extends AppCompatActivity implements ActionT
             binding.includeChatContact.tvDesc.setText(ticketModel.getDescription());
             supportMessageAdapter = new SupportMessageAdapter(showDetailsResponse.getMessages(), this);
             binding.rvMessages.setAdapter(supportMessageAdapter);
+            attachments = null;
+            mArrayUri.clear();
         });
     }
 

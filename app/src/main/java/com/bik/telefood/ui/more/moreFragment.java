@@ -77,8 +77,19 @@ public class moreFragment extends Fragment {
         binding.cardSignOut.tvItemMore.setText(R.string.label_sign_out);
 
         binding.swipeToRefresh.setOnRefreshListener(() -> mViewModel.getProfile(getContext(), getActivity().getSupportFragmentManager()).observe(getViewLifecycleOwner(), updateProfileResponse -> {
-            binding.swipeToRefresh.setRefreshing(false);
             UserModel userModel = updateProfileResponse.getUser();
+            loginViewModel.updateUserSection(
+                    userModel.getAvatar()
+                    , userModel.getName()
+                    , userModel.getPhone()
+                    , userModel.getGovernorateId()
+                    , userModel.getCityId()
+                    , userModel.getGovernorate()
+                    , userModel.getCity()
+                    , userModel.getChoosedPlanName()
+                    , userModel.getRemainingDaysInPlan());
+
+            binding.swipeToRefresh.setRefreshing(false);
             Picasso.get()
                     .load(Uri.parse(userModel.getAvatar()))
                     .error(R.drawable.ic_baseline_person)
@@ -92,7 +103,7 @@ public class moreFragment extends Fragment {
                 binding.includeCardUserInfo.tvPlanName.setText(userModel.getChoosedPlanName());
 
             if (userModel.getRemainingDaysInPlan() != null)
-                binding.includeCardUserInfo.tvRemainingDaysInPlan.setText(userModel.getRemainingDaysInPlan());
+                binding.includeCardUserInfo.tvRemainingDaysInPlan.setText(getString(R.string.days_left, userModel.getRemainingDaysInPlan()));
         }));
 
         return binding.getRoot();
@@ -184,7 +195,7 @@ public class moreFragment extends Fragment {
                     binding.includeCardUserInfo.tvPlanName.setText(userModel.getChoosedPlanName());
 
                 if (userModel.getRemainingDaysInPlan() != null)
-                    binding.includeCardUserInfo.tvRemainingDaysInPlan.setText(userModel.getRemainingDaysInPlan());
+                    binding.includeCardUserInfo.tvRemainingDaysInPlan.setText(getString(R.string.days_left, userModel.getRemainingDaysInPlan()));
             }
         });
     }

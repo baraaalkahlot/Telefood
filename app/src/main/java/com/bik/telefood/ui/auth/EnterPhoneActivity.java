@@ -12,6 +12,7 @@ import com.bik.telefood.CommonUtils.AppConstant;
 import com.bik.telefood.CommonUtils.ProgressBarDialog;
 import com.bik.telefood.R;
 import com.bik.telefood.databinding.ActivityEnterPhoneBinding;
+import com.bik.telefood.model.network.ApiConstant;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
@@ -94,10 +95,11 @@ public class EnterPhoneActivity extends AppCompatActivity {
     }
 
 
-    private void startPhoneNumberVerification(String phoneNumber) {
+    private void startPhoneNumberVerification(String phoneNumbers) {
+        phoneNumbers = ApiConstant.COUNTRY_CODE + phoneNumbers;
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(mAuth)
-                        .setPhoneNumber(phoneNumber)
+                        .setPhoneNumber(phoneNumbers)
                         .setTimeout(60L, TimeUnit.SECONDS)
                         .setActivity(this)
                         .setCallbacks(mCallbacks)

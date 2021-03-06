@@ -18,17 +18,19 @@ public class AdsActionDialogFragment extends BottomSheetDialogFragment {
     private static final String ARG_ITEM_ID = "item_id";
     private FragmentAdsActionDialogBinding binding;
     private int id;
+    private int position;
     private ConfirmDialogFragment.OnDeleteItemConfirmListener onDeleteItemConfirmListener;
     private OnAdsClickListener onAdsClickListener;
 
-    public AdsActionDialogFragment(int id, ConfirmDialogFragment.OnDeleteItemConfirmListener onDeleteItemConfirmListener, OnAdsClickListener onAdsClickListener) {
+    public AdsActionDialogFragment(int id, ConfirmDialogFragment.OnDeleteItemConfirmListener onDeleteItemConfirmListener, OnAdsClickListener onAdsClickListener, int position) {
         this.onDeleteItemConfirmListener = onDeleteItemConfirmListener;
         this.onAdsClickListener = onAdsClickListener;
         this.id = id;
+        this.position = position;
     }
 
-    public static AdsActionDialogFragment newInstance(int id, ConfirmDialogFragment.OnDeleteItemConfirmListener onDeleteItemConfirmListener, OnAdsClickListener onAdsClickListener) {
-        final AdsActionDialogFragment fragment = new AdsActionDialogFragment(id, onDeleteItemConfirmListener, onAdsClickListener);
+    public static AdsActionDialogFragment newInstance(int id, ConfirmDialogFragment.OnDeleteItemConfirmListener onDeleteItemConfirmListener, OnAdsClickListener onAdsClickListener, int position) {
+        final AdsActionDialogFragment fragment = new AdsActionDialogFragment(id, onDeleteItemConfirmListener, onAdsClickListener, position);
         final Bundle args = new Bundle();
         args.putInt(ARG_ITEM_ID, id);
         fragment.setArguments(args);
@@ -48,7 +50,7 @@ public class AdsActionDialogFragment extends BottomSheetDialogFragment {
         binding.tvDeletePromotion.setOnClickListener(v -> {
             dismiss();
             if (id != 0)
-                ConfirmDialogFragment.newInstance(id, onDeleteItemConfirmListener).show(getActivity().getSupportFragmentManager(), "ConfirmDialogFragment");
+                ConfirmDialogFragment.newInstance(id, onDeleteItemConfirmListener, position).show(getActivity().getSupportFragmentManager(), "ConfirmDialogFragment");
         });
 
         binding.tvEditPromotion.setOnClickListener(v -> {
@@ -66,5 +68,7 @@ public class AdsActionDialogFragment extends BottomSheetDialogFragment {
         void onEdit(int id);
 
         void onDetailsPreview(int id);
+
+        void onDelete(int position);
     }
 }

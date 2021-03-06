@@ -1,8 +1,6 @@
 package com.bik.telefood.ui.more;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -206,9 +204,7 @@ public class moreFragment extends Fragment {
         categoriesViewModel.deleteCategoriesTable();
 
         // Cache new status >> SIGN OUT
-        SharedPreferences.Editor editor = getActivity().getSharedPreferences(AppConstant.USER_STATUS, Context.MODE_PRIVATE).edit();
-        editor.putBoolean(AppConstant.USER_STATUS, false);
-        editor.apply();
+        SharedPreferencesHelper.clearAllData(getContext());
 /*
         FirebaseMessaging firebaseMessaging = FirebaseMessaging.getInstance();
         firebaseMessaging.setAutoInitEnabled(false);

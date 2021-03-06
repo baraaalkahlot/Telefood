@@ -7,9 +7,5 @@
     android:layout_marginEnd="@dimen/size_small"
     android:background="@drawable/shape_round_rectangle"
     android:scaleType="centerInside"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
     app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerCut"
     app:srcCompat="@drawable/ic_add_photo" />

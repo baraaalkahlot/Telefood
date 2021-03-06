@@ -55,5 +55,6 @@
     <dimen name="radius_corner_add_image_shape">8dp</dimen>
     <dimen name="size_height_upload_lottie">100dp</dimen>
     <dimen name="size_radius_product">4dp</dimen>
+    <dimen name="size_attach_chat">200dp</dimen>
 
 </resources>

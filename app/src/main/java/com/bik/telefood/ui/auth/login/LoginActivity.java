@@ -73,18 +73,18 @@ public class LoginActivity extends AppCompatActivity {
     private void login(int phoneNumber, String password) {
         loginViewModel.addUserSection(phoneNumber, password, this, getSupportFragmentManager()).observe(this, loginResponse -> {
             // Cache Token
-            SharedPreferences.Editor preferencesToken = getSharedPreferences(ApiConstant.AUTHORIZATION, Context.MODE_PRIVATE).edit();
+            SharedPreferences.Editor preferencesToken = getSharedPreferences(AppConstant.ADD_DATA, Context.MODE_PRIVATE).edit();
             preferencesToken.putString(ApiConstant.AUTHORIZATION, loginResponse.getAccessToken());
             preferencesToken.apply();
 
             // Cache Login Status
-            SharedPreferences.Editor editor = getSharedPreferences(AppConstant.USER_STATUS, Context.MODE_PRIVATE).edit();
+            SharedPreferences.Editor editor = getSharedPreferences(AppConstant.ADD_DATA, Context.MODE_PRIVATE).edit();
             editor.putBoolean(AppConstant.USER_STATUS, true);
             editor.apply();
 
             // Cache User Type
             String userRole = (loginResponse.getUser().getRole().equals(ApiConstant.ROLE_USER)) ? ApiConstant.ROLE_USER : ApiConstant.ROLE_VENDOR;
-            SharedPreferences.Editor typeEditor = getSharedPreferences(AppConstant.USER_TYPE, Context.MODE_PRIVATE).edit();
+            SharedPreferences.Editor typeEditor = getSharedPreferences(AppConstant.ADD_DATA, Context.MODE_PRIVATE).edit();
             typeEditor.putString(AppConstant.USER_TYPE, userRole);
             typeEditor.apply();
 

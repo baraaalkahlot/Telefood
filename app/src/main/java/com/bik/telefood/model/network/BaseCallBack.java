@@ -90,7 +90,7 @@ public abstract class BaseCallBack<T> implements Callback<T> {
     private void onUnAuthorized() {
         Toast.makeText(context, R.string.error_message_un_authorized, Toast.LENGTH_LONG).show();
         // Cache new status >> SIGN OUT
-        SharedPreferences.Editor editor = context.getSharedPreferences(AppConstant.USER_STATUS, Context.MODE_PRIVATE).edit();
+        SharedPreferences.Editor editor = context.getSharedPreferences(AppConstant.ADD_DATA, Context.MODE_PRIVATE).edit();
         editor.putBoolean(AppConstant.USER_STATUS, false);
         editor.apply();
 

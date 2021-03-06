@@ -51,7 +51,9 @@
                 android:id="@+id/et_phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/label_phone_number" />
+                android:digits="0123456789"
+                android:hint="@string/label_phone_number"
+                android:inputType="phone" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton

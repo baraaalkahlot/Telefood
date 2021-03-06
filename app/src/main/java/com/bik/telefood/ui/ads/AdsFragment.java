@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -130,6 +129,7 @@ public class AdsFragment extends Fragment implements AdsImagesAdapter.OnCancelIm
             // When an Image is picked
             if (requestCode == ACTION_PICK_IMAGE && resultCode == Activity.RESULT_OK && null != data) {
 
+                binding.tvAttachImage.setError(null);
                 binding.btnSend.setEnabled(false);
                 showUploadAnim();
                 binding.ivResetView.setVisibility(View.VISIBLE);
@@ -192,6 +192,11 @@ public class AdsFragment extends Fragment implements AdsImagesAdapter.OnCancelIm
         binding.spCategory.setText("");
         binding.etProductPrice.setText("");
         binding.etProductDesc.setText("");
+        binding.ilProductName.setError(null);
+        binding.ilCategory.setError(null);
+        binding.ilProductPrice.setError(null);
+        binding.ilProductDesc.setError(null);
+        binding.tvAttachImage.setError(null);
     }
 
     private void resetRecyclerView() {
@@ -232,8 +237,6 @@ public class AdsFragment extends Fragment implements AdsImagesAdapter.OnCancelIm
         adsViewModel.uploadImage(body, getContext(), getActivity().getSupportFragmentManager()).observe(getViewLifecycleOwner(), uploadImagesResponse -> {
             imagesId.add(uploadImagesResponse.getImageId());
             imageCounter++;
-            Log.d("wasd", "uploadImage: real" + UPLOADED_IMAGES_COUNT);
-            Log.d("wasd", "uploadImage: counter" + imageCounter);
             if (imageCounter == UPLOADED_IMAGES_COUNT) {
                 binding.btnSend.setEnabled(true);
                 hideUploadAnim();

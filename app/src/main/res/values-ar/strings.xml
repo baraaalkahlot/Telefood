@@ -138,7 +138,7 @@
     <string name="unknown">غير معروف</string>
     <string name="clear_filter">ازالة الفلاتر</string>
     <string name="msg_visitor_login">نأسف عليك الدخول لحسابك أولا هل لديك حساب؟</string>
-    <string name="bind_price">%s ريال</string>
+    <string name="bind_price">%s SAR</string>
     <string name="title_empty_status_product">لا يوجد اي منتج مطابق لنتيجة البحث</string>
     <string name="label_open">مفتوح</string>
     <string name="label_closed">مغلق</string>

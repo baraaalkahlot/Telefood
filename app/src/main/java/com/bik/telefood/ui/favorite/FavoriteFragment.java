@@ -8,8 +8,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
+import com.bik.telefood.CommonUtils.LoginDialog;
+import com.bik.telefood.CommonUtils.SharedPreferencesHelper;
 import com.bik.telefood.R;
 import com.bik.telefood.databinding.FragmentFavoriteBinding;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -17,7 +18,6 @@ import com.google.android.material.tabs.TabLayoutMediator;
 public class FavoriteFragment extends Fragment {
 
     private FragmentFavoriteBinding binding;
-    private FavoriteViewModel mViewModel;
 
     public static FavoriteFragment newInstance() {
         return new FavoriteFragment();
@@ -26,25 +26,19 @@ public class FavoriteFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentFavoriteBinding.inflate(getLayoutInflater(), container, false);
-        binding.pager.setAdapter(new FavoriteAdapter(getActivity()));
-        new TabLayoutMediator(binding.tabLayout, binding.pager,
-                (tab, position) -> {
-                    if (position == 1)
-                        tab.setText(R.string.title_product);
-                    else tab.setText(R.string.title_provider);
-                }
-        ).attach();
-        mViewModel = new ViewModelProvider(this).get(FavoriteViewModel.class);
-        mViewModel.getText().observe(getViewLifecycleOwner(), s -> {
-        });
+
+        if (!SharedPreferencesHelper.isLoggedIn(getActivity().getApplication())) {
+            new LoginDialog().show(getActivity().getSupportFragmentManager(), "LoginDialog");
+        } else {
+            binding.pager.setAdapter(new FavoriteAdapter(getActivity()));
+            new TabLayoutMediator(binding.tabLayout, binding.pager,
+                    (tab, position) -> {
+                        if (position == 1)
+                            tab.setText(R.string.title_product);
+                        else tab.setText(R.string.title_provider);
+                    }
+            ).attach();
+        }
         return binding.getRoot();
     }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(FavoriteViewModel.class);
-        // TODO: Use the ViewModel
-    }
-
 }

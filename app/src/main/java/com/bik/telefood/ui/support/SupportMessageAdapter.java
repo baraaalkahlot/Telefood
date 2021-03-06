@@ -1,7 +1,10 @@
 package com.bik.telefood.ui.support;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -58,31 +61,67 @@ public class SupportMessageAdapter extends RecyclerView.Adapter {
         return messages.size();
     }
 
-    public class SentViewHolder extends RecyclerView.ViewHolder {
+    public class SentViewHolder extends RecyclerView.ViewHolder implements ChatAttachmentAdapter.OnAttachClickListener {
         private final ItemSentMessaeBinding binding;
 
         public SentViewHolder(@NonNull ItemSentMessaeBinding itemView) {
             super(itemView.getRoot());
             binding = itemView;
+            binding.tvDate.setVisibility(View.GONE);
         }
 
         public void bind(int position) {
             SupportMessageModel supportMessageModel = messages.get(position);
             binding.tvSentMessage.setText(supportMessageModel.getMsg());
+            if (!supportMessageModel.getMsgAttachment().isEmpty()) {
+                binding.rvAttachment.setVisibility(View.VISIBLE);
+                binding.tvSentMessage.setVisibility(View.GONE);
+                ChatAttachmentAdapter chatAttachmentAdapter = new ChatAttachmentAdapter(supportMessageModel.getMsgAttachment(), this);
+                binding.rvAttachment.setAdapter(chatAttachmentAdapter);
+                chatAttachmentAdapter.notifyDataSetChanged();
+            } else {
+                binding.rvAttachment.setVisibility(View.GONE);
+                binding.tvSentMessage.setVisibility(View.VISIBLE);
+            }
+        }
+
+        @Override
+        public void onAttachClick(Uri uri) {
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(uri);
+            context.startActivity(i);
         }
     }
 
-    public class ReceivedViewHolder extends RecyclerView.ViewHolder {
+    public class ReceivedViewHolder extends RecyclerView.ViewHolder implements ChatAttachmentAdapter.OnAttachClickListener {
         private final ItemRecivedMessageBinding binding;
 
         public ReceivedViewHolder(@NonNull ItemRecivedMessageBinding itemView) {
             super(itemView.getRoot());
             binding = itemView;
+            binding.tvDate.setVisibility(View.GONE);
         }
 
         public void bind(int position) {
             SupportMessageModel supportMessageModel = messages.get(position);
             binding.tvRecivedMessage.setText(supportMessageModel.getMsg());
+            if (!supportMessageModel.getMsgAttachment().isEmpty()) {
+                binding.rvAttachment.setVisibility(View.VISIBLE);
+                binding.tvRecivedMessage.setVisibility(View.GONE);
+                ChatAttachmentAdapter chatAttachmentAdapter = new ChatAttachmentAdapter(supportMessageModel.getMsgAttachment(), this);
+                binding.rvAttachment.setAdapter(chatAttachmentAdapter);
+                chatAttachmentAdapter.notifyDataSetChanged();
+            } else {
+                binding.rvAttachment.setVisibility(View.GONE);
+                binding.tvRecivedMessage.setVisibility(View.VISIBLE);
+            }
+        }
+
+        @Override
+        public void onAttachClick(Uri uri) {
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(uri);
+            context.startActivity(i);
         }
     }
 

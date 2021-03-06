@@ -18,7 +18,6 @@ import com.bik.telefood.model.entity.general.services.ServicesListModel;
 import com.bik.telefood.model.network.ApiConstant;
 import com.bik.telefood.ui.common.adapter.CategoryAdapter;
 import com.bik.telefood.ui.common.adapter.ProductAdapter;
-import com.bik.telefood.ui.common.viewmodel.CategoriesViewModel;
 import com.bik.telefood.ui.common.viewmodel.ToggleFavoriteViewModel;
 import com.bik.telefood.ui.common.viewmodel.VendorsViewModel;
 import com.ethanhua.skeleton.Skeleton;
@@ -28,7 +27,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProvidersDetailsActivity extends AppCompatActivity implements CategoryAdapter.OnCategorySelectListener, ProductAdapter.OnProductClickListener {
+public class ProvidersDetailsActivity extends AppCompatActivity implements ProductAdapter.OnProductClickListener {
 
     private static final int ACTION_GO_TO_PRODUCT_DETAILS = 103;
     private ActivityProvidersDetailsBinding binding;
@@ -48,11 +47,6 @@ public class ProvidersDetailsActivity extends AppCompatActivity implements Categ
         id = getIntent().getIntExtra(AppConstant.USER_ID, 0);
         ToggleFavoriteViewModel toggleFavoriteViewModel = new ViewModelProvider(this).get(ToggleFavoriteViewModel.class);
         vendorsViewModel = new ViewModelProvider(this).get(VendorsViewModel.class);
-        CategoriesViewModel categoriesViewModel = new ViewModelProvider(this).get(CategoriesViewModel.class);
-        categoriesViewModel.getCategoriesListLiveData().observe(this, categoryModelList -> {
-            categoryAdapter = new CategoryAdapter(categoryModelList, this, this);
-            binding.rvCategory.setAdapter(categoryAdapter);
-        });
 
         servicesItemModels = new ArrayList<>();
         productAdapter = new ProductAdapter(servicesItemModels, this, this);
@@ -103,13 +97,6 @@ public class ProvidersDetailsActivity extends AppCompatActivity implements Categ
     private void hideEmptyStatus() {
         binding.rvProduct.setVisibility(View.VISIBLE);
         binding.includeEmptyStatusProduct.constraintLayoutEmptyStatusProduct.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void onSelect(int id) {
-        servicesItemModels.clear();
-        productAdapter.resetPager();
-        loadData(1);
     }
 
     @Override

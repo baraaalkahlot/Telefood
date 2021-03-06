@@ -131,8 +131,8 @@ public class MyAdsActivity extends AppCompatActivity implements MyAdsAdapter.OnC
     }
 
     @Override
-    public void onClick(int id) {
-        AdsActionDialogFragment.newInstance(id, this, this).show(getSupportFragmentManager(), "AdsActionDialogFragment");
+    public void onClick(int id, int position) {
+        AdsActionDialogFragment.newInstance(id, this, this, position).show(getSupportFragmentManager(), "AdsActionDialogFragment");
     }
 
     @Override
@@ -143,9 +143,11 @@ public class MyAdsActivity extends AppCompatActivity implements MyAdsAdapter.OnC
     }
 
     @Override
-    public void onDelete() {
-        skeletonScreen.show();
-        loadMyAds(params);
+    public void onDelete(int position) {
+        services.remove(position);
+        myAdsAdapter.notifyItemRemoved(position);
+        myAdsAdapter.notifyItemRangeChanged(position, services.size());
+        if (services.isEmpty()) showEmptyStatus();
     }
 
     @Override

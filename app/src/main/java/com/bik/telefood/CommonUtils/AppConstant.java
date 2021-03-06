@@ -2,6 +2,7 @@ package com.bik.telefood.CommonUtils;
 
 public interface AppConstant {
 
+    String ADD_DATA = "app data";
     String USER_STATUS = "user status";
     String USER_TYPE = "user type";
     String USER_ID = "user id";

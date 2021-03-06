@@ -172,6 +172,7 @@ public class EditAdsActivity extends AppCompatActivity implements AdsImagesAdapt
             // When an Image is picked
             if (requestCode == ACTION_PICK_IMAGE && resultCode == Activity.RESULT_OK && null != data) {
 
+                resetRecyclerView();
                 binding.btnSend.setEnabled(false);
                 showUploadAnim();
                 binding.ivResetView.setVisibility(View.VISIBLE);

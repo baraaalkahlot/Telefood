@@ -14,7 +14,7 @@ public class SupportMessageModel {
     private String from;
     @SerializedName("msgAttachment")
     @Expose
-    private List<Object> msgAttachment = null;
+    private List<String> msgAttachment = null;
 
     public String getMsg() {
         return msg;
@@ -32,11 +32,11 @@ public class SupportMessageModel {
         this.from = from;
     }
 
-    public List<Object> getMsgAttachment() {
+    public List<String> getMsgAttachment() {
         return msgAttachment;
     }
 
-    public void setMsgAttachment(List<Object> msgAttachment) {
+    public void setMsgAttachment(List<String> msgAttachment) {
         this.msgAttachment = msgAttachment;
     }
 }

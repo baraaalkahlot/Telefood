@@ -44,6 +44,8 @@
             android:id="@+id/pin_entry_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:digits="1234567890"
+            android:inputType="number"
             android:layout_marginTop="@dimen/size_xx_large"
             android:cursorVisible="false"
             android:maxLength="6"

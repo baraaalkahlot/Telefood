@@ -73,7 +73,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements ImageSl
             localConstant.getCategoryNameById(Integer.parseInt(product_category_id), getSupportFragmentManager()).observe(this, s -> binding.tvCategory.setText(s));
 
             binding.tvProductName.setText(product_name);
-            binding.tvProductPrice.setText(product_price);
+            binding.tvProductPrice.setText(getString(R.string.bind_price, product_price));
             binding.tvProductDesc.setText(product_desc);
 
             binding.tvFullName.setText(shortUserInfoModel.getName());

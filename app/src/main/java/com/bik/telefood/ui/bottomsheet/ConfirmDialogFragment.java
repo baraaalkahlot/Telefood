@@ -20,15 +20,17 @@ public class ConfirmDialogFragment extends BottomSheetDialogFragment {
     private static final String ARG_ITEM_ID = "item_id";
     private FragmentConfirmDialogBinding binding;
     private int id;
+    private int position;
     private AdsViewModel AdsViewModel;
     private OnDeleteItemConfirmListener onDeleteItemConfirmListener;
 
-    public ConfirmDialogFragment(OnDeleteItemConfirmListener onDeleteItemConfirmListener) {
+    public ConfirmDialogFragment(OnDeleteItemConfirmListener onDeleteItemConfirmListener, int position) {
         this.onDeleteItemConfirmListener = onDeleteItemConfirmListener;
+        this.position = position;
     }
 
-    public static ConfirmDialogFragment newInstance(int id, OnDeleteItemConfirmListener onDeleteItemConfirmListener) {
-        final ConfirmDialogFragment fragment = new ConfirmDialogFragment(onDeleteItemConfirmListener);
+    public static ConfirmDialogFragment newInstance(int id, OnDeleteItemConfirmListener onDeleteItemConfirmListener, int position) {
+        final ConfirmDialogFragment fragment = new ConfirmDialogFragment(onDeleteItemConfirmListener, position);
         final Bundle args = new Bundle();
         args.putInt(ARG_ITEM_ID, id);
         fragment.setArguments(args);
@@ -49,11 +51,11 @@ public class ConfirmDialogFragment extends BottomSheetDialogFragment {
         binding.btnCancelDialog.setOnClickListener(v -> dismiss());
         binding.btnConfimDialog.setOnClickListener(v -> {
             AdsViewModel.deleteService(id, getContext(), getActivity().getSupportFragmentManager()).observe(getViewLifecycleOwner(), mainResponse -> dismiss());
-            onDeleteItemConfirmListener.onDelete();
+            onDeleteItemConfirmListener.onDelete(position);
         });
     }
 
     public interface OnDeleteItemConfirmListener {
-        void onDelete();
+        void onDelete(int position);
     }
 }

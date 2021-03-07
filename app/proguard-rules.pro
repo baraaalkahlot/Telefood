@@ -19,3 +19,13 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-keepclassmembers class com.bik.telefood.model.database.* { *;}
+-keepclassmembers class com.bik.telefood.model.entity.auth.LoginResponse { *; }
+-keepclassmembers class com.bik.telefood.model.entity.Autherntication.*{ *;}
+-keepclassmembers class com.bik.telefood.model.entity.Autherntication.vendors.*{ *;}
+-keepclassmembers class com.bik.telefood.model.entity.*{ *;}
+-keepclassmembers class com.bik.telefood.model.entity.general.*{ *;}
+-keepclassmembers class com.bik.telefood.model.entity.general.services.*{ *;}
+-keepclassmembers class com.bik.telefood.model.entity.general.singleservices.*{ *;}
+-keepclassmembers class com.bik.telefood.model.entity.support.*{ *;}

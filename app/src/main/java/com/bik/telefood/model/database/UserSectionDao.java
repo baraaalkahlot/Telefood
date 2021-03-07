@@ -8,7 +8,6 @@ import androidx.room.Query;
 
 import com.bik.telefood.model.entity.general.UserModel;
 
-
 @Dao
 public interface UserSectionDao {
     @Query("SELECT * FROM user_section_table LIMIT 1")

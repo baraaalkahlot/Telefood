@@ -1,13 +1,18 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
-    id 'com.jakewharton.hugo'
 }
 
 android {
     signingConfigs {
         debug {
             storeFile file('D:\\Programming\\Andriod\\Projects\\Telefood\\key store.jks')
+            storePassword 'Telefood@@'
+            keyAlias 'Telefood'
+            keyPassword 'Telefood@@'
+        }
+        release {
+            storeFile file('D:\\Programming\\Andriod\\Projects\\Telefood\\relesae_key_store.jks')
             storePassword 'Telefood@@'
             keyAlias 'Telefood'
             keyPassword 'Telefood@@'
@@ -29,11 +34,23 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
         debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debug
+        }
+        debugMini {
+            initWith debug
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-rules.pro'
+            matchingFallbacks = ['debug']
         }
     }
     buildFeatures {
@@ -57,7 +74,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.preference:preference:1.1.1'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    testImplementation 'junit:junit:4.13.1'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 

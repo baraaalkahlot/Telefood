@@ -29,7 +29,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements ImageSl
 
     private ActivityProductDetailsBinding binding;
     private int product_id;
-    private boolean favoriteUpdated = false;
+    private int product_vendor_id = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +56,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements ImageSl
         servicesViewModel.getSingleServicesList(product_id, this, getSupportFragmentManager(), true).observe(this, servicesResponse -> {
             SingleServiceModel singleServiceModel = servicesResponse.getService();
             ShortUserInfoModel shortUserInfoModel = singleServiceModel.getUser();
+            product_vendor_id = (int) shortUserInfoModel.getId();
             String product_name = singleServiceModel.getName();
             String product_category_id = singleServiceModel.getCategory();
             String product_price = singleServiceModel.getPrice();
@@ -97,13 +98,23 @@ public class ProductDetailsActivity extends AppCompatActivity implements ImageSl
 
             binding.btnFavorite.setOnClickListener(v -> toggleFavorite());
 
+            binding.tvFullName.setOnClickListener(v -> goToProviderPage());
+            binding.ivUserProfileImage.setOnClickListener(v -> goToProviderPage());
+
         });
+    }
+
+    private void goToProviderPage() {
+        if (product_vendor_id != 0) {
+            Intent intent = new Intent(this, ProvidersDetailsActivity.class);
+            intent.putExtra(AppConstant.USER_ID, product_vendor_id);
+            startActivity(intent);
+        }
     }
 
     private void toggleFavorite() {
         ToggleFavoriteViewModel toggleFavoriteViewModel = new ViewModelProvider(this).get(ToggleFavoriteViewModel.class);
-        toggleFavoriteViewModel.favoriteToggle(ApiConstant.FAVORITE_TYPE_SERVICE, product_id, this, getSupportFragmentManager()).observe(this, mainResponse -> favoriteUpdated = true);
-        setResult(RESULT_OK);
+        toggleFavoriteViewModel.favoriteToggle(ApiConstant.FAVORITE_TYPE_SERVICE, product_id, this, getSupportFragmentManager()).observe(this, mainResponse -> setResult(RESULT_OK));
     }
 
     @Override

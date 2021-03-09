@@ -3,21 +3,23 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
-android {
-    signingConfigs {
-        debug {
-            storeFile file('D:\\Programming\\Andriod\\Projects\\Telefood\\key store.jks')
-            storePassword 'Telefood@@'
-            keyAlias 'Telefood'
-            keyPassword 'Telefood@@'
-        }
-        release {
-            storeFile file('D:\\Programming\\Andriod\\Projects\\Telefood\\relesae_key_store.jks')
-            storePassword 'Telefood@@'
-            keyAlias 'Telefood'
-            keyPassword 'Telefood@@'
+allprojects {
+    afterEvaluate { project ->
+        def propsFile = rootProject.file('keystore.properties')
+        def configName = 'release'
+
+        if (propsFile.exists() && android.signingConfigs.hasProperty(configName)) {
+            def props = new Properties()
+            props.load(new FileInputStream(propsFile))
+            android.signingConfigs[configName].storeFile = file(props['storeFile'])
+            android.signingConfigs[configName].storePassword = props['storePassword']
+            android.signingConfigs[configName].keyAlias = props['keyAlias']
+            android.signingConfigs[configName].keyPassword = props['keyPassword']
         }
     }
+}
+
+android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
@@ -37,7 +39,6 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
         }
         debug {
             minifyEnabled false

@@ -25,6 +25,7 @@ import com.bik.telefood.databinding.ActivityMessageBinding;
 import com.bik.telefood.model.entity.support.TicketModel;
 import com.bik.telefood.model.network.ApiConstant;
 import com.bik.telefood.ui.bottomsheet.ActionTypeDialogFragment;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
-public class SupportMessageActivity extends AppCompatActivity implements ActionTypeDialogFragment.OnActionSelectListener {
+public class SupportMessageActivity extends AppCompatActivity implements ActionTypeDialogFragment.OnActionSelectListener, SupportMessageAdapter.OnChatAdapterListener {
     private static final int ACTION_PICK_FILE = 2;
     private static final int ACTION_PICK_IMAGE = 105;
     private ActivityMessageBinding binding;
@@ -192,5 +193,38 @@ public class SupportMessageActivity extends AppCompatActivity implements ActionT
     @Override
     public void onAttachPhotos() {
         pickImage();
+    }
+
+    @Override
+    public void onAttachClick(Uri uri) {
+        try {
+            String path = uri.getPath();
+            if (path.contains("pdf")) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(uri);
+                startActivity(i);
+            } else {
+                showPreviewContent();
+                Picasso.get().load(uri).error(R.drawable.ic_baseline_error).into(binding.ivPreview);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void hidePreviewContent() {
+        binding.ivPreview.setVisibility(View.GONE);
+    }
+
+    private void showPreviewContent() {
+        binding.ivPreview.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (binding.ivPreview.getVisibility() == View.VISIBLE)
+            hidePreviewContent();
+        else
+            super.onBackPressed();
     }
 }

@@ -2,6 +2,7 @@ package com.bik.telefood.ui.support;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +21,7 @@ import java.util.List;
 public class TechnicalSupportActivity extends AppCompatActivity implements SupportTicketAdapter.OnCardClickListener {
 
     private static final int ACTION_GO_TO_ADD_TICKET = 111;
+    private ActivityTechnicalSupportBinding binding;
     private SupportTicketAdapter supportTicketAdapter;
     private List<TicketModel> tickets;
     private SkeletonScreen skeletonScreen;
@@ -28,7 +30,7 @@ public class TechnicalSupportActivity extends AppCompatActivity implements Suppo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityTechnicalSupportBinding binding = ActivityTechnicalSupportBinding.inflate(getLayoutInflater());
+        binding = ActivityTechnicalSupportBinding.inflate(getLayoutInflater());
         supportViewModel = new ViewModelProvider(this).get(SupportViewModel.class);
         setContentView(binding.getRoot());
 
@@ -49,8 +51,17 @@ public class TechnicalSupportActivity extends AppCompatActivity implements Suppo
     private void loadTicketList() {
         supportViewModel.getMyTicket(this, getSupportFragmentManager()).observe(this, myTicketResponse -> {
             skeletonScreen.hide();
-            tickets.addAll(myTicketResponse.getTickets());
-            supportTicketAdapter.notifyDataSetChanged();
+            if (myTicketResponse.getTickets() == null || myTicketResponse.getTickets().isEmpty()) {
+                binding.rvTicket.setVisibility(View.GONE);
+                binding.lottieSupport.setVisibility(View.VISIBLE);
+                binding.lottieSupport.playAnimation();
+            } else {
+                tickets.addAll(myTicketResponse.getTickets());
+                binding.lottieSupport.cancelAnimation();
+                binding.lottieSupport.setVisibility(View.GONE);
+                binding.rvTicket.setVisibility(View.VISIBLE);
+                supportTicketAdapter.notifyDataSetChanged();
+            }
         });
     }
 

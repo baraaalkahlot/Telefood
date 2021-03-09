@@ -49,8 +49,13 @@ public class moreFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentMoreBinding.inflate(inflater, container, false);
 
-        if (!SharedPreferencesHelper.getUserType(getActivity().getApplication()).equals(ApiConstant.ROLE_VENDOR))
+        if (!SharedPreferencesHelper.getUserType(getActivity().getApplication()).equals(ApiConstant.ROLE_VENDOR)) {
             binding.cardMyAds.cardViewItemMore.setVisibility(View.GONE);
+            binding.includeCardUserInfo.rbSupplierRating.setVisibility(View.GONE);
+            binding.includeCardUserInfo.tvRemainingDaysInPlan.setVisibility(View.GONE);
+            binding.includeCardUserInfo.tvPlanName.setText(R.string.not_subscribed);
+
+        }
 
         binding.cardMyAds.ivItemMore.setImageResource(R.drawable.ic_ads);
         binding.cardProviders.ivItemMore.setImageResource(R.drawable.ic_providers);

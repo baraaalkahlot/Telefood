@@ -15,22 +15,22 @@ public class SharedPreferencesHelper {
 
     public static String getToken(Application application) {
         SharedPreferences preferences = application.getSharedPreferences(AppConstant.ADD_DATA, Context.MODE_PRIVATE);
-        return preferences.getString(ApiConstant.AUTHORIZATION, "Empty");
+        return preferences.getString(ApiConstant.AUTHORIZATION, AppConstant.EMPTY);
     }
 
     public static String getUserType(Application application) {
         SharedPreferences preferences = application.getSharedPreferences(AppConstant.ADD_DATA, Context.MODE_PRIVATE);
-        return preferences.getString(AppConstant.USER_TYPE, "Empty");
+        return preferences.getString(AppConstant.USER_TYPE, AppConstant.EMPTY);
     }
 
     public static String getUserId(Application application) {
         SharedPreferences preferences = application.getSharedPreferences(AppConstant.ADD_DATA, Context.MODE_PRIVATE);
-        return preferences.getString(AppConstant.USER_ID, "Empty");
+        return preferences.getString(AppConstant.USER_ID, AppConstant.EMPTY);
     }
 
     public static String getUserName(Application application) {
         SharedPreferences preferences = application.getSharedPreferences(AppConstant.ADD_DATA, Context.MODE_PRIVATE);
-        return preferences.getString(AppConstant.USER_NAME, "Empty");
+        return preferences.getString(AppConstant.USER_NAME, AppConstant.EMPTY);
     }
 /*
     public static String getFcmToken(Application application) {

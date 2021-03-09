@@ -1,7 +1,5 @@
 package com.bik.telefood.ui.support;
 
-import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,16 +20,11 @@ public class SupportMessageAdapter extends RecyclerView.Adapter {
     private static final int VIEW_TYPE_MESSAGE_SENT = 1;
     private static final int VIEW_TYPE_MESSAGE_RECEIVED = 2;
     private List<SupportMessageModel> messages;
-    private Context context;
+    private OnChatAdapterListener listener;
 
-    public SupportMessageAdapter(List<SupportMessageModel> messages, Context context) {
+    public SupportMessageAdapter(List<SupportMessageModel> messages, OnChatAdapterListener listener) {
         this.messages = messages;
-        this.context = context;
-    }
-
-    public void setMessages(List<SupportMessageModel> messages) {
-        messages.addAll(messages);
-        notifyDataSetChanged();
+        this.listener = listener;
     }
 
     @NonNull
@@ -66,6 +59,10 @@ public class SupportMessageAdapter extends RecyclerView.Adapter {
         return messages.size();
     }
 
+    public interface OnChatAdapterListener {
+        void onAttachClick(Uri uri);
+    }
+
     public class SentViewHolder extends RecyclerView.ViewHolder implements ChatAttachmentAdapter.OnAttachClickListener {
         private final ItemSentMessaeBinding binding;
 
@@ -92,9 +89,7 @@ public class SupportMessageAdapter extends RecyclerView.Adapter {
 
         @Override
         public void onAttachClick(Uri uri) {
-            Intent i = new Intent(Intent.ACTION_VIEW);
-            i.setData(uri);
-            context.startActivity(i);
+            listener.onAttachClick(uri);
         }
     }
 
@@ -124,10 +119,7 @@ public class SupportMessageAdapter extends RecyclerView.Adapter {
 
         @Override
         public void onAttachClick(Uri uri) {
-            Intent i = new Intent(Intent.ACTION_VIEW);
-            i.setData(uri);
-            context.startActivity(i);
+            listener.onAttachClick(uri);
         }
     }
-
 }

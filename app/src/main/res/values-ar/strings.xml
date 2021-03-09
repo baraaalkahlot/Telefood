@@ -149,4 +149,5 @@
     <string name="title_empty_status_favorite_providers">لا يوجد اي مزود في مفضلتك!</string>
     <string name="title_empty_status_favorite_product">لا يوجد اي منتج في مفضلتك!</string>
     <string name="days_left">بقي %s يوم</string>
+    <string name="not_subscribed">غير مشترك</string>
 </resources>

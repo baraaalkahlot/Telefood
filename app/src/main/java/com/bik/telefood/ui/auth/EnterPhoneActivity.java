@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.bik.telefood.CommonUtils.AppConstant;
 import com.bik.telefood.CommonUtils.ProgressBarDialog;
@@ -26,7 +25,6 @@ import java.util.concurrent.TimeUnit;
 
 public class EnterPhoneActivity extends AppCompatActivity {
     private ActivityEnterPhoneBinding binding;
-    private AuthViewModel authViewModel;
     private FirebaseAuth mAuth;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     private String phoneNumber;
@@ -38,7 +36,6 @@ public class EnterPhoneActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityEnterPhoneBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
         mAuth = FirebaseAuth.getInstance();
         progressBarDialog = new ProgressBarDialog();
 

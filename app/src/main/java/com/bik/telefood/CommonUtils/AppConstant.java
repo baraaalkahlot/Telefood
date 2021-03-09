@@ -21,4 +21,5 @@ public interface AppConstant {
     String PRODUCT_NO_FAVORITE = "no favorite";
     String TICKET_ID = "id";
     String TYPE_PDF = "application/pdf";
+    String EMPTY = "empty";
 }

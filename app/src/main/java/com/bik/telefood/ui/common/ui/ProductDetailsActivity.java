@@ -37,10 +37,12 @@ public class ProductDetailsActivity extends AppCompatActivity implements ImageSl
         binding = ActivityProductDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        if (SharedPreferencesHelper.getUserType(getApplication()).equals(ApiConstant.ROLE_USER)) {
+        String userType = SharedPreferencesHelper.getUserType(getApplication());
+        if (userType.equals(ApiConstant.ROLE_USER)) {
             binding.ivContactWithProvider.setVisibility(View.VISIBLE);
             binding.ivContactWithProvider.setOnClickListener(v -> startActivity(new Intent(this, MessageActivity.class)));
-        }
+        } else if (userType.equals(AppConstant.EMPTY)) binding.btnFavorite.setVisibility(View.GONE);
+
         Intent intent = getIntent();
         product_id = intent.getIntExtra(AppConstant.PRODUCT_ID, 0);
         boolean isFavorite = intent.getBooleanExtra(AppConstant.PRODUCT_IS_FAVORITE, false);

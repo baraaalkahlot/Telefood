@@ -16,6 +16,14 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_technical_support" />
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_support"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:lottie_rawRes="@raw/support"
+        app:lottie_repeatCount="50" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_contact_us"
         android:layout_width="wrap_content"

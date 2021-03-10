@@ -3,21 +3,6 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
-allprojects {
-    afterEvaluate { project ->
-        def propsFile = rootProject.file('keystore.properties')
-        def configName = 'release'
-
-        if (propsFile.exists() && android.signingConfigs.hasProperty(configName)) {
-            def props = new Properties()
-            props.load(new FileInputStream(propsFile))
-            android.signingConfigs[configName].storeFile = file(props['storeFile'])
-            android.signingConfigs[configName].storePassword = props['storePassword']
-            android.signingConfigs[configName].keyAlias = props['keyAlias']
-            android.signingConfigs[configName].keyPassword = props['keyPassword']
-        }
-    }
-}
 
 android {
     compileSdkVersion 30
@@ -34,24 +19,33 @@ android {
         signingConfig signingConfigs.debug
     }
 
+    signingConfigs {
+
+    release {
+        storeFile file('D:\\Programming\\Andriod\\Projects\\Telefood\\relesae_key_store.jks')
+        storePassword 'Telefood@@'
+        keyAlias 'Telefood'
+        keyPassword 'Telefood@@'
+    }
+        debug {
+            storeFile file('D:\\Programming\\Andriod\\Projects\\Telefood\\key store.jks')
+            storePassword 'Telefood@@'
+            keyAlias 'Telefood'
+            keyPassword 'Telefood@@'
+        }
+    }
     buildTypes {
         release {
             minifyEnabled true
             shrinkResources true
+            debuggable true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debug
-        }
-        debugMini {
-            initWith debug
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'),
-                    'proguard-rules.pro'
-            matchingFallbacks = ['debug']
         }
     }
     buildFeatures {

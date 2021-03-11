@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        if (SharedPreferencesHelper.getUserType(getApplication()).equals(AppConstant.EMPTY))
+            return false;
         getMenuInflater().inflate(R.menu.app_bar_menu, menu);
         return true;
     }

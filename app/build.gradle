@@ -3,6 +3,19 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+// Create a variable called keystorePropertiesFile, and initialize it to your
+// keystore.properties file, in the rootProject folder.
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def debugKeystorePropertiesFile = rootProject.file("debug.keystore.properties")
+
+// Initialize a new Properties() object called keystoreProperties.
+def keystoreProperties = new Properties()
+def debugKeystoreProperties = new Properties()
+
+// Load your keystore.properties file into the keystoreProperties object.
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+debugKeystoreProperties.load(new FileInputStream(debugKeystorePropertiesFile))
+
 
 android {
     compileSdkVersion 30
@@ -20,25 +33,24 @@ android {
     }
 
     signingConfigs {
-
-    release {
-        storeFile file('D:\\Programming\\Andriod\\Projects\\Telefood\\relesae_key_store.jks')
-        storePassword 'Telefood@@'
-        keyAlias 'Telefood'
-        keyPassword 'Telefood@@'
-    }
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
         debug {
-            storeFile file('D:\\Programming\\Andriod\\Projects\\Telefood\\key store.jks')
-            storePassword 'Telefood@@'
-            keyAlias 'Telefood'
-            keyPassword 'Telefood@@'
+            keyAlias debugKeystoreProperties['keyAlias']
+            keyPassword debugKeystoreProperties['keyPassword']
+            storeFile file(debugKeystoreProperties['storeFile'])
+            storePassword debugKeystoreProperties['storePassword']
         }
     }
     buildTypes {
         release {
             minifyEnabled true
             shrinkResources true
-            debuggable true
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }

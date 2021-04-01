@@ -1,6 +1,8 @@
 package com.bik.telefood.model.network;
 
 import android.app.Application;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.LocaleList;
 
@@ -26,7 +28,7 @@ public class NetworkUtils {
         this.application = application;
 
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
-        httpLoggingInterceptor.level(HttpLoggingInterceptor.Level.BODY);
+        httpLoggingInterceptor.level(HttpLoggingInterceptor.Level.NONE);
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(httpLoggingInterceptor)
@@ -57,15 +59,17 @@ public class NetworkUtils {
     }
 
     private Interceptor networkingParent() {
-        Interceptor interceptor;
-        interceptor = chain -> {
+        return chain -> {
             Request.Builder builder = chain.request().newBuilder()
-                    .addHeader(ApiConstant.ACCEPT_LANGUAGE, getLanguage())
+                    .addHeader(ApiConstant.ACCEPT_LANGUAGE, NetworkUtils.this.getLanguage())
                     .addHeader(ApiConstant.ACCEPT, "application/json")
-                    .addHeader(ApiConstant.AUTHORIZATION, ApiConstant.BEARER + SharedPreferencesHelper.getToken(application));
+                    .addHeader(ApiConstant.AUTHORIZATION, ApiConstant.BEARER + SharedPreferencesHelper.getToken(application))
+                    .addHeader(ApiConstant.FCM_TOKEN, SharedPreferencesHelper.getFcmToken(application))
+                    .addHeader(ApiConstant.PLATFORM, "android")
+                    .addHeader(ApiConstant.VERSION, getAppVersion());
             return chain.proceed(builder.build());
+
         };
-        return interceptor;
     }
 
     private String getLanguage() {
@@ -76,4 +80,13 @@ public class NetworkUtils {
         }
     }
 
+    private String getAppVersion() {
+        try {
+            PackageInfo pInfo = application.getPackageManager().getPackageInfo(application.getPackageName(), 0);
+            return String.valueOf(pInfo.versionCode);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            return "error occur while get version number";
+        }
+    }
 }

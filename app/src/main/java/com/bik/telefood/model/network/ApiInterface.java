@@ -11,6 +11,8 @@ import com.bik.telefood.model.entity.Autherntication.vendors.SingleVendorsRespon
 import com.bik.telefood.model.entity.Autherntication.vendors.VendorsResponse;
 import com.bik.telefood.model.entity.MainResponse;
 import com.bik.telefood.model.entity.auth.LoginResponse;
+import com.bik.telefood.model.entity.chat.CreateRoomResponse;
+import com.bik.telefood.model.entity.chat.MyRoomModel;
 import com.bik.telefood.model.entity.general.AboutAppResponse;
 import com.bik.telefood.model.entity.general.BankInfoResponse;
 import com.bik.telefood.model.entity.general.CitiesResponse;
@@ -175,4 +177,12 @@ public interface ApiInterface {
     //Notification
     @GET("myNotifications")
     Call<NotificationResponse> getNotification();
+
+    //Chat
+    @GET("chat/getRooms")
+    Call<MyRoomModel> getMyRooms();
+
+    @FormUrlEncoded
+    @POST("chat/creatRoom")
+    Call<CreateRoomResponse> createOrFindRoom(@Field(ApiConstant.USER_ID) int userId);
 }

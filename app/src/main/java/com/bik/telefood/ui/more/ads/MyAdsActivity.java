@@ -107,16 +107,15 @@ public class MyAdsActivity extends AppCompatActivity implements MyAdsAdapter.OnC
     }
 
     private void loadMyAds(HashMap<String, String> params) {
-        skeletonScreen.show();
         hideEmptyStatus();
         services.clear();
         adsViewModel.getMyAds(params, this, getSupportFragmentManager()).observe(this, myServiceResponse -> {
+            skeletonScreen.hide();
             if (myServiceResponse.getServices() == null || myServiceResponse.getServices().isEmpty()) {
                 showEmptyStatus();
             }
             services.addAll(myServiceResponse.getServices());
             myAdsAdapter.notifyDataSetChanged();
-            skeletonScreen.hide();
         });
     }
 

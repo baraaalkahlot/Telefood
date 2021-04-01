@@ -29,3 +29,5 @@
 -keepclassmembers class com.bik.telefood.model.entity.general.services.*{ *;}
 -keepclassmembers class com.bik.telefood.model.entity.general.singleservices.*{ *;}
 -keepclassmembers class com.bik.telefood.model.entity.support.*{ *;}
+-keepclassmembers class com.bik.telefood.model.entity.chat.*{ *;}
+-keepclassmembers class com.bik.telefood.ui.chat.*{ *;}

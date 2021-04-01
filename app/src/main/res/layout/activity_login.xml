@@ -37,12 +37,12 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_bank_name"
-            style="@style/SubTitleTheme"
+            android:text="@string/desc_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_marginTop="@dimen/size_small"
-            android:text="@string/desc_first_board"
+            app:fontFamily="@font/cairo_semibold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/materialTextView" />
 

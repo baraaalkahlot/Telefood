@@ -110,7 +110,6 @@ public class MealsFragment extends Fragment implements FilterDialogFragment.OnFi
     }
 
     private void loadServiceList(Integer page, HashMap<String, String> mParams) {
-        productSkeleton.show();
         hideEmptyStatus();
         servicesViewModel.getServices(page, mParams, getContext(), getActivity().getSupportFragmentManager(), false).observe(getViewLifecycleOwner(), servicesResponse -> {
             ServicesListModel servicesListModel = servicesResponse.getServices();

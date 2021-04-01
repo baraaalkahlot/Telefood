@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_marginTop="@dimen/size_small"
-            android:text="@string/desc_first_board" />
+            android:text="@string/desc_enter_phone" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/il_phone_number"

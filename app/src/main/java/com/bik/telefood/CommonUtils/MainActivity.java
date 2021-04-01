@@ -17,6 +17,7 @@ import com.bik.telefood.databinding.ActivityMainBinding;
 import com.bik.telefood.model.network.ApiConstant;
 import com.bik.telefood.ui.chat.ChatListActivity;
 import com.bik.telefood.ui.notifications.NotificationActivity;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -40,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
 
         if (!SharedPreferencesHelper.getUserType(getApplication()).equals(ApiConstant.ROLE_VENDOR))
             binding.navView.getMenu().removeItem(R.id.navigation_add_ads);
+
+        FirebaseMessaging.getInstance().setAutoInitEnabled(true);
+
     }
 
     @Override

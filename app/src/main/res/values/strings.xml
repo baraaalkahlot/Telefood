@@ -14,14 +14,21 @@
     <string name="title_first_board">Register</string>
     <string name="title_sec_board">Advertise and search</string>
     <string name="title_third_board">Contact</string>
-    <string name="desc_first_board">This text is an example of text that can be replaced in the same space. This text was generated from the Arabic text generator</string>
-    <string name="desc_sec_board">This text is an example of text that can be replaced in the same space. This text was generated from the Arabic text generator</string>
-    <string name="desc_third_board">This text is an example of text that can be replaced in the same space. This text was generated from the Arabic text generator</string>
+    <string name="desc_first_board">Come on, you are welcome. Register with us and join our family.</string>
+    <string name="desc_sec_board">Our application will help you to advertise and benefit from your home cooking and present it to the largest possible number of customers who want to cook home, where they can search and get what they want.</string>
+    <string name="desc_third_board">For ease of dealing we have provided instant conversations between the client and the productive families.</string>
+    <string name="desc_user_type">Presenting the craft, which is to present your home cooking, and you can go in and shop for home meals.</string>
     <string name="action_skip">skip</string>
     <string name="title_start">let\'s start</string>
     <string name="title_last_board">what do you want?</string>
     <string name="title_consumer_type">Request a Product</string>
     <string name="title_provider_type">I want to Product an item</string>
+
+    <string name="desc_login">Enter the phone number and password to log into your account.</string>
+    <string name="desc_sign_up">Enter the required information completely and correctly.</string>
+    <string name="desc_enter_phone">Password recovery, enter the phone number that you previously registered with.</string>
+    <string name="desc_verify_code">Enter the verification code sent to your phone.</string>
+    <string name="desc_reset_password">Enter the new password and confirm it.</string>
 
     <string name="title_login">Login</string>
 
@@ -151,4 +158,9 @@
     <string name="title_empty_status_favorite_product">There is no product in your wishlist!</string>
     <string name="days_left">%s days left</string>
     <string name="not_subscribed">Not subscribed</string>
+    <string name="error_msg_missing_placeholder">Mark the location</string>
+    <string name="permission_request">Permission Request</string>
+    <string name="alert_msg_map_permission">You must grant permission to use the location in order to be able to determine your location</string>
+
+
 </resources>

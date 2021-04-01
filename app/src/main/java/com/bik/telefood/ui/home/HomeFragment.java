@@ -131,9 +131,9 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnProductCl
 
 
     private void loadServiceList(Integer page, HashMap<String, String> mParams) {
-        productSkeleton.show();
         hideEmptyStatus();
         homeViewModel.getFeaturedServices(page, mParams, getContext(), getActivity().getSupportFragmentManager(), false).observe(getViewLifecycleOwner(), servicesResponse -> {
+            productSkeleton.hide();
             ServicesListModel servicesListModel = servicesResponse.getServices();
             if (servicesListModel.getData() == null || servicesListModel.getData().isEmpty()) {
                 showEmptyStatus();
@@ -144,7 +144,6 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnProductCl
             servicesItemModels.addAll(servicesListModel.getData());
             productAdapter.notifyDataSetChanged();
             productAdapter.setLoading(false);
-            productSkeleton.hide();
         });
     }
 

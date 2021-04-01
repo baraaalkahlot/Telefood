@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +16,7 @@ import com.bik.telefood.R;
 import com.bik.telefood.databinding.ActivityLoginBinding;
 import com.bik.telefood.model.network.ApiConstant;
 import com.bik.telefood.ui.auth.EnterPhoneActivity;
-import com.bik.telefood.ui.onboarding.UserTypeActivity;
+import com.bik.telefood.ui.auth.SignUpActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -31,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
 
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         binding.tvActionSignUp.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this, UserTypeActivity.class);
+            Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         });
@@ -41,9 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         });
         binding.btnLogin.setOnClickListener(v -> checkValidation());
 
-        binding.tvActionAsGuest.setOnClickListener(v -> {
-            moveToMain();
-        });
+        binding.tvActionAsGuest.setOnClickListener(v -> moveToMain());
     }
 
 
@@ -63,6 +62,9 @@ public class LoginActivity extends AppCompatActivity {
 
         try {
             int phone = Integer.parseInt(phoneNumber);
+            Log.d("wasd", "checkValidation: " + phoneNumber);
+            Log.d("wasd", "checkValidation: " + phone);
+            Log.d("wasd", "checkValidation: " + password);
             login(phone, password);
         } catch (NumberFormatException e) {
             e.printStackTrace();
@@ -73,20 +75,19 @@ public class LoginActivity extends AppCompatActivity {
     private void login(int phoneNumber, String password) {
         loginViewModel.addUserSection(phoneNumber, password, this, getSupportFragmentManager()).observe(this, loginResponse -> {
             // Cache Token
-            SharedPreferences.Editor preferencesToken = getSharedPreferences(AppConstant.ADD_DATA, Context.MODE_PRIVATE).edit();
-            preferencesToken.putString(ApiConstant.AUTHORIZATION, loginResponse.getAccessToken());
-            preferencesToken.apply();
+            SharedPreferences.Editor preferences = getSharedPreferences(AppConstant.ADD_DATA, Context.MODE_PRIVATE).edit();
+            preferences.putString(ApiConstant.AUTHORIZATION, loginResponse.getAccessToken());
 
             // Cache Login Status
-            SharedPreferences.Editor editor = getSharedPreferences(AppConstant.ADD_DATA, Context.MODE_PRIVATE).edit();
-            editor.putBoolean(AppConstant.USER_STATUS, true);
-            editor.apply();
+            preferences.putBoolean(AppConstant.USER_STATUS, true);
+
+            // Cache User Id
+            preferences.putString(AppConstant.USER_ID, String.valueOf(loginResponse.getUser().getId()));
 
             // Cache User Type
             String userRole = (loginResponse.getUser().getRole().equals(ApiConstant.ROLE_USER)) ? ApiConstant.ROLE_USER : ApiConstant.ROLE_VENDOR;
-            SharedPreferences.Editor typeEditor = getSharedPreferences(AppConstant.ADD_DATA, Context.MODE_PRIVATE).edit();
-            typeEditor.putString(AppConstant.USER_TYPE, userRole);
-            typeEditor.apply();
+            preferences.putString(AppConstant.USER_TYPE, userRole);
+            preferences.apply();
 
             moveToMain();
         });

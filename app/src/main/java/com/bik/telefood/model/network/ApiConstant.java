@@ -1,12 +1,16 @@
 package com.bik.telefood.model.network;
 
 public interface ApiConstant {
-    String BASE_URL = "https://telefoodsa.com/api/";
+    //    String BASE_URL = "https://telefoodsa.com/api/";
+    String BASE_URL = "http://waseeem.com/old/backend/TeleFood/public/api/";
 
     String COUNTRY_CODE = "+966";
     String ACCEPT_LANGUAGE = "Accept-Language";
     String ACCEPT = "Accept";
     String AUTHORIZATION = "Authorization";
+    String PLATFORM = "platform";
+    String VERSION = "version";
+    String FCM_TOKEN = "fcmToken";
     String BEARER = "Bearer ";
 
     String MULTIPART_FORM_DATA = "multipart/form-data";
@@ -54,5 +58,10 @@ public interface ApiConstant {
     String FAVORITE_TYPE_SERVICE = "service";
 
     String CHAT_TYPE_CURRENT_USER = "currentUser";
-    String MESSAGE = "message";
+    String USER_ID = "user_id";
+    String CHAT = "CHAT";
+    String MESSAGES = "Messages";
+    String MESSAGE_TYPE_TEXT = "text";
+    String MESSAGE = "msg";
+    String MESSAGE_TYPE_LOCATION = "location";
 }

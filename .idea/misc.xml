@@ -1,5 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout-land/fragment_first_boarding.xml" value="0.3703125" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/activity_change_password.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/activity_chat_list.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/activity_confirm_code.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/activity_contact_us.xml" value="0.5374045801526718" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/activity_content_viewer.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/activity_edit_product.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/activity_edit_user_info.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/activity_enter_phone.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/activity_login.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/activity_main.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/activity_message.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/activity_my_ads.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/activity_notification.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/activity_on_boarding.xml" value="0.23157894736842105" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/activity_product_details.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/activity_providers_details.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/activity_providers_list.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/activity_reset_password.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/activity_settings.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/activity_sign_up.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/activity_splash.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/activity_subscription_renewal.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/activity_technical_support.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/activity_user_type.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/app_bar_main.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/card_bank_info.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/card_view_more_info.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/dialog_login_visitor.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/dialog_no_connection.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/dialog_progress_bar.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/dropdown_menu_popup_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/fragment_action_type_dialog.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/fragment_ads.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/fragment_ads_action_dialog.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/fragment_confirm_dialog.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/fragment_favorite.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/fragment_favorite_product.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/fragment_favorite_providers.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/fragment_filter_dialog.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/fragment_first_boarding.xml" value="0.3128888888888889" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/fragment_home.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/fragment_meals.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/fragment_more.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/fragment_sec_board.xml" value="0.5374045801526718" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/fragment_success_dialog.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/fragment_third_board.xml" value="0.5374045801526718" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/image_slider_layout_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/item_add_ads_image_list.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/item_category.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/item_chat_contact.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/item_favorite_product.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/item_more.xml" value="0.5374045801526718" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/item_my_product.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/item_notification.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/item_product.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/item_providers.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/item_providers_card.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/item_providers_card_skeleton.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/item_providers_skeleton.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/item_recived_message.xml" value="0.55" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/item_sent_messae.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/item_subscription.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/item_technical_support.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/layout_empty_product.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/dev_b/AndroidStudioProjects/Telefood/app/src/main/res/layout/main_fragment.xml" value="0.36666666666666664" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

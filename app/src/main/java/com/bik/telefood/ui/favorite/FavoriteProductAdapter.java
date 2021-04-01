@@ -13,8 +13,8 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class FavoriteProductAdapter extends RecyclerView.Adapter<FavoriteProductAdapter.ViewHolder> {
-    private List<ServicesItemModel> data;
-    private OnCardClickListener onCardClickListener;
+    private final List<ServicesItemModel> data;
+    private final OnCardClickListener onCardClickListener;
 
     public FavoriteProductAdapter(List<ServicesItemModel> data, OnCardClickListener onCardClickListener) {
         this.data = data;
@@ -44,7 +44,7 @@ public class FavoriteProductAdapter extends RecyclerView.Adapter<FavoriteProduct
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private ItemFavoriteProductBinding binding;
+        private final ItemFavoriteProductBinding binding;
 
         public ViewHolder(@NonNull ItemFavoriteProductBinding itemView) {
             super(itemView.getRoot());
@@ -54,6 +54,7 @@ public class FavoriteProductAdapter extends RecyclerView.Adapter<FavoriteProduct
         public void bind(int position) {
             ServicesItemModel servicesItemModel = data.get(position);
             binding.tvProductName.setText(servicesItemModel.getName());
+            binding.tvProductPrice.setText(servicesItemModel.getPrice());
             Picasso.get().load(servicesItemModel.getImg()).fit().into(binding.ivProduct);
             binding.btnFavorite.setOnClickListener(v -> onCardClickListener.onFavClick(servicesItemModel.getId(), position));
             binding.getRoot().setOnClickListener(v -> onCardClickListener.onClick(servicesItemModel.getId()));

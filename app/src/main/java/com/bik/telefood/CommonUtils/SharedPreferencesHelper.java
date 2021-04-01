@@ -32,11 +32,11 @@ public class SharedPreferencesHelper {
         SharedPreferences preferences = application.getSharedPreferences(AppConstant.ADD_DATA, Context.MODE_PRIVATE);
         return preferences.getString(AppConstant.USER_NAME, AppConstant.EMPTY);
     }
-/*
+
     public static String getFcmToken(Application application) {
-        SharedPreferences preferences = application.getSharedPreferences(AppConstant.FCM_TOKEN, Context.MODE_PRIVATE);
+        SharedPreferences preferences = application.getSharedPreferences(AppConstant.ADD_DATA, Context.MODE_PRIVATE);
         return preferences.getString(AppConstant.FCM_TOKEN, "Empty");
-    }*/
+    }
 
     public static boolean isVerified(Application application) {
         SharedPreferences preferences = application.getSharedPreferences(AppConstant.ADD_DATA, Context.MODE_PRIVATE);

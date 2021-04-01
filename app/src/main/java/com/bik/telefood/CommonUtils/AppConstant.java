@@ -22,4 +22,8 @@ public interface AppConstant {
     String TICKET_ID = "id";
     String TYPE_PDF = "application/pdf";
     String EMPTY = "empty";
+    String ROOM_ID = "room_id";
+    String LAT = "lat";
+    String LNG = "lan";
+    String FCM_TOKEN = "fcm_token";
 }

@@ -22,10 +22,10 @@ import com.bik.telefood.model.network.ApiConstant;
 import com.bik.telefood.ui.auth.AuthViewModel;
 import com.bik.telefood.ui.auth.login.LoginActivity;
 import com.bik.telefood.ui.auth.login.LoginViewModel;
-import com.bik.telefood.ui.common.viewmodel.CategoriesViewModel;
 import com.bik.telefood.ui.more.ads.MyAdsActivity;
 import com.bik.telefood.ui.more.vendors.VendorsListActivity;
 import com.bik.telefood.ui.support.TechnicalSupportActivity;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Picasso;
 
 public class moreFragment extends Fragment {
@@ -38,7 +38,6 @@ public class moreFragment extends Fragment {
     private MoreViewModel mViewModel;
     private LoginViewModel loginViewModel;
     private AuthViewModel authViewModel;
-    private CategoriesViewModel categoriesViewModel;
 
 
     public static moreFragment newInstance() {
@@ -120,7 +119,6 @@ public class moreFragment extends Fragment {
         mViewModel = new ViewModelProvider(this).get(MoreViewModel.class);
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
-        categoriesViewModel = new ViewModelProvider(this).get(CategoriesViewModel.class);
 
         if (!SharedPreferencesHelper.isLoggedIn(getActivity().getApplication())) {
             new LoginDialog().show(getActivity().getSupportFragmentManager(), "LoginDialog");
@@ -216,14 +214,11 @@ public class moreFragment extends Fragment {
         //Delete User Table
         loginViewModel.deleteUserTable();
 
-        //Delete Category Table
-        categoriesViewModel.deleteCategoriesTable();
-
         // Cache new status >> SIGN OUT
         SharedPreferencesHelper.clearAllData(getContext());
-/*
+
         FirebaseMessaging firebaseMessaging = FirebaseMessaging.getInstance();
         firebaseMessaging.setAutoInitEnabled(false);
-        firebaseMessaging.deleteToken();*/
+        firebaseMessaging.deleteToken();
     }
 }

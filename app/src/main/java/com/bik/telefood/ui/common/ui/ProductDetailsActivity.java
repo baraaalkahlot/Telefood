@@ -18,6 +18,7 @@ import com.bik.telefood.model.entity.general.singleservices.SingleServiceModel;
 import com.bik.telefood.model.network.ApiConstant;
 import com.bik.telefood.ui.chat.MessageActivity;
 import com.bik.telefood.ui.common.adapter.ImageSliderAdapter;
+import com.bik.telefood.ui.common.viewmodel.CreateRoomViewModel;
 import com.bik.telefood.ui.common.viewmodel.ServicesViewModel;
 import com.bik.telefood.ui.common.viewmodel.ToggleFavoriteViewModel;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
@@ -30,12 +31,16 @@ public class ProductDetailsActivity extends AppCompatActivity implements ImageSl
     private ActivityProductDetailsBinding binding;
     private int product_id;
     private int product_vendor_id = 0;
+    private CreateRoomViewModel createRoomViewModel;
+    private String providerName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityProductDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        createRoomViewModel = new ViewModelProvider(this).get(CreateRoomViewModel.class);
 
         String userType = SharedPreferencesHelper.getUserType(getApplication());
         if (userType.equals(ApiConstant.ROLE_USER)) {
@@ -57,6 +62,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements ImageSl
             SingleServiceModel singleServiceModel = servicesResponse.getService();
             ShortUserInfoModel shortUserInfoModel = singleServiceModel.getUser();
             product_vendor_id = (int) shortUserInfoModel.getId();
+            providerName = shortUserInfoModel.getName();
             String product_name = singleServiceModel.getName();
             String product_category_id = singleServiceModel.getCategory();
             String product_price = singleServiceModel.getPrice();
@@ -101,6 +107,18 @@ public class ProductDetailsActivity extends AppCompatActivity implements ImageSl
             binding.tvFullName.setOnClickListener(v -> goToProviderPage());
             binding.ivUserProfileImage.setOnClickListener(v -> goToProviderPage());
 
+            binding.ivContactWithProvider.setOnClickListener(v -> createOrFindRoom(product_vendor_id));
+
+        });
+    }
+
+    private void createOrFindRoom(int userId) {
+        createRoomViewModel.createOrFindRoom(userId, this, getSupportFragmentManager()).observe(this, createRoomResponse -> {
+            int roomId = createRoomResponse.getRoomId();
+            Intent intent = new Intent(this, MessageActivity.class);
+            intent.putExtra(AppConstant.ROOM_ID, roomId);
+            intent.putExtra(AppConstant.USER_NAME, providerName);
+            startActivity(intent);
         });
     }
 

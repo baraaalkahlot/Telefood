@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_marginTop="@dimen/size_small"
-            android:text="@string/desc_first_board" />
+            android:text="@string/desc_verify_code" />
 
         <com.alimuzaffar.lib.pin.PinEntryEditText
             android:id="@+id/pin_entry_code"

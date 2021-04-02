@@ -155,9 +155,8 @@ public class MessageActivity extends AppCompatActivity implements MessageAdapter
 
     @Override
     public void onMapClick(GeoPoint geoPoint) {
-        String uri = String.format(Locale.ENGLISH, "geo:%f,%f", geoPoint.getLatitude(), geoPoint.getLongitude());
+        String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?daddr=%f,%f", geoPoint.getLatitude(), geoPoint.getLongitude());
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
-        intent.setPackage("com.google.android.apps.maps");
         startActivity(intent);
     }
 }

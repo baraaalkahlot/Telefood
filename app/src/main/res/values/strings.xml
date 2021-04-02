@@ -2,7 +2,7 @@
     <string name="app_name">TeleFood</string>
     <string name="title_home">Home</string>
     <string name="title_meals">Meals</string>
-    <string name="title_add_ads">Add Product</string>
+    <string name="title_add_ads">Add</string>
     <string name="title_favorite">Favorite</string>
     <string name="title_more">More</string>
     <string name="title_notification">Notification</string>
@@ -17,7 +17,7 @@
     <string name="desc_first_board">Come on, you are welcome. Register with us and join our family.</string>
     <string name="desc_sec_board">Our application will help you to advertise and benefit from your home cooking and present it to the largest possible number of customers who want to cook home, where they can search and get what they want.</string>
     <string name="desc_third_board">For ease of dealing we have provided instant conversations between the client and the productive families.</string>
-    <string name="desc_user_type">Presenting the craft, which is to present your home cooking, and you can go in and shop for home meals.</string>
+    <string name="desc_user_type">Providing the craft, which is to provide your home cooking and you can go in and shop for home meals by choosing to order a commodity.</string>
     <string name="action_skip">skip</string>
     <string name="title_start">let\'s start</string>
     <string name="title_last_board">what do you want?</string>

@@ -2,7 +2,7 @@
     <string name="app_name">TeleFood</string>
     <string name="title_home">الرئيسية</string>
     <string name="title_meals">الوجبات</string>
-    <string name="title_add_ads">إضافة إعلان</string>
+    <string name="title_add_ads">إضافة</string>
     <string name="title_favorite">المفضلة</string>
     <string name="title_more">المزيد</string>
     <string name="title_notification">الاشعارات</string>
@@ -17,7 +17,7 @@
     <string name="desc_first_board">يالله حيه ، اهلا وسهلا ومرحبا بك قم بالتسجيل معنا والانضمام لدى عائلتنا.</string>
     <string name="desc_sec_board">سوف يساعدك تطبيقنا على الإعلان والاستفادة من طبخك المنزلي وتقديمه لأكبر عدد ممكن من العملاء الراغبين في الطبخ المنزلي حيث يمكنهم البحث والحصول على ما يرغبونه.</string>
     <string name="desc_third_board">لسهولة التعامل قمنا بتوفير المحادثات الفورية بين العميل والاسر المنتجة.</string>
-    <string name="desc_user_type">تقديم الحرفة وهو ان تقوم بتقديم طبخك المنزلي ، و بإمكانك الدخول والتسوق لشراء الوجبات المنزلية.</string>
+    <string name="desc_user_type">تقديم الحرفة وهو ان تقوم بتقديم طبخك المنزلي و بامكانك الدخول والتسوق لشراء الوجبات المنزليه باختيارك طلب سلعه.</string>
     <string name="action_skip">تخطي</string>
     <string name="title_start">لنبدأ</string>
     <string name="title_last_board">ماذا تريد؟</string>

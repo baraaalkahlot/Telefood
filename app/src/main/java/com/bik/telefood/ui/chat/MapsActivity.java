@@ -15,10 +15,12 @@ import com.bik.telefood.CommonUtils.ConfirmDialog;
 import com.bik.telefood.CommonUtils.MessageDialog;
 import com.bik.telefood.R;
 import com.bik.telefood.databinding.FragmentMapsBinding;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 @Keep
@@ -53,6 +55,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, FINE_LOCATION_PERMISSION_REQUEST);
         } else {
             mMap.setMyLocationEnabled(true);
+
+            LatLng coordinate = new LatLng(AppConstant.SAUDI_LAT, AppConstant.SAUDI_LNG);
+            CameraUpdate location = CameraUpdateFactory.newLatLngZoom(coordinate, 5);
+            mMap.animateCamera(location);
 
             mMap.setOnMapClickListener(latLng -> {
                 latitude = latLng.latitude;

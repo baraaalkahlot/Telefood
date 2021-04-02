@@ -3,6 +3,7 @@ package com.bik.telefood.ui.common.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -71,6 +72,7 @@ public class ProvidersDetailsActivity extends AppCompatActivity implements Produ
             binding.tvFullName.setText(vendorsModel.getName());
             binding.rbSupplierRating.setRating(vendorsModel.getRating());
             Picasso.get().load(vendorsModel.getAvatar()).error(R.drawable.ic_baseline_person).placeholder(R.drawable.ic_baseline_person).fit().into(binding.ivAvatar);
+            Log.d("wasd", "loadData: " + vendorsModel.getFavorite());
             binding.btnFavorite.setChecked(vendorsModel.getFavorite());
 
             if (servicesListModel.getData() == null || servicesListModel.getData().isEmpty()) {

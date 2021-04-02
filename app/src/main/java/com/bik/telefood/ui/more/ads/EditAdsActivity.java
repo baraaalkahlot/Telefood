@@ -247,6 +247,7 @@ public class EditAdsActivity extends AppCompatActivity implements AdsImagesAdapt
     }
 
     private void uploadImage(Uri uri) {
+        binding.ivResetView.setVisibility(View.GONE);
         File file = FileUtils.getFile(this, uri);
         RequestBody requestPhoto = RequestBody.create(file, MediaType.parse(this.getContentResolver().getType(uri)));
         MultipartBody.Part body = MultipartBody.Part.createFormData(ApiConstant.UPLOAD_ADS_IMAGE, file.getName(), requestPhoto);
@@ -258,6 +259,7 @@ public class EditAdsActivity extends AppCompatActivity implements AdsImagesAdapt
                 binding.btnSend.setEnabled(true);
                 hideUploadAnim();
                 showAdsImagesList();
+                binding.ivResetView.setVisibility(View.VISIBLE);
             }
         });
     }

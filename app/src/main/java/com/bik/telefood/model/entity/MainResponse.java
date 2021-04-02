@@ -1,14 +1,11 @@
 package com.bik.telefood.model.entity;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class MainResponse {
     @SerializedName("status")
-    @Expose
     private boolean status;
     @SerializedName("msg")
-    @Expose
     private String msg;
 
     public boolean isStatus() {

@@ -26,4 +26,7 @@ public interface AppConstant {
     String LAT = "lat";
     String LNG = "lan";
     String FCM_TOKEN = "fcm_token";
+
+    double SAUDI_LAT = 24.774265;
+    double SAUDI_LNG = 46.738586;
 }

@@ -231,6 +231,7 @@ public class AdsFragment extends Fragment implements AdsImagesAdapter.OnCancelIm
     }
 
     private void uploadImage(Uri uri) {
+        binding.ivResetView.setVisibility(View.GONE);
         File file = FileUtils.getFile(getContext(), uri);
         RequestBody requestPhoto = RequestBody.create(file, MediaType.parse(getContext().getContentResolver().getType(uri)));
         MultipartBody.Part body = MultipartBody.Part.createFormData(ApiConstant.UPLOAD_ADS_IMAGE, file.getName(), requestPhoto);
@@ -241,6 +242,7 @@ public class AdsFragment extends Fragment implements AdsImagesAdapter.OnCancelIm
                 binding.btnSend.setEnabled(true);
                 hideUploadAnim();
                 showAdsImagesList();
+                binding.ivResetView.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -249,6 +251,7 @@ public class AdsFragment extends Fragment implements AdsImagesAdapter.OnCancelIm
         binding.lottieUploadImage.setVisibility(View.VISIBLE);
         binding.lottieUploadImage.playAnimation();
         binding.rvAdsImage.setVisibility(View.GONE);
+
     }
 
     private void hideUploadAnim() {

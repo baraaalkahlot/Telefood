@@ -20,8 +20,7 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Telefood"
-        android:usesCleartextTraffic="true">
+        android:theme="@style/Theme.Telefood">
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

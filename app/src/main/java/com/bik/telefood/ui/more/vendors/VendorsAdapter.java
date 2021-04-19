@@ -89,6 +89,7 @@ public class VendorsAdapter extends RecyclerView.Adapter<VendorsAdapter.ViewHold
                     .into(binding.ivAvatar);
             binding.tvFullName.setText(vendorsModel.getName());
             binding.getRoot().setOnClickListener(v -> onProvidersClickListener.OnProvidersClick(vendorsModel.getId()));
+            binding.rbSupplierRating.setRating(vendorsModel.getRating());
         }
     }
 }

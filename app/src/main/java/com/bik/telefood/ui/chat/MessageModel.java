@@ -8,6 +8,7 @@ public class MessageModel {
     private boolean is_deleted;
     private GeoPoint location;
     private String message;
+    private boolean seen;
     private int sender_id;
     private String type;
 
@@ -45,6 +46,14 @@ public class MessageModel {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public boolean isSeen() {
+        return seen;
+    }
+
+    public void setSeen(boolean seen) {
+        this.seen = seen;
     }
 
     public int getSender_id() {

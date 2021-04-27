@@ -3,56 +3,42 @@ package com.bik.telefood.model.entity.general;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 @Entity(tableName = "user_section_table")
 public class UserModel {
     @PrimaryKey
     @SerializedName("id")
-    @Expose
     private Long id;
     @SerializedName("name")
-    @Expose
     private String name;
     @SerializedName("email")
-    @Expose
     private String email;
     @SerializedName("phone")
-    @Expose
     private String phone;
     @SerializedName("role")
-    @Expose
     private String role;
     @SerializedName("status")
-    @Expose
     private String status;
     @SerializedName("phone_verified_at")
-    @Expose
     private String phoneVerifiedAt;
     @SerializedName("avatar")
-    @Expose
     private String avatar;
     @SerializedName("governorate_id")
-    @Expose
     private String governorateId;
     @SerializedName("governorate")
-    @Expose
     private String governorate;
     @SerializedName("city_id")
-    @Expose
     private String cityId;
     @SerializedName("city")
-    @Expose
     private String city;
     @SerializedName("choosedPlanName")
-    @Expose
     private String choosedPlanName;
     @SerializedName("remainingDaysInPlan")
-    @Expose
     private String remainingDaysInPlan;
+    @SerializedName("sendNotification")
+    private boolean sendNotification;
     @SerializedName("rating")
-    @Expose
     private String rating;
 
     public Long getId() {
@@ -165,6 +151,14 @@ public class UserModel {
 
     public void setRemainingDaysInPlan(String remainingDaysInPlan) {
         this.remainingDaysInPlan = remainingDaysInPlan;
+    }
+
+    public boolean getSendNotification() {
+        return sendNotification;
+    }
+
+    public void setSendNotification(boolean sendNotification) {
+        this.sendNotification = sendNotification;
     }
 
     public String getRating() {

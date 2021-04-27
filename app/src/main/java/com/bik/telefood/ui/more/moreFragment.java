@@ -23,9 +23,9 @@ import com.bik.telefood.ui.auth.AuthViewModel;
 import com.bik.telefood.ui.auth.login.LoginActivity;
 import com.bik.telefood.ui.auth.login.LoginViewModel;
 import com.bik.telefood.ui.more.ads.MyAdsActivity;
+import com.bik.telefood.ui.more.setting.SettingsActivity;
 import com.bik.telefood.ui.more.vendors.VendorsListActivity;
 import com.bik.telefood.ui.support.TechnicalSupportActivity;
-import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Picasso;
 
 public class moreFragment extends Fragment {
@@ -91,7 +91,10 @@ public class moreFragment extends Fragment {
                     , userModel.getGovernorate()
                     , userModel.getCity()
                     , userModel.getChoosedPlanName()
-                    , userModel.getRemainingDaysInPlan());
+                    , userModel.getRemainingDaysInPlan()
+                    , userModel.getSendNotification()
+                    , userModel.getRating());
+
 
             binding.swipeToRefresh.setRefreshing(false);
             Picasso.get()
@@ -217,8 +220,5 @@ public class moreFragment extends Fragment {
         // Cache new status >> SIGN OUT
         SharedPreferencesHelper.clearAllData(getContext());
 
-        FirebaseMessaging firebaseMessaging = FirebaseMessaging.getInstance();
-        firebaseMessaging.setAutoInitEnabled(false);
-        firebaseMessaging.deleteToken();
     }
 }

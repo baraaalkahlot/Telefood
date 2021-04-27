@@ -29,8 +29,12 @@ public class LoginViewModel extends AndroidViewModel {
         return loginRepository.addUserModel(phoneNumber, password, context, fragmentManager);
     }
 
-    public void updateUserSection(String m_avatar, String m_name, String m_phone, String m_governorate_id, String m_city_id, String m_governorate, String m_city, String chasedPlanName, String remainingDaysInPlan) {
-        loginRepository.updateUserModel(m_avatar, m_name, m_phone, m_governorate_id, m_city_id, m_governorate, m_city, chasedPlanName, remainingDaysInPlan);
+    public void updateUserSection(String m_avatar, String m_name, String m_phone, String m_governorate_id, String m_city_id, String m_governorate, String m_city, String chasedPlanName, String remainingDaysInPlan, boolean sendNotification, String rating) {
+        loginRepository.updateUserModel(m_avatar, m_name, m_phone, m_governorate_id, m_city_id, m_governorate, m_city, chasedPlanName, remainingDaysInPlan, sendNotification, rating);
+    }
+
+    public void updateNotification(boolean sendNotification) {
+        loginRepository.updateNotification(sendNotification);
     }
 
 

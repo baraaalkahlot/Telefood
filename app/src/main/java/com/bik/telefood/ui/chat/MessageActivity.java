@@ -20,6 +20,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
+import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
@@ -37,6 +38,9 @@ public class MessageActivity extends AppCompatActivity implements MessageAdapter
     private List<MessageModel> messageModels;
     private MessageAdapter messageAdapter;
     private boolean isLocation = true;
+
+    private ListenerRegistration lastMsgListener;
+    private ListenerRegistration allMsgListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +65,7 @@ public class MessageActivity extends AppCompatActivity implements MessageAdapter
         binding.rvMessages.setLayoutManager(linearLayout);
         binding.rvMessages.setAdapter(messageAdapter);
         listenForChatMessages();
+        getLastDoc();
 
         binding.includeChatContact.tvTitle.setText(name);
 
@@ -73,7 +78,7 @@ public class MessageActivity extends AppCompatActivity implements MessageAdapter
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (count == 0) {
+                if (s.length() == 0) {
                     isLocation = true;
                     binding.ivLocation.setImageResource(R.drawable.ic_my_location);
                 } else {
@@ -106,6 +111,7 @@ public class MessageActivity extends AppCompatActivity implements MessageAdapter
         post.put("is_deleted", false);
         post.put("location", null);
         post.put("message", msg);
+        post.put("seen", false);
         post.put("sender_id", inputUserId);
         post.put("type", ApiConstant.MESSAGE_TYPE_TEXT);
 
@@ -117,9 +123,9 @@ public class MessageActivity extends AppCompatActivity implements MessageAdapter
 
     private void listenForChatMessages() {
 
-        Query query = firebaseFirestore.collection(ApiConstant.MESSAGES).orderBy("timestamp", Query.Direction.ASCENDING);
+        Query allMsg = firebaseFirestore.collection(ApiConstant.MESSAGES).orderBy("timestamp", Query.Direction.ASCENDING);
 
-        query.addSnapshotListener((value, error) -> {
+        allMsgListener = allMsg.addSnapshotListener((value, error) -> {
             if (value == null || value.isEmpty()) return;
             messageModels.clear();
             for (DocumentSnapshot snapshot : value.getDocuments()) {
@@ -128,6 +134,25 @@ public class MessageActivity extends AppCompatActivity implements MessageAdapter
             }
             binding.rvMessages.scrollToPosition(messageAdapter.getItemCount() - 1);
             messageAdapter.notifyDataSetChanged();
+        });
+    }
+
+    private void getLastDoc() {
+        Query lastMsg = firebaseFirestore.collection(ApiConstant.MESSAGES)
+                .orderBy("timestamp", Query.Direction.DESCENDING)
+                .limit(1);
+
+        lastMsgListener = lastMsg.addSnapshotListener((value, error) -> {
+            if (value == null || value.isEmpty()) return;
+            for (DocumentSnapshot snapshot : value.getDocuments()) {
+                MessageModel messageModel = snapshot.toObject(MessageModel.class);
+                if (messageModel != null && messageModel.getSender_id() != inputUserId) {
+                    firebaseFirestore
+                            .collection(ApiConstant.MESSAGES)
+                            .document(snapshot.getId())
+                            .update("seen", true);
+                }
+            }
         });
     }
 
@@ -144,6 +169,7 @@ public class MessageActivity extends AppCompatActivity implements MessageAdapter
             post.put("is_deleted", false);
             post.put("location", geoPoint);
             post.put("message", null);
+            post.put("seen", false);
             post.put("sender_id", inputUserId);
             post.put("type", ApiConstant.MESSAGE_TYPE_LOCATION);
 
@@ -158,5 +184,12 @@ public class MessageActivity extends AppCompatActivity implements MessageAdapter
         String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?daddr=%f,%f", geoPoint.getLatitude(), geoPoint.getLongitude());
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
         startActivity(intent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        allMsgListener.remove();
+        lastMsgListener.remove();
     }
 }

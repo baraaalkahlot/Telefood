@@ -55,9 +55,14 @@ public class LoginRepository {
         return loginResponseMutableLiveData;
     }
 
-    public void updateUserModel(String m_avatar, String m_name, String m_phone, String m_governorate_id, String m_city_id, String m_governorate, String m_city, String chasedPlanName, String remainingDaysInPlan) {
-        userSectionDao.updateUserSectionItems(m_avatar, m_name, m_phone, m_governorate_id, m_city_id, m_governorate, m_city, chasedPlanName, remainingDaysInPlan);
+    public void updateUserModel(String m_avatar, String m_name, String m_phone, String m_governorate_id, String m_city_id, String m_governorate, String m_city, String chasedPlanName, String remainingDaysInPlan, boolean sendNotification, String rating) {
+        userSectionDao.updateUserSectionItems(m_avatar, m_name, m_phone, m_governorate_id, m_city_id, m_governorate, m_city, chasedPlanName, remainingDaysInPlan, sendNotification, rating);
     }
+
+    public void updateNotification(boolean sendNotification) {
+        userSectionDao.updateNotification(sendNotification);
+    }
+
 
     public void deleteUserTable() {
         userSectionDao.deleteAll();

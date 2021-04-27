@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
@@ -123,6 +125,7 @@ public class SignUpActivity extends AppCompatActivity {
             startActivity(intent);
         });
         binding.btnSignUp.setOnClickListener(v -> checkValidation());
+
     }
 
 
@@ -228,14 +231,35 @@ public class SignUpActivity extends AppCompatActivity {
         //Set City List Values
         citiesViewModel.getCityList(governorate, this, getSupportFragmentManager()).observe(this, citiesResponse -> {
             List<City> cityList = citiesResponse.getCities();
-            binding.spCity.setAdapter(new CityAdapter(this, cityList));
+            CityAdapter cityAdapter = new CityAdapter(this, cityList);
+            binding.spCity.setAdapter(cityAdapter);
             binding.spCity.setOnItemClickListener((parent, view, position, id) -> {
                 City items = (City) parent.getItemAtPosition(position);
                 binding.spCity.setText(items.getTitle(), false);
                 cityModelId = items.getId();
             });
+
+            binding.spCity.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    cityAdapter.getFilter().filter(s.toString());
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+
         });
+
     }
+
 
     private void pickImage() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {

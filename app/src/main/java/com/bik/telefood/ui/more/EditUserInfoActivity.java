@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -125,7 +127,18 @@ public class EditUserInfoActivity extends AppCompatActivity {
 
         moreViewModel.updateProfile(params, img_profile, this, getSupportFragmentManager()).observe(this, updateProfileResponse -> {
             UserModel userModel = updateProfileResponse.getUser();
-            loginViewModel.updateUserSection(userModel.getAvatar(), userModel.getName(), userModel.getPhone(), userModel.getGovernorateId(), userModel.getCityId(), userModel.getGovernorate(), userModel.getCity(), userModel.getChoosedPlanName(), userModel.getRemainingDaysInPlan());
+            loginViewModel.updateUserSection(
+                    userModel.getAvatar()
+                    , userModel.getName()
+                    , userModel.getPhone()
+                    , userModel.getGovernorateId()
+                    , userModel.getCityId()
+                    , userModel.getGovernorate()
+                    , userModel.getCity()
+                    , userModel.getChoosedPlanName()
+                    , userModel.getRemainingDaysInPlan()
+                    , userModel.getSendNotification()
+                    , userModel.getRating());
             setResult(RESULT_OK);
             finish();
         });
@@ -154,12 +167,30 @@ public class EditUserInfoActivity extends AppCompatActivity {
         //Set City List Values
         citiesViewModel.getCityList(governorate, this, getSupportFragmentManager()).observe(this, citiesResponse -> {
             List<City> cityList = citiesResponse.getCities();
-            binding.spCity.setAdapter(new CityAdapter(this, cityList));
+            CityAdapter cityAdapter = new CityAdapter(this, cityList);
+            binding.spCity.setAdapter(cityAdapter);
 
             binding.spCity.setOnItemClickListener((parent, view, position, id) -> {
                 City items = (City) parent.getItemAtPosition(position);
                 binding.spCity.setText(items.getTitle(), false);
                 cityModelId = items.getId();
+            });
+
+            binding.spCity.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    cityAdapter.getFilter().filter(s.toString());
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
             });
         });
     }

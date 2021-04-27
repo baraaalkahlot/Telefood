@@ -178,6 +178,9 @@ public interface ApiInterface {
     @GET("myNotifications")
     Call<NotificationResponse> getNotification();
 
+    @POST("myNotifications/toggle")
+    Call<MainResponse> toggleNotification();
+
     //Chat
     @GET("chat/getRooms")
     Call<MyRoomModel> getMyRooms();

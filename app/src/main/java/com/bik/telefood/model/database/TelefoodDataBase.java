@@ -11,7 +11,7 @@ import androidx.room.TypeConverters;
 import com.bik.telefood.model.entity.Autherntication.CategoryModel;
 import com.bik.telefood.model.entity.general.UserModel;
 
-@Database(entities = {UserModel.class, CategoryModel.class}, version = 1, exportSchema = false)
+@Database(entities = {UserModel.class, CategoryModel.class}, version = 2, exportSchema = false)
 @TypeConverters({CategoriesTypeConverter.class})
 public abstract class TelefoodDataBase extends RoomDatabase {
     private static final String DATABASE_NAME = "telefood_db";

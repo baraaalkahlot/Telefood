@@ -43,6 +43,11 @@ public class SharedPreferencesHelper {
         return preferences.getBoolean(AppConstant.USER_VERIFIED, false);
     }
 
+    public static boolean isThereNotification(Application application) {
+        SharedPreferences preferences = application.getSharedPreferences(AppConstant.ADD_DATA, Context.MODE_PRIVATE);
+        return preferences.getBoolean(AppConstant.IS_THERE_NOTIFICATION, false);
+    }
+
     public static void clearAllData(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(AppConstant.ADD_DATA, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();

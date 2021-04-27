@@ -9,6 +9,8 @@ public interface AppConstant {
     String USER_NAME = "user name";
     String USER_VERIFIED = "verified";
 
+    String IS_THERE_NOTIFICATION = "notification";
+
     String PHONE_NUMBER = "phone number";
     String PHONE_VERIFICATION_ID = "phone verification id";
     String RESET_PASSWORD = "reset password";

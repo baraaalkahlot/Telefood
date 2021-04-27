@@ -1,6 +1,8 @@
 package com.bik.telefood.CommonUtils;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,7 +19,6 @@ import com.bik.telefood.databinding.ActivityMainBinding;
 import com.bik.telefood.model.network.ApiConstant;
 import com.bik.telefood.ui.chat.ChatListActivity;
 import com.bik.telefood.ui.notifications.NotificationActivity;
-import com.google.firebase.messaging.FirebaseMessaging;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -42,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
         if (!SharedPreferencesHelper.getUserType(getApplication()).equals(ApiConstant.ROLE_VENDOR))
             binding.navView.getMenu().removeItem(R.id.navigation_add_ads);
 
-        FirebaseMessaging.getInstance().setAutoInitEnabled(true);
-
     }
 
     @Override
@@ -57,7 +56,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_notification) {
+
             startActivity(new Intent(this, NotificationActivity.class));
+
+            // Cache Notification Received
+            SharedPreferences.Editor preferences = getSharedPreferences(AppConstant.ADD_DATA, Context.MODE_PRIVATE).edit();
+            preferences.putBoolean(AppConstant.IS_THERE_NOTIFICATION, false);
             return true;
         } else if (item.getItemId() == R.id.action_chat) {
             startActivity(new Intent(this, ChatListActivity.class));

@@ -2,6 +2,8 @@ package com.bik.telefood.ui.bottomsheet;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,12 +80,29 @@ public class FilterDialogFragment extends BottomSheetDialogFragment {
         CitiesViewModel citiesViewModel = new ViewModelProvider(this).get(CitiesViewModel.class);
         citiesViewModel.getCityList(governorate, getContext(), getActivity().getSupportFragmentManager()).observe(this, citiesResponse -> {
             List<City> cityList = citiesResponse.getCities();
-            binding.spCity.setAdapter(new CityAdapter(getContext(), cityList));
+            CityAdapter cityAdapter = new CityAdapter(getContext(), cityList);
+            binding.spCity.setAdapter(cityAdapter);
             binding.spCity.setOnItemClickListener((parent, view, position, id) -> {
                 City items = (City) parent.getItemAtPosition(position);
                 binding.spCity.setText(items.getTitle(), false);
                 cityModelId = items.getId();
                 onFilterChangeListener.onChanged(governorateModelId, cityModelId, fromPriceModelId, toPriceModelId);
+            });
+            binding.spCity.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    cityAdapter.getFilter().filter(s.toString());
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
             });
         });
     }

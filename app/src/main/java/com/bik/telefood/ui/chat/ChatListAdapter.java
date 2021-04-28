@@ -2,6 +2,7 @@ package com.bik.telefood.ui.chat;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -19,11 +20,13 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ViewHo
     private final OnCardClickListener mListener;
     private final List<RoomModel> myRoomModels;
     private Context context;
+    private String roomId;
 
-    public ChatListAdapter(OnCardClickListener mListener, List<RoomModel> myRoomModels, Context context) {
+    public ChatListAdapter(String roomId, OnCardClickListener mListener, List<RoomModel> myRoomModels, Context context) {
         this.mListener = mListener;
         this.myRoomModels = myRoomModels;
         this.context = context;
+        this.roomId = roomId;
     }
 
     @NonNull
@@ -60,6 +63,9 @@ public class ChatListAdapter extends RecyclerView.Adapter<ChatListAdapter.ViewHo
 
         public void bind(int position) {
             RoomModel roomModel = myRoomModels.get(position);
+            if (!roomId.isEmpty() && String.valueOf(roomModel.getRoomId()).equals(roomId)) {
+                itemView.badge.setVisibility(View.VISIBLE);
+            } else itemView.badge.setVisibility(View.GONE);
 
             itemView.tvTitle.setText(roomModel.getUserName());
             Picasso.get().load(roomModel.getUserAvatar()).fit().placeholder(R.drawable.ic_baseline_person).error(R.drawable.ic_baseline_person).into(itemView.ivProfileImage);

@@ -10,6 +10,7 @@ public interface AppConstant {
     String USER_VERIFIED = "verified";
 
     String IS_THERE_NOTIFICATION = "notification";
+    String IS_THERE_MESSAGE = "message";
 
     String PHONE_NUMBER = "phone number";
     String PHONE_VERIFICATION_ID = "phone verification id";

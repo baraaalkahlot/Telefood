@@ -23,6 +23,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/transparent_black"
             app:tintMode="src_atop"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerCut"
             tools:srcCompat="@drawable/template" />
 
         <androidx.appcompat.widget.AppCompatRatingBar

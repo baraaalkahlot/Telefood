@@ -31,7 +31,9 @@ public class ChatListActivity extends AppCompatActivity implements ChatListAdapt
         chatListViewModel = new ViewModelProvider(this).get(ChatListViewModel.class);
         myRoomModels = new ArrayList<>();
 
-        chatListAdapter = new ChatListAdapter(this, myRoomModels, this);
+        Intent intent = getIntent();
+        String roomId = intent.getStringExtra(AppConstant.ROOM_ID);
+        chatListAdapter = new ChatListAdapter(roomId, this, myRoomModels, this);
         binding.rvContactList.setHasFixedSize(true);
         binding.rvContactList.setAdapter(chatListAdapter);
         chatSkeleton = Skeleton.bind(binding.rvContactList)

@@ -63,4 +63,5 @@ public interface ApiConstant {
     String MESSAGE_TYPE_TEXT = "text";
     String MESSAGE = "msg";
     String MESSAGE_TYPE_LOCATION = "location";
+    String NOTIFICATION_TYPE_CHAT = "chat";
 }

@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
@@ -82,9 +83,23 @@ public class SignUpActivity extends AppCompatActivity {
         initGovernorateSpinnersValues();
         progressBarDialog = new ProgressBarDialog();
 
-        if (getIntent() != null) {
-            userRole = getIntent().getStringExtra(ApiConstant.ROLE);
+        if (getIntent().getStringExtra(ApiConstant.ROLE) != null) {
+            switch (getIntent().getStringExtra(ApiConstant.ROLE)) {
+                case ApiConstant.ROLE_VENDOR:
+                    userRole = ApiConstant.ROLE_VENDOR;
+                    binding.rbVendor.setChecked(true);
+                    break;
+
+                case ApiConstant.ROLE_USER:
+                    userRole = ApiConstant.ROLE_USER;
+                    binding.rbCustomer.setChecked(true);
+                    break;
+            }
+        } else {
+            userRole = ApiConstant.ROLE_USER;
+            binding.rbCustomer.setChecked(true);
         }
+
         mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             @Override
             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
@@ -126,10 +141,16 @@ public class SignUpActivity extends AppCompatActivity {
         });
         binding.btnSignUp.setOnClickListener(v -> checkValidation());
 
+        binding.rgRole.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == R.id.rb_vendor) userRole = ApiConstant.ROLE_VENDOR;
+            else userRole = ApiConstant.ROLE_USER;
+        });
+
     }
 
 
     private void checkValidation() {
+        Log.d("wasd", "checkValidation: userRole = " + userRole);
         if (mVerificationInProgress) return;
 
         String fullName = binding.etFullName.getText().toString();
@@ -138,6 +159,10 @@ public class SignUpActivity extends AppCompatActivity {
         String governorate = binding.spGovernorate.getText().toString();
         String password = binding.etPassword.getText().toString();
         boolean isChecked = binding.cbPrivacyPolicy.isChecked();
+
+        if (userRole == null) {
+            return;
+        }
 
         if (img_profile == null && userRole.equals(ApiConstant.ROLE_VENDOR)) {
             binding.tvProfileImage.setError(getString(R.string.error_msg_missing_profile_image_required));

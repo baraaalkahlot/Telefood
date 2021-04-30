@@ -186,6 +186,35 @@
                 android:textAlignment="viewStart" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <RadioGroup
+            android:id="@+id/rg_role"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_large"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/cb_privacy_policy"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/il_password">
+
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rb_customer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="@string/label_customer" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rb_vendor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/label_service_provider" />
+
+        </RadioGroup>
+
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/cb_privacy_policy"
             android:layout_width="wrap_content"
@@ -193,7 +222,7 @@
             android:layout_marginTop="@dimen/size_large"
             android:text="@string/agree_privacy_policy"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/il_password" />
+            app:layout_constraintTop_toBottomOf="@+id/rg_role" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_sign_up"

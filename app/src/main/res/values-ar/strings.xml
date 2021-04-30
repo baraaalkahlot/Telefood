@@ -162,5 +162,7 @@
     <string name="error_msg_missing_placeholder">قم باختيار الموقع اولا</string>
     <string name="permission_request">طلب صلاحية</string>
     <string name="alert_msg_map_permission">يجب منح اذن استخدام الموقع حتى تتمكن من تحديد موقعك</string>
+    <string name="label_service_provider">مزود خدمة</string>
+    <string name="label_customer">زبون</string>
 
 </resources>

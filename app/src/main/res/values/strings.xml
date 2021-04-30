@@ -161,6 +161,8 @@
     <string name="error_msg_missing_placeholder">Mark the location</string>
     <string name="permission_request">Permission Request</string>
     <string name="alert_msg_map_permission">You must grant permission to use the location in order to be able to determine your location</string>
+    <string name="label_service_provider">Service provider</string>
+    <string name="label_customer">Customer</string>
 
 
 </resources>

@@ -17,6 +17,7 @@ keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 debugKeystoreProperties.load(new FileInputStream(debugKeystorePropertiesFile))
 
 
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -27,6 +28,9 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+        ndk {
+            debugSymbolLevel 'FULL'
+        }
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.debug

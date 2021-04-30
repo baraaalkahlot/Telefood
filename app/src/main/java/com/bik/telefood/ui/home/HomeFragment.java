@@ -133,7 +133,9 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnProductCl
     private void loadServiceList(Integer page, HashMap<String, String> mParams) {
         hideEmptyStatus();
         homeViewModel.getFeaturedServices(page, mParams, getContext(), getActivity().getSupportFragmentManager(), false).observe(getViewLifecycleOwner(), servicesResponse -> {
-            productSkeleton.hide();
+            if (page == 1) {
+                productSkeleton.hide();
+            }
             ServicesListModel servicesListModel = servicesResponse.getServices();
             if (servicesListModel.getData() == null || servicesListModel.getData().isEmpty()) {
                 showEmptyStatus();

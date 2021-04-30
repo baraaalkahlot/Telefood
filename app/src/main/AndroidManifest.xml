@@ -52,11 +52,16 @@
         <activity
             android:name=".ui.chat.MessageActivity"
             android:label="@string/title_chat"
-            android:theme="@style/Theme.Telefood.ActionBar" />
+            android:theme="@style/Theme.Telefood.ActionBar">
+            <intent-filter>
+                <action android:name="StartChat" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.chat.ChatListActivity"
             android:label="@string/title_chat"
-            android:theme="@style/Theme.Telefood.ActionBar" />
+            android:theme="@style/Theme.Telefood.ActionBar"></activity>
         <activity
             android:name=".ui.support.ContactUsActivity"
             android:label="@string/label_contact_us"

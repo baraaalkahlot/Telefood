@@ -34,7 +34,7 @@ public class SharedPreferencesHelper {
     }
 
     public static String getFcmToken(Application application) {
-        SharedPreferences preferences = application.getSharedPreferences(AppConstant.ADD_DATA, Context.MODE_PRIVATE);
+        SharedPreferences preferences = application.getSharedPreferences(AppConstant.APP_NETWORK, Context.MODE_PRIVATE);
         return preferences.getString(AppConstant.FCM_TOKEN, "Empty");
     }
 
@@ -58,7 +58,6 @@ public class SharedPreferencesHelper {
         SharedPreferences preferences = application.getSharedPreferences(AppConstant.ADD_DATA, Context.MODE_PRIVATE);
         return preferences.getString(AppConstant.ROOM_ID, "");
     }
-
 
     public static void clearAllData(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(AppConstant.ADD_DATA, Context.MODE_PRIVATE);

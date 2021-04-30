@@ -50,7 +50,7 @@ public class MessageActivity extends AppCompatActivity implements MessageAdapter
 
 
         Intent intent = getIntent();
-        int roomId = intent.getIntExtra(AppConstant.ROOM_ID, 0);
+        String roomId = intent.getStringExtra(AppConstant.ROOM_ID);
         String name = intent.getStringExtra(AppConstant.USER_NAME);
         String roomIdS = String.valueOf(roomId);
         String userId = SharedPreferencesHelper.getUserId(getApplication());

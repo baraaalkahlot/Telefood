@@ -20,7 +20,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onNewToken(@NonNull String s) {
         super.onNewToken(s);
-        SharedPreferences.Editor preferences = getSharedPreferences(AppConstant.ADD_DATA, Context.MODE_PRIVATE).edit();
+        SharedPreferences.Editor preferences = getSharedPreferences(AppConstant.APP_NETWORK, Context.MODE_PRIVATE).edit();
         preferences.putString(AppConstant.FCM_TOKEN, s);
         preferences.apply();
         Log.e("wasd", "onNewToken: " + s);

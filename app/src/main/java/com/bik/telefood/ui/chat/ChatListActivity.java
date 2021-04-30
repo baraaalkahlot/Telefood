@@ -57,7 +57,7 @@ public class ChatListActivity extends AppCompatActivity implements ChatListAdapt
     @Override
     public void onClick(int roomId, String providerName) {
         Intent intent = new Intent(this, MessageActivity.class);
-        intent.putExtra(AppConstant.ROOM_ID, roomId);
+        intent.putExtra(AppConstant.ROOM_ID, String.valueOf(roomId));
         intent.putExtra(AppConstant.USER_NAME, providerName);
         startActivity(intent);
     }

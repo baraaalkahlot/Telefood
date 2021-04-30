@@ -116,7 +116,7 @@ public class ProductDetailsActivity extends AppCompatActivity implements ImageSl
         createRoomViewModel.createOrFindRoom(userId, this, getSupportFragmentManager()).observe(this, createRoomResponse -> {
             int roomId = createRoomResponse.getRoomId();
             Intent intent = new Intent(this, MessageActivity.class);
-            intent.putExtra(AppConstant.ROOM_ID, roomId);
+            intent.putExtra(AppConstant.ROOM_ID, String.valueOf(roomId));
             intent.putExtra(AppConstant.USER_NAME, providerName);
             startActivity(intent);
         });

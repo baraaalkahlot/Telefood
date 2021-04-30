@@ -94,6 +94,7 @@ public class MealsFragment extends Fragment implements FilterDialogFragment.OnFi
             binding.rvCategory.setAdapter(categoryAdapter);
         });
 
+
         servicesItemModels = new ArrayList<>();
         params = new HashMap<>();
         productAdapter = new ProductAdapter(servicesItemModels, this, getContext());
@@ -104,6 +105,8 @@ public class MealsFragment extends Fragment implements FilterDialogFragment.OnFi
                 .duration(500)
                 .load(R.layout.item_product)
                 .show();
+
+
         productAdapter.setOnLoadingRequestListener(page -> loadServiceList(page, params));
         loadServiceList(1, params);
         return binding.getRoot();
@@ -112,6 +115,9 @@ public class MealsFragment extends Fragment implements FilterDialogFragment.OnFi
     private void loadServiceList(Integer page, HashMap<String, String> mParams) {
         hideEmptyStatus();
         servicesViewModel.getServices(page, mParams, getContext(), getActivity().getSupportFragmentManager(), false).observe(getViewLifecycleOwner(), servicesResponse -> {
+            if (page == 1) {
+                productSkeleton.hide();
+            }
             ServicesListModel servicesListModel = servicesResponse.getServices();
             if (servicesListModel.getData() == null || servicesListModel.getData().isEmpty()) {
                 showEmptyStatus();
@@ -122,7 +128,6 @@ public class MealsFragment extends Fragment implements FilterDialogFragment.OnFi
             servicesItemModels.addAll(servicesListModel.getData());
             productAdapter.notifyDataSetChanged();
             productAdapter.setLoading(false);
-            productSkeleton.hide();
         });
     }
 

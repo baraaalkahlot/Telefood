@@ -5,6 +5,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.LocaleList;
+import android.util.Log;
 
 import com.bik.telefood.CommonUtils.SharedPreferencesHelper;
 
@@ -59,6 +60,7 @@ public class NetworkUtils {
     }
 
     private Interceptor networkingParent() {
+        Log.e("wasd", "networkingParent:fcm token =  " + SharedPreferencesHelper.getToken(application));
         return chain -> {
             Request.Builder builder = chain.request().newBuilder()
                     .addHeader(ApiConstant.ACCEPT_LANGUAGE, NetworkUtils.this.getLanguage())

@@ -3,6 +3,7 @@ package com.bik.telefood.CommonUtils;
 public interface AppConstant {
 
     String ADD_DATA = "app data";
+    String APP_NETWORK = "app network";
     String USER_STATUS = "user status";
     String USER_TYPE = "user type";
     String USER_ID = "user id";
@@ -25,7 +26,7 @@ public interface AppConstant {
     String TICKET_ID = "id";
     String TYPE_PDF = "application/pdf";
     String EMPTY = "empty";
-    String ROOM_ID = "room_id";
+    String ROOM_ID = "roomID";
     String LAT = "lat";
     String LNG = "lan";
     String FCM_TOKEN = "fcm_token";

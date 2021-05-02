@@ -64,7 +64,6 @@ public class ProvidersDetailsActivity extends AppCompatActivity implements Produ
     }
 
     private void loadData(int page) {
-        productSkeleton.show();
         hideEmptyStatus();
         vendorsViewModel.getSingleVendors(page, id, this, getSupportFragmentManager()).observe(this, servicesResponse -> {
             VendorsModel vendorsModel = servicesResponse.getUser();
@@ -75,6 +74,8 @@ public class ProvidersDetailsActivity extends AppCompatActivity implements Produ
             Log.d("wasd", "loadData: " + vendorsModel.getFavorite());
             binding.btnFavorite.setChecked(vendorsModel.getFavorite());
 
+            if (page == 1) productSkeleton.hide();
+
             if (servicesListModel.getData() == null || servicesListModel.getData().isEmpty()) {
                 showEmptyStatus();
             }
@@ -84,7 +85,6 @@ public class ProvidersDetailsActivity extends AppCompatActivity implements Produ
             servicesItemModels.addAll(servicesListModel.getData());
             productAdapter.notifyDataSetChanged();
             productAdapter.setLoading(false);
-            productSkeleton.hide();
         });
     }
 

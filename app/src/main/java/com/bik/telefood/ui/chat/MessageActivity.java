@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -56,6 +57,7 @@ public class MessageActivity extends AppCompatActivity implements MessageAdapter
         String userId = SharedPreferencesHelper.getUserId(getApplication());
         inputUserId = Integer.parseInt(userId);
 
+        Log.d("wasd", "onCreate: room id " + roomIdS);
         firebaseFirestore = FirebaseFirestore.getInstance().collection(ApiConstant.CHAT).document(roomIdS);
 
         messageModels = new ArrayList<>();
@@ -126,9 +128,12 @@ public class MessageActivity extends AppCompatActivity implements MessageAdapter
         Query allMsg = firebaseFirestore.collection(ApiConstant.MESSAGES).orderBy("timestamp", Query.Direction.ASCENDING);
 
         allMsgListener = allMsg.addSnapshotListener((value, error) -> {
+            Log.d("wasd", "listenForChatMessages: 1");
             if (value == null || value.isEmpty()) return;
+            Log.d("wasd", "listenForChatMessages: 2");
             messageModels.clear();
             for (DocumentSnapshot snapshot : value.getDocuments()) {
+                Log.d("wasd", "listenForChatMessages: " + snapshot.getId());
                 MessageModel messageModel = snapshot.toObject(MessageModel.class);
                 messageModels.add(messageModel);
             }

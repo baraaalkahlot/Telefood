@@ -53,8 +53,9 @@ public class VendorsListActivity extends AppCompatActivity implements VendorsAda
     }
 
     private void loadVendors(int page, HashMap<String, String> params) {
-        providersSkeleton.show();
         vendorsViewModel.getVendors(page, params, this, getSupportFragmentManager()).observe(this, vendorsResponse -> {
+            if (page == 1) providersSkeleton.hide();
+
             VendorsListModel vendorsListModel = vendorsResponse.getVendors();
             if (vendorsListModel.getLastPage() == vendorsListModel.getCurrentPage()) {
                 vendorsAdapter.setLastPage(true);
@@ -62,7 +63,6 @@ public class VendorsListActivity extends AppCompatActivity implements VendorsAda
             vendorsModels.addAll(vendorsListModel.getData());
             vendorsAdapter.notifyDataSetChanged();
             vendorsAdapter.setLoading(false);
-            providersSkeleton.hide();
         });
     }
 

@@ -13,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
+        android:text="this is test"
         android:layout_margin="@dimen/size_small"
         android:background="@drawable/shape_recived_message"
         android:paddingStart="@dimen/size_mid"
